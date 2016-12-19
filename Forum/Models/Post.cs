@@ -11,7 +11,7 @@ namespace Forum.Models
         public string Content { get; set; }
         public DateTime Date { get; set; }
 
-        public virtual ApplicationUser User { get; set; }
+        public virtual User User { get; set; }
         public virtual Topic Topic { get; set; }
         public virtual ICollection<PostFile> PostFiles { get; set; }
     }
