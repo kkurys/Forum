@@ -68,7 +68,11 @@ namespace Forum.Controllers
         // GET: Forum/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            Models.Forum toDelete = db.Fora.Find(id);
+            db.Fora.Remove(toDelete);
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
         // POST: Forum/Delete/5

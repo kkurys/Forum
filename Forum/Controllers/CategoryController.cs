@@ -65,7 +65,11 @@ namespace Forum.Controllers
         // GET: Category/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            Category toDelete = db.Categories.Find(id);
+            db.Categories.Remove(toDelete);
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
         // POST: Category/Delete/5

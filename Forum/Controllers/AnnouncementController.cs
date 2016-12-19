@@ -67,7 +67,11 @@ namespace Forum.Controllers
         // GET: Announcement/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            Announcement toDelete = db.Announcements.Find(id);
+            db.Announcements.Remove(toDelete);
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
         // POST: Announcement/Delete/5
