@@ -1,8 +1,6 @@
 ﻿using Forum.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Forum.Controllers
@@ -13,7 +11,16 @@ namespace Forum.Controllers
 
         public ActionResult Index()
         {
-            var homeView = db.Announcements.ToList();
+            var homeView = new ForumHomeViewModel();
+
+            homeView.Announcements = db.Announcements.ToList();
+            homeView.CategoryForums = new Dictionary<Category, List<Models.Forum>>();
+            foreach (Category cat in db.Categories.ToList())
+            {
+                List<Models.Forum> categoryForums = db.Fora.ToList().FindAll(f => f.CategoryID == cat.ID);
+
+                homeView.CategoryForums.Add(cat, categoryForums);
+            }
 
             return View(homeView);
         }

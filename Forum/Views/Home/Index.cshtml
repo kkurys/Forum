@@ -1,5 +1,4 @@
-﻿@model IEnumerable<Forum.Models.Announcement>
-
+﻿
 @{
     ViewBag.Title = "Home Page";
 }
@@ -8,7 +7,7 @@
     <!-- Indicators -->
     <ol class="carousel-indicators carousel-indicators-inverse">
         @{ int i = 0;}
-        @foreach (var item in Model)
+        @foreach (var item in Model.Announcements)
         {
             if (i == 0)
             {
@@ -25,7 +24,7 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner carousel-announcement" role="listbox">
         @{ int j = 0;}
-        @foreach (var item in Model)
+        @foreach (var item in Model.Announcements)
         {
             if (j == 0)
             {
@@ -64,36 +63,30 @@
 
 <div class="container">
     <div class="panel panel-primary panel-category">
-        <!-- pętla foreach dla kategorii -->
-        <div class="panel-heading category-heading">Kategoria</div>
-        <table class="table table-striped">
-            <thead class="thead-inverse forum-heading">
-                <tr>
-                    <th class="col-md-8">Forum</th>
-                    <th class="col-md-2">Tematów</th>
-                    <th class="col-md-2">Postów</th>
-                </tr>
-            </thead>
+        @foreach (KeyValuePair<Forum.Models.Category, List<Forum.Models.Forum>> pair in Model.CategoryForums)
+        {
+            <div class="panel-heading category-heading">@pair.Key.Name</div>
+            <table class="table table-striped">
+                <thead class="thead-inverse forum-heading">
+                    <tr>
+                        <th class="col-md-8">Forum</th>
+                        <th class="col-md-2">Tematów</th>
+                        <th class="col-md-2">Postów</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in pair.Value)
+                    {
+                        <tr>
+                            <td class="col-md-8"><a href="#">@item.Name</a></td>
+                            <td class="col-md-2">@item.TopicCount</td>
+                            <td class="col-md-2">@item.PostCount</td>
+                        </tr>
+                    }
 
-            <!-- pętla foreach dla for -->
-            <tbody>
-                <tr>
-                    <td class="col-md-8">Procesory</td> <!-- Tytuł jako link-->
-                    <td class="col-md-2">2343</td>
-                    <td class="col-md-2">54354343</td>
-                </tr>
-                <tr>
-                    <td class="col-md-8">Płyty główne</td>
-                    <td class="col-md-2">4354</td>
-                    <td class="col-md-2">432432</td>
-                </tr>
-                <tr>
-                    <td class="col-md-8">Karty graficzne</td>
-                    <td class="col-md-2">54353</td>
-                    <td class="col-md-2">4325433</td>
-                </tr>
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        }
     </div>
 </div>
 
