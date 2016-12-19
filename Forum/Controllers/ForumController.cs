@@ -1,5 +1,4 @@
 ﻿using Forum.Models;
-using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,64 +7,49 @@ using System.Web.Mvc;
 
 namespace Forum.Controllers
 {
-    public class TopicController : Controller
+    public class ForumController : Controller
     {
-
         private ApplicationDbContext db = new ApplicationDbContext();
 
-
-        // GET: Topic
+        // GET: Forum
         public ActionResult Index()
         {
-            var topicList = db.Topics.ToList();
+            var forumList = db.Fora.ToList();
 
-            return View(topicList);
+            return View(forumList);
         }
 
-        // GET: Topic/Details/5
+        // GET: Forum/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Topic/Create
-        [HttpGet]
-        public ActionResult Create(int id)
+        // GET: Forum/Create
+        public ActionResult Create()
         {
-            var newTopic = new CreateTopicViewModel();
-            newTopic.ForumID = id;
+            ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name");
 
-            return View(newTopic);
+            return View();
         }
 
-        // POST: Topic/Create
+        // POST: Forum/Create
         [HttpPost]
-        public ActionResult Create(CreateTopicViewModel newTopic)
+        public ActionResult Create(Models.Forum forum)
         {
-            newTopic.Topic.IsGlued = false;
-            newTopic.Topic.PostCount = 1;
-            newTopic.Topic.ViewsCount = 0;
-            newTopic.Topic.UserID = User.Identity.GetUserId();
-            newTopic.Topic.ForumID = newTopic.ForumID;
-            db.Topics.Add(newTopic.Topic);
-            db.SaveChanges();
-
-            newTopic.Post.Date = DateTime.Now;
-            newTopic.Post.TopicID = db.Topics.ToList().Last().ID;
-            newTopic.Post.UserID = User.Identity.GetUserId();
-            db.Posts.Add(newTopic.Post);
+            db.Fora.Add(forum);
             db.SaveChanges();
 
             return RedirectToAction("Index");
         }
 
-        // GET: Topic/Edit/5
+        // GET: Forum/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Topic/Edit/5
+        // POST: Forum/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -81,13 +65,13 @@ namespace Forum.Controllers
             }
         }
 
-        // GET: Topic/Delete/5
+        // GET: Forum/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Topic/Delete/5
+        // POST: Forum/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

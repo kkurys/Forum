@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -48,5 +49,15 @@ namespace Forum.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Forum> Fora { get; set; }
+        public DbSet<Topic> Topics { get; set; }
+        public DbSet<Post> Posts { get; set; }
+        public DbSet<PostFile> PostFiles { get; set; }
+        public DbSet<Announcement> Announcements { get; set; }
+        public DbSet<PrivateThread> PrivateThreads { get; set; }
+        public DbSet<PrivateMessage> PrivateMessages { get; set; }
+        public DbSet<MessageFile> MessageFiles { get; set; }
     }
 }

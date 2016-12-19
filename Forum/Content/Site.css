@@ -20,7 +20,7 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    max-width: 80%;
 }
 
 .forum-heading{
@@ -41,7 +41,27 @@ textarea {
 }
 
 .panel-category > .category-heading {
-  color: #ffffff;
-  background-color: #286da8;
-  border-color: #286da8;
+    color: #ffffff;
+    background-color: #286da8;
+    border-color: #286da8;
+}
+
+.carousel-inverse{
+    color: #272727;
+}
+
+.carousel-indicators li {
+    border-color: #000000;
+}
+
+.carousel-indicators .active {
+    background: #000000;
+}
+
+.carousel-announcement{
+    margin-top: 10px;
+    border: 1px solid;
+}
+
+.full-width{
 }

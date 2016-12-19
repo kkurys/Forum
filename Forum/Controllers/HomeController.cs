@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Forum.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +9,13 @@ namespace Forum.Controllers
 {
     public class HomeController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         public ActionResult Index()
         {
-            return View();
+            var homeView = db.Announcements.ToList();
+
+            return View(homeView);
         }
 
         public ActionResult About()

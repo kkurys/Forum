@@ -17,7 +17,7 @@ namespace Forum.Tests.Controllers
 
             _topic.ID = 1;
 
-            ActionResult result = _postController.Create(new Post(), _topic);
+            ActionResult result = _postController.Create(new Post());
 
             Assert.IsNotNull(result);
             Assert.AreEqual(1, _topic.PostCount);

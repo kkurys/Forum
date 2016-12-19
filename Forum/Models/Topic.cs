@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Forum.Models
 {
@@ -7,7 +8,11 @@ namespace Forum.Models
         public int ID { get; set; }
         public int ForumID { get; set; }
         public string UserID { get; set; }
+
+        [Display(Name = "Tytuł")]
         public string Title { get; set; }
+
+        [Display(Name = "Opis")]
         public string Description { get; set; }
         public bool IsGlued { get; set; }
         public int PostCount { get; set; }
