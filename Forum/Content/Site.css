@@ -40,6 +40,10 @@ textarea {
     border-bottom-right-radius: 0px;
 }
 
+.panel-category:first-child{
+    margin-top: 235px;
+}
+
 .panel-category > .category-heading {
     color: #ffffff;
     background-color: #286da8;
@@ -47,21 +51,25 @@ textarea {
 }
 
 .carousel-inverse{
-    color: #272727;
+    color: #000000;
 }
 
 .carousel-indicators li {
-    border-color: #000000;
+    border-color: #808080;
 }
 
 .carousel-indicators .active {
-    background: #000000;
+    background: #808080;
 }
 
 .carousel-announcement{
-    margin-top: 10px;
-    border: 1px solid;
+    border-bottom: 1px solid #808080;
 }
 
 .full-width{
+    position: absolute;
+    right: 0px;
+    left: 0px;
+    padding: 0px;
+    margin: 0px;
 }

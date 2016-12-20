@@ -3,52 +3,75 @@
     ViewBag.Title = "Home Page";
 }
 
-<div id="myCarousel" class="carousel slide full-width" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators carousel-indicators-inverse">
-        @{ int i = 0;}
-        @foreach (var item in Model.Announcements)
-        {
-            if (i == 0)
-            {
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            }
-            else
-            {
-                <li data-target="#myCarousel" data-slide-to="@i"></li>
-            }
-            i++;
-        }
-    </ol>
 
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner carousel-announcement" role="listbox">
-        @{ int j = 0;}
-        @foreach (var item in Model.Announcements)
-        {
-            if (j == 0)
-            {
-                <div class="item active">
-                    <img src="http://i.imgur.com/Y6EKE8c.png" alt="Chania">
-                    <div class="carousel-caption carousel-inverse">
-                        <h3>@item.Title</h3>
-                        <p>@item.Content</p>
-                    </div>
+<div id="myCarousel" class="carousel slide full-width" data-ride="carousel">
+
+    @if (Model.Announcements.Count == 0)
+    {
+        <!-- Indicators -->
+        <ol class="carousel-indicators carousel-indicators-inverse">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner carousel-announcement" role="listbox">
+            <div class="item active">
+                <img src="http://i.imgur.com/Y6EKE8c.png" alt="img">
+                <div class="carousel-caption carousel-inverse">
+                    <h3>Ogłoszenia</h3>
+                    <p>Miejsce na ogłoszenia</p>
                 </div>
-            }
-            else
+            </div>
+        </div>
+    }
+    else
+    {
+        <!-- Indicators -->
+        <ol class="carousel-indicators carousel-indicators-inverse">
+            @{ int i = 0;}
+            @foreach (var item in Model.Announcements)
             {
-                <div class="item">
-                    <img src="http://i.imgur.com/Y6EKE8c.png" alt="Chania">
-                    <div class="carousel-caption carousel-inverse">
-                        <h3>@item.Title</h3>
-                        <p>@item.Content</p>
-                    </div>
-                </div>
+                if (i == 0)
+                {
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                }
+                else
+                {
+                    <li data-target="#myCarousel" data-slide-to="@i"></li>
+                }
+                i++;
             }
-            j++;
-        }
-    </div>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner carousel-announcement" role="listbox">
+            @{ int j = 0;}
+            @foreach (var item in Model.Announcements)
+            {
+                if (j == 0)
+                {
+                    <div class="item active">
+                        <img src="http://i.imgur.com/Y6EKE8c.png" alt="img">
+                        <div class="carousel-caption carousel-inverse">
+                            <h3>@item.Title</h3>
+                            <p>@item.Content</p>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="item">
+                        <img src="http://i.imgur.com/Y6EKE8c.png" alt="img">
+                        <div class="carousel-caption carousel-inverse">
+                            <h3>@item.Title</h3>
+                            <p>@item.Content</p>
+                        </div>
+                    </div>
+                }
+                j++;
+            }
+        </div>
+    }
 
     <!-- Left and right controls -->
     <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
