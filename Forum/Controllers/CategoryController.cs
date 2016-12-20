@@ -43,23 +43,19 @@ namespace Forum.Controllers
         // GET: Category/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Category category = db.Categories.Find(id);
+            return View(category);
         }
 
         // POST: Category/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Category category)
         {
-            try
-            {
-                // TODO: Add update logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            db.Entry(category).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
         // GET: Category/Delete/5

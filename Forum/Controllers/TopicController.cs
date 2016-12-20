@@ -65,23 +65,18 @@ namespace Forum.Controllers
         // GET: Topic/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Topic topic = db.Topics.Find(id);
+            return View(topic);
         }
 
         // POST: Topic/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Topic topic)
         {
-            try
-            {
-                // TODO: Add update logic here
+            db.Entry(topic).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Index");
         }
 
         // GET: Topic/Delete/5

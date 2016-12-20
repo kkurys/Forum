@@ -45,5 +45,21 @@ namespace Forum.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Edit(int id)
+        {
+            Post post = db.Posts.Find(id);
+            return View(post);
+        }
+
+        // POST: Topic/Edit/5
+        [HttpPost]
+        public ActionResult Edit(int id, Post post)
+        {
+            db.Entry(post).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
     }
 }

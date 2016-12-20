@@ -46,23 +46,20 @@ namespace Forum.Controllers
         // GET: Forum/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name");
+
+            Models.Forum forum = db.Fora.Find(id);
+            return View(forum);
         }
 
         // POST: Forum/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Models.Forum forum)
         {
-            try
-            {
-                // TODO: Add update logic here
+            db.Entry(forum).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Index");
         }
 
         // GET: Forum/Delete/5
