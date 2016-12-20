@@ -37,8 +37,10 @@ namespace Forum.Controllers
             post.UserID = User.Identity.GetUserId();
 
             db.Posts.Add(post);
+            db.Topics.Find(post.TopicID).PostCount++;
+            db.Fora.Find(db.Topics.Find(post.TopicID).ForumID).PostCount++;
             db.SaveChanges();
-            // save to db..
+
 
             return RedirectToAction("Index");
         }

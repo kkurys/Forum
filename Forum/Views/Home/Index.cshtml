@@ -62,9 +62,9 @@
 </div>
 
 <div class="container">
-    <div class="panel panel-primary panel-category">
-        @foreach (KeyValuePair<Forum.Models.Category, List<Forum.Models.Forum>> pair in Model.CategoryForums)
-        {
+    @foreach (KeyValuePair<Forum.Models.Category, List<Forum.Models.Forum>> pair in Model.CategoryForums)
+    {
+        <div class="panel panel-primary panel-category">
             <div class="panel-heading category-heading">@pair.Key.Name</div>
             <table class="table table-striped">
                 <thead class="thead-inverse forum-heading">
@@ -86,8 +86,8 @@
 
                 </tbody>
             </table>
-        }
-    </div>
+        </div>
+    }
 </div>
 
 <div class="row">

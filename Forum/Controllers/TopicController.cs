@@ -54,6 +54,9 @@ namespace Forum.Controllers
             newTopic.Post.TopicID = db.Topics.ToList().Last().ID;
             newTopic.Post.UserID = User.Identity.GetUserId();
             db.Posts.Add(newTopic.Post);
+
+            db.Fora.Find(newTopic.Topic.ForumID).TopicCount++;
+            db.Fora.Find(newTopic.Topic.ForumID).PostCount++;
             db.SaveChanges();
 
             return RedirectToAction("Index");
