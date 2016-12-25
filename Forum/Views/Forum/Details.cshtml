@@ -52,7 +52,12 @@
                     foreach (var item in Model.Topics)
                     {
                         <tr>
-                            <td class="col-md-8"><a href="@Url.Action("Details", "Topic", new { id = item.ID})">@item.Title</a></td>
+                            <td class="col-md-8">
+                                <a href="@Url.Action("Details", "Topic", new { id = item.ID})">
+                                    @item.Title
+                                    <div class="text-muted description">@item.Description</div>
+                                </a>
+                            </td>
                             <td class="col-md-2">@item.PostCount</td>
                             <td class="col-md-2">@item.ViewsCount</td>
                         </tr>

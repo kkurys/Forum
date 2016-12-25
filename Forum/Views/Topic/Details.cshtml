@@ -1,0 +1,66 @@
+﻿@model Forum.Models.TopicViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="container">
+    <div class="row navigation-row">
+        <a href="@Url.Action("Index", "Home")" class="btn btn-link">Forum</a>
+        <b>></b>
+        <a href="@Url.Action("Details", "Category", new { id = Model.Topic.Forum.CategoryID })" class="btn btn-link">@Model.Topic.Forum.Category.Name</a>
+        <b>></b>
+        <a href="@Url.Action("Details", "Forum", new { id = Model.Topic.Forum.ID })" class="btn btn-link">@Model.Topic.Forum.Name</a>
+        <b>></b>
+        <a href="@Url.Action("Details", "Topic", new { id = Model.Topic.ID })" class="btn btn-link">@Model.Topic.Title</a>
+    </div>
+
+    <div class="row navigation-row">
+        <ul class="pagination pagination-sm">
+            <li class="disabled"><a href="#">&laquo;</a></li>
+            <li class="active"><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">&raquo;</a></li>
+        </ul>
+
+        <a href="@Url.Action("Create", "Post", new { id = Model.Topic.ID })" class="btn btn-default pull-right">Nowa wiadomość</a>
+    </div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">@Model.Topic.Title</h3>
+        </div>
+        <div class="panel-body">
+            @foreach (var item in Model.Posts)
+            {
+                <div class="row post-row">
+                    <div class="col-sm-2 post-user">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">@item.User.UserName</h3>
+                            </div>
+                            <div class="panel-body">
+                                <!-- AVATAR -->
+                                <img src="http://letsplej.pl/uploads/avatars/avatar_13921.jpg"/>
+
+                                <!-- plus jakies dane o użytkowniku ?? -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-10 post">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">@item.Date</h3>
+                            </div>
+                            <div class="panel-body">
+                                @item.Content
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

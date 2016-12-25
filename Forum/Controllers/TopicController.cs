@@ -25,7 +25,11 @@ namespace Forum.Controllers
         // GET: Topic/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            TopicViewModel viewModel = new TopicViewModel();
+            viewModel.Topic = db.Topics.Find(id);
+            viewModel.Posts = db.Posts.ToList().FindAll(f => f.TopicID == viewModel.Topic.ID);
+
+            return View(viewModel);
         }
 
         // GET: Topic/Create
@@ -59,7 +63,7 @@ namespace Forum.Controllers
             db.Fora.Find(newTopic.Topic.ForumID).PostCount++;
             db.SaveChanges();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", "Topic", new { id = newTopic.Topic.ID });
         }
 
         // GET: Topic/Edit/5

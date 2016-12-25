@@ -82,3 +82,25 @@ textarea {
 .navigation-row{
     margin: 10px 0px;
 }
+
+.post-user > .panel-body{
+    text-align: center;
+}
+
+.post-row{
+    display: table;
+}
+
+.post-user{
+    float: none;
+    display: table-cell;
+}
+
+.post{
+    float: none;
+    display: table-cell;
+}
+
+.description{
+    font-weight: normal;
+}

@@ -235,6 +235,7 @@
     <Compile Include="Models\PrivateThread.cs" />
     <Compile Include="Models\Topic.cs" />
     <Compile Include="Models\PostFile.cs" />
+    <Compile Include="Models\TopicViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -315,6 +316,7 @@
     <Content Include="Views\Post\Edit.cshtml" />
     <Content Include="Views\Forum\Details.cshtml" />
     <Content Include="Views\Category\Details.cshtml" />
+    <Content Include="Views\Topic\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

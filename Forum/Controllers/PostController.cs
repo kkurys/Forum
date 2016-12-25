@@ -42,7 +42,7 @@ namespace Forum.Controllers
             db.SaveChanges();
 
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", "Topic", new { id = post.TopicID });
         }
 
         public ActionResult Edit(int id)

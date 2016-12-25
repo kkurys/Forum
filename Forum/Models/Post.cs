@@ -13,6 +13,8 @@ namespace Forum.Models
         [Display(Name = "Treść")]
         [DataType(DataType.MultilineText)]
         public string Content { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:f}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
 
         public virtual User User { get; set; }

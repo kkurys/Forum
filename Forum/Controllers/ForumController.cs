@@ -25,6 +25,7 @@ namespace Forum.Controllers
             ForumTopicsViewModel viewModel = new ForumTopicsViewModel();
             viewModel.Forum = db.Fora.Find(id);
             viewModel.Topics = db.Topics.ToList().FindAll(f => f.ForumID == viewModel.Forum.ID);
+            // Sortowanie według daty od najnowszych - trzeba chyba dodać polę data, bo inaczej trzeba przeszukiwać wszystkie posty z tego tematu który jest najnowszy by wydobyć datę :E
 
             return View(viewModel);
         }
