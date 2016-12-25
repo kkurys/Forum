@@ -22,7 +22,12 @@ namespace Forum.Controllers
         // GET: Forum/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            ForumTopicsViewModel viewModel = new ForumTopicsViewModel();
+
+            viewModel.Forum = db.Fora.Find(id);
+            viewModel.Topics = db.Topics.ToList().FindAll(f => f.ForumID == viewModel.Forum.ID);
+
+            return View(viewModel);
         }
 
         // GET: Forum/Create

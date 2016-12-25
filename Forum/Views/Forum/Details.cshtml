@@ -1,0 +1,62 @@
+﻿@model Forum.Models.ForumTopicsViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="container">
+    <div class="row navigation-row">
+        <a href="@Url.Action("Create", "Topic")" class="btn btn-link">@Model.Forum.Category.Name</a>
+        <b>></b>
+        <a href="@Url.Action("Details", "Forum", new { id = Model.Forum.ID })" class="btn btn-link">@Model.Forum.Name</a>
+    </div>
+
+    <div class="row navigation-row">
+        <ul class="pagination pagination-sm">
+            <li class="disabled"><a href="#">&laquo;</a></li>
+            <li class="active"><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">&raquo;</a></li>
+        </ul>
+
+        <a href="@Url.Action("Create", "Topic", new { id = Model.Forum.ID })" class="btn btn-default pull-right">Nowy temat</a>
+    </div>
+    <div class="panel panel-primary">
+        <div class="panel-heading category-heading">
+            @Model.Forum.Name
+        </div>
+        <table class="table table-striped">
+            <thead class="thead-inverse forum-heading">
+                <tr>
+                    <th class="col-md-8">Tematy</th>
+                    <th class="col-md-2">Postów</th>
+                    <th class="col-md-2">Wyświetleń</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Topics.Count == 0)
+                {
+                    <tr>
+                        <td class="col-md-8"><b>Brak tematów</b></td>
+                        <td class="col-md-2"></td>
+                        <td class="col-md-2"></td>
+                    </tr>
+                }
+                else
+                {
+                    foreach (var item in Model.Topics)
+                    {
+                        <tr>
+                            <td class="col-md-8"><a href="@Url.Action("Details", "Topic", new { id = item.ID})">@item.Title</a></td>
+                            <td class="col-md-2">@item.PostCount</td>
+                            <td class="col-md-2">@item.ViewsCount</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

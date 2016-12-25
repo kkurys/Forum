@@ -40,8 +40,8 @@ textarea {
     border-bottom-right-radius: 0px;
 }
 
-.panel-category:first-child{
-    margin-top: 235px;
+.panel-index:first-child{
+    margin-top: 225px;
 }
 
 .panel-category > .category-heading {
@@ -72,4 +72,13 @@ textarea {
     left: 0px;
     padding: 0px;
     margin: 0px;
+}
+
+.table tbody a{ 
+    font-weight: bold;
+    text-decoration: none!important;
+}
+
+.navigation-row{
+    margin: 10px 0px;
 }

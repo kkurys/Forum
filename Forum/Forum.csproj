@@ -225,6 +225,7 @@
     <Compile Include="Models\CreateTopicViewModel.cs" />
     <Compile Include="Models\Forum.cs" />
     <Compile Include="Models\ForumHomeViewModel.cs" />
+    <Compile Include="Models\ForumTopicsViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MessageFile.cs" />
@@ -239,6 +240,8 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\flat-ui.css" />
+    <Content Include="Content\flat-ui.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -309,6 +312,7 @@
     <Content Include="Views\Topic\Edit.cshtml" />
     <Content Include="Views\Forum\Edit.cshtml" />
     <Content Include="Views\Post\Edit.cshtml" />
+    <Content Include="Views\Forum\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
