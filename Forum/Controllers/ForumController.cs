@@ -23,7 +23,6 @@ namespace Forum.Controllers
         public ActionResult Details(int id)
         {
             ForumTopicsViewModel viewModel = new ForumTopicsViewModel();
-
             viewModel.Forum = db.Fora.Find(id);
             viewModel.Topics = db.Topics.ToList().FindAll(f => f.ForumID == viewModel.Forum.ID);
 

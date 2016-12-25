@@ -21,7 +21,11 @@ namespace Forum.Controllers
         // GET: Category/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            CategoryViewModel viewModel = new CategoryViewModel();
+            viewModel.Category = db.Categories.Find(id);
+            viewModel.Fora = db.Fora.ToList().FindAll(f => f.CategoryID == viewModel.Category.ID);
+
+            return View(viewModel);
         }
 
         // GET: Category/Create

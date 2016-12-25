@@ -1,4 +1,4 @@
-﻿@model Forum.Models.ForumTopicsViewModel
+﻿@model Forum.Models.CategoryViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -8,9 +8,7 @@
     <div class="row navigation-row">
         <a href="@Url.Action("Index", "Home")" class="btn btn-link">Forum</a>
         <b>></b>
-        <a href="@Url.Action("Details", "Category", new { id = Model.Forum.CategoryID })" class="btn btn-link">@Model.Forum.Category.Name</a>
-        <b>></b>
-        <a href="@Url.Action("Details", "Forum", new { id = Model.Forum.ID })" class="btn btn-link">@Model.Forum.Name</a>
+        <a href="@Url.Action("Details", "Category", new { id = Model.Category.ID })" class="btn btn-link">@Model.Category.Name</a>
     </div>
 
     <div class="row navigation-row">
@@ -23,23 +21,21 @@
             <li><a href="#">5</a></li>
             <li><a href="#">&raquo;</a></li>
         </ul>
-
-        <a href="@Url.Action("Create", "Topic", new { id = Model.Forum.ID })" class="btn btn-default pull-right">Nowy temat</a>
     </div>
     <div class="panel panel-primary">
         <div class="panel-heading category-heading">
-            @Model.Forum.Name
+            @Model.Category.Name
         </div>
         <table class="table table-striped">
             <thead class="thead-inverse forum-heading">
                 <tr>
-                    <th class="col-md-8">Tematy</th>
+                    <th class="col-md-8">Forum</th>
+                    <th class="col-md-2">Tematów</th>
                     <th class="col-md-2">Postów</th>
-                    <th class="col-md-2">Wyświetleń</th>
                 </tr>
             </thead>
             <tbody>
-                @if (Model.Topics.Count == 0)
+                @if (Model.Fora.Count == 0)
                 {
                     <tr>
                         <td class="col-md-8"><b>Brak tematów</b></td>
@@ -49,12 +45,12 @@
                 }
                 else
                 {
-                    foreach (var item in Model.Topics)
+                    foreach (var item in Model.Fora)
                     {
                         <tr>
-                            <td class="col-md-8"><a href="@Url.Action("Details", "Topic", new { id = item.ID})">@item.Title</a></td>
+                            <td class="col-md-8"><a href="@Url.Action("Details", "Forum", new { id = item.ID})">@item.Name</a></td>
+                            <td class="col-md-2">@item.TopicCount</td>
                             <td class="col-md-2">@item.PostCount</td>
-                            <td class="col-md-2">@item.ViewsCount</td>
                         </tr>
                     }
                 }
