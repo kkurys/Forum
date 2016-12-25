@@ -4,14 +4,13 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Wiadomość do tematu @Model.Topic.Title (@Model.TopicID)</h2>
+<h2>Odpowiedź do tematu @Model.Topic.Title</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Post</h4>
         <hr />
         @Html.HiddenFor(mode => Model.TopicID, "TopicID")
 
@@ -30,7 +29,3 @@
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

@@ -37,7 +37,7 @@ namespace Forum.Controllers
         public ActionResult Create(int id)
         {
             var newTopic = new CreateTopicViewModel();
-            newTopic.ForumID = id;
+            newTopic.Forum = db.Fora.Find(id);
 
             return View(newTopic);
         }
@@ -50,7 +50,7 @@ namespace Forum.Controllers
             newTopic.Topic.PostCount = 1;
             newTopic.Topic.ViewsCount = 0;
             newTopic.Topic.UserID = User.Identity.GetUserId();
-            newTopic.Topic.ForumID = newTopic.ForumID;
+            newTopic.Topic.ForumID = newTopic.Forum.ID;
             db.Topics.Add(newTopic.Topic);
             db.SaveChanges();
 
