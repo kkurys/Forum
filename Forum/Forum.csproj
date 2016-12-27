@@ -230,6 +230,10 @@
     <Compile Include="Migrations\201612271055171_Change-OnlyLooged-into-IsPublic.Designer.cs">
       <DependentUpon>201612271055171_Change-OnlyLooged-into-IsPublic.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612271133349_lastpostdate-in-topic.cs" />
+    <Compile Include="Migrations\201612271133349_lastpostdate-in-topic.Designer.cs">
+      <DependentUpon>201612271133349_lastpostdate-in-topic.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Announcement.cs" />
@@ -359,6 +363,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612271055171_Change-OnlyLooged-into-IsPublic.resx">
       <DependentUpon>201612271055171_Change-OnlyLooged-into-IsPublic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612271133349_lastpostdate-in-topic.resx">
+      <DependentUpon>201612271133349_lastpostdate-in-topic.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

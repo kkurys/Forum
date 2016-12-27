@@ -112,11 +112,11 @@
                         {
                             <tr>
                                 <td class="col-md-8">
-                                    <a href="@Url.Action("Details", "Forum", new { id = item.ID})">@item.Name</a>
                                     @if (item.IsPublic)
                                     {
-                                        <span class="text-muted">(Publiczne)</span>
+                                        <span class="label label-success">Publiczne</span>
                                     }
+                                    <a href="@Url.Action("Details", "Forum", new { id = item.ID})">@item.Name</a>
                                 </td>
                                 <td class="col-md-2">@item.TopicCount</td>
                                 <td class="col-md-2">@item.PostCount</td>

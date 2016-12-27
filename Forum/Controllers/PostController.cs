@@ -39,6 +39,8 @@ namespace Forum.Controllers
             db.Posts.Add(post);
             db.Topics.Find(post.TopicID).PostCount++;
             db.Fora.Find(db.Topics.Find(post.TopicID).ForumID).PostCount++;
+            db.Topics.Find(post.TopicID).LastPostDate = post.Date;
+
             db.SaveChanges();
 
 

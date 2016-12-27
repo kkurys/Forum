@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Forum.Models
 {
@@ -14,10 +15,5 @@ namespace Forum.Models
         public bool IsPublic { get; set; }
 
         public virtual Category Category { get; set; }
-
-        public string GetForumState(bool checkboxValue)
-        {
-            return checkboxValue ? "Tak" : "Nie";
-        }
     }
 }
