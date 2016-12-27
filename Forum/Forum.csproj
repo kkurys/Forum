@@ -218,6 +218,18 @@
     <Compile Include="Migrations\201612192108540_Announcement-Update.Designer.cs">
       <DependentUpon>201612192108540_Announcement-Update.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612271043010_OnlyLogged-topic.cs" />
+    <Compile Include="Migrations\201612271043010_OnlyLogged-topic.Designer.cs">
+      <DependentUpon>201612271043010_OnlyLogged-topic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612271045421_OnlyLogged-Forum-fix.cs" />
+    <Compile Include="Migrations\201612271045421_OnlyLogged-Forum-fix.Designer.cs">
+      <DependentUpon>201612271045421_OnlyLogged-Forum-fix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612271055171_Change-OnlyLooged-into-IsPublic.cs" />
+    <Compile Include="Migrations\201612271055171_Change-OnlyLooged-into-IsPublic.Designer.cs">
+      <DependentUpon>201612271055171_Change-OnlyLooged-into-IsPublic.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Announcement.cs" />
@@ -338,6 +350,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612192108540_Announcement-Update.resx">
       <DependentUpon>201612192108540_Announcement-Update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612271043010_OnlyLogged-topic.resx">
+      <DependentUpon>201612271043010_OnlyLogged-topic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612271045421_OnlyLogged-Forum-fix.resx">
+      <DependentUpon>201612271045421_OnlyLogged-Forum-fix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612271055171_Change-OnlyLooged-into-IsPublic.resx">
+      <DependentUpon>201612271055171_Change-OnlyLooged-into-IsPublic.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

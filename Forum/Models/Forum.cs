@@ -1,4 +1,6 @@
-﻿namespace Forum.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Forum.Models
 {
     public class Forum
     {
@@ -8,6 +10,14 @@
         public int TopicCount { get; set; }
         public int PostCount { get; set; }
 
+        [Display(Name = "Publiczne")]
+        public bool IsPublic { get; set; }
+
         public virtual Category Category { get; set; }
+
+        public string GetForumState(bool checkboxValue)
+        {
+            return checkboxValue ? "Tak" : "Nie";
+        }
     }
 }

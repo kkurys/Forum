@@ -87,20 +87,11 @@ textarea {
     text-align: center;
 }
 
-.post-row{
-    display: table;
-}
-
-.post-user{
-    float: none;
-    display: table-cell;
-}
-
-.post{
-    float: none;
-    display: table-cell;
-}
-
 .description{
     font-weight: normal;
+}
+
+.topic-description{
+    font-size: 14px;
+    color: #cfcfcf;
 }
