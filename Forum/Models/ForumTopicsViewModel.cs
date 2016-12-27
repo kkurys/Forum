@@ -9,6 +9,8 @@ namespace Forum.Models
     {
         public Forum Forum { get; set; }
         public List<Topic> Topics { get; set; }
+        public int Pages { get; set; }
+        public int CurrentPage { get; set; }
 
     }
 }

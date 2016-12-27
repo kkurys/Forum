@@ -1,4 +1,5 @@
 ﻿using Forum.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,12 +21,51 @@ namespace Forum.Controllers
         }
 
         // GET: Forum/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int id, int? page)
         {
+            int startIndex, endIndex, postsPerPage;
+
             ForumTopicsViewModel viewModel = new ForumTopicsViewModel();
+
+
+            var user = db.Users.Find(User.Identity.GetUserId());
+            if (User.Identity.IsAuthenticated)
+            {
+                postsPerPage = user.PostsPerPage.Quantity;
+            }
+            else
+            {
+                postsPerPage = 25;
+            }
+
             viewModel.Forum = db.Fora.Find(id);
-            var tmpList = db.Topics.ToList().FindAll(f => f.ForumID == viewModel.Forum.ID);
-            viewModel.Topics = tmpList.OrderByDescending(x => x.LastPostDate).ToList();
+            var allList = db.Topics.ToList().FindAll(f => f.ForumID == viewModel.Forum.ID);
+            var dateSort = allList.OrderByDescending(x => x.LastPostDate).ToList();
+            var isGluedSort = dateSort.OrderByDescending(x => x.IsGlued).ToList();
+            viewModel.Pages = allList.Count() / postsPerPage + 1;
+
+            if (page == null)
+            {
+                startIndex = 0;
+                viewModel.CurrentPage = 0;
+            }
+            else
+            {
+                startIndex = (int)page * postsPerPage;
+                viewModel.CurrentPage = (int)page;
+            }
+
+            if (allList.Count() < startIndex + postsPerPage)
+            {
+                endIndex = allList.Count();
+            }
+            else
+            {
+                endIndex = startIndex + postsPerPage;
+            }
+
+
+            viewModel.Topics = isGluedSort.GetRange(startIndex, endIndex - startIndex);
 
             return View(viewModel);
         }
