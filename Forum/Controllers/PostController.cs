@@ -34,7 +34,14 @@ namespace Forum.Controllers
         public ActionResult Create(Post post)
         {
             post.Date = DateTime.Now;
-            post.UserID = User.Identity.GetUserId();
+            if (User.Identity.IsAuthenticated)
+            {
+                post.UserID = User.Identity.GetUserId();
+            }
+            else
+            {
+                post.UserID = null;
+            }
 
             db.Posts.Add(post);
             db.Topics.Find(post.TopicID).PostCount++;

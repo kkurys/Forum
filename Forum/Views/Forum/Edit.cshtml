@@ -32,6 +32,14 @@
             </div>
         </div>
 
+        <div class="form-group">
+            @Html.LabelFor(model => model.IsPublic, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.CheckBoxFor(model => model.IsPublic, new { htmlAttributes = new { @class = "form-control" } }) Również niezalogowani użytkownicy mogą pisać w tym forum
+                @Html.ValidationMessageFor(model => model.IsPublic, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
         @Html.HiddenFor(model => model.TopicCount)
         @Html.HiddenFor(model => model.PostCount)
 

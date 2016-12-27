@@ -22,6 +22,9 @@ namespace Forum.Controllers
                 homeView.CategoryForums.Add(cat, categoryForums);
             }
 
+            ViewBag.Users = db.Users.Count();
+            ViewBag.Topics = db.Topics.Count();
+            ViewBag.Posts = db.Posts.Count();
             return View(homeView);
         }
 

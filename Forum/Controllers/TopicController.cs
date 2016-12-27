@@ -51,13 +51,28 @@ namespace Forum.Controllers
             newTopic.Topic.PostCount = 1;
             newTopic.Topic.ViewsCount = 0;
             newTopic.Topic.UserID = User.Identity.GetUserId();
+            if (User.Identity.IsAuthenticated)
+            {
+                newTopic.Topic.UserID = User.Identity.GetUserId();
+            }
+            else
+            {
+                newTopic.Topic.UserID = null;
+            }
             newTopic.Topic.ForumID = newTopic.Forum.ID;
             db.Topics.Add(newTopic.Topic);
             db.SaveChanges();
 
             newTopic.Post.Date = DateTime.Now;
             newTopic.Post.TopicID = db.Topics.ToList().Last().ID;
-            newTopic.Post.UserID = User.Identity.GetUserId();
+            if (User.Identity.IsAuthenticated)
+            {
+                newTopic.Post.UserID = User.Identity.GetUserId();
+            }
+            else
+            {
+                newTopic.Post.UserID = null;
+            }
             db.Posts.Add(newTopic.Post);
             
             db.Fora.Find(newTopic.Topic.ForumID).TopicCount++;
