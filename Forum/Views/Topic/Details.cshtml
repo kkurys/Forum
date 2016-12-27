@@ -60,7 +60,17 @@
     </div>
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h3 class="panel-title">@Model.Topic.Title <span class="text-muted topic-description">@Model.Topic.Description</span></h3>
+            <h3 class="panel-title">
+                @Model.Topic.Title <span class="text-muted topic-description">@Model.Topic.Description</span>
+                @if (Model.Admin)
+                {
+                    <a href="@Url.Action("Delete","Topic", new { id = Model.Topic.ID })" class="label label-default right-options">Usuń</a>
+                }
+                @if (Model.Owner)
+                {
+                    <a href="@Url.Action("Edit","Topic", new { id = Model.Topic.ID })" class="label label-default right-options">Edytuj</a>
+                }
+            </h3>
         </div>
         <div class="panel-body">
 
@@ -90,7 +100,17 @@
                     <div class="col-sm-10">
                         <div class="panel panel-default post">
                             <div class="panel-heading">
-                                <h3 class="panel-title">@item.Date</h3>
+                                <h3 class="panel-title">
+                                    @item.Date
+                                    @if (Model.Admin)
+                                    {
+                                        <a href="@Url.Action("Delete","Post", new { id = item.ID })" class="label label-default right-options">Usuń</a>
+                                    }
+                                    @if (Model.Owner)
+                                    {
+                                        <a href="@Url.Action("Edit","Post", new { id = item.ID })" class="label label-default right-options">Edytuj</a>
+                                    }
+                                </h3>
                             </div>
                             <div class="panel-body">
                                 @item.Content

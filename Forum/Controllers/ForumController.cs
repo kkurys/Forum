@@ -13,6 +13,7 @@ namespace Forum.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Forum
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             var forumList = db.Fora.ToList();
@@ -71,6 +72,7 @@ namespace Forum.Controllers
         }
 
         // GET: Forum/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name");
@@ -80,6 +82,7 @@ namespace Forum.Controllers
 
         // POST: Forum/Create
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create(Models.Forum forum)
         {
             db.Fora.Add(forum);
@@ -89,6 +92,7 @@ namespace Forum.Controllers
         }
 
         // GET: Forum/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
             ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name");
@@ -99,6 +103,7 @@ namespace Forum.Controllers
 
         // POST: Forum/Edit/5
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id, Models.Forum forum)
         {
             db.Entry(forum).State = System.Data.Entity.EntityState.Modified;
@@ -108,6 +113,7 @@ namespace Forum.Controllers
         }
 
         // GET: Forum/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             Models.Forum toDelete = db.Fora.Find(id);
@@ -119,6 +125,7 @@ namespace Forum.Controllers
 
         // POST: Forum/Delete/5
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id, FormCollection collection)
         {
             try

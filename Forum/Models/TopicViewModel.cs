@@ -11,5 +11,7 @@ namespace Forum.Models
         public List<Post> Posts { get; set; }
         public int Pages { get; set; }
         public int CurrentPage { get; set; }
+        public bool Owner { get; set; }
+        public bool Admin { get; set; }
     }
 }

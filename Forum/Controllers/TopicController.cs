@@ -27,6 +27,8 @@ namespace Forum.Controllers
         {
             int startIndex, endIndex, postsPerPage;
             TopicViewModel viewModel = new TopicViewModel();
+            viewModel.Admin = false;
+            viewModel.Owner = false;
 
             var user = db.Users.Find(User.Identity.GetUserId());
             if (User.Identity.IsAuthenticated)
@@ -61,6 +63,12 @@ namespace Forum.Controllers
                 endIndex = startIndex + postsPerPage;
             }
 
+            if (viewModel.Topic.UserID == User.Identity.GetUserId()) viewModel.Owner = true;
+            if (User.IsInRole("Admin"))
+            {
+                viewModel.Admin = true;
+                viewModel.Owner = true;
+            }
 
             viewModel.Posts = tmpList.GetRange(startIndex, endIndex - startIndex);
 
@@ -81,7 +89,6 @@ namespace Forum.Controllers
         [HttpPost]
         public ActionResult Create(CreateTopicViewModel newTopic)
         {
-            newTopic.Topic.IsGlued = false;
             newTopic.Topic.LastPostDate = DateTime.Now;
             newTopic.Topic.PostCount = 1;
             newTopic.Topic.ViewsCount = 0;
@@ -135,6 +142,7 @@ namespace Forum.Controllers
         }
 
         // GET: Topic/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             return View();
@@ -142,6 +150,7 @@ namespace Forum.Controllers
 
         // POST: Topic/Delete/5
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id, FormCollection collection)
         {
             try

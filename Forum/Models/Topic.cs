@@ -15,6 +15,7 @@ namespace Forum.Models
 
         [Display(Name = "Opis")]
         public string Description { get; set; }
+        [Display(Name = "Przyklejony")]
         public bool IsGlued { get; set; }
         public int PostCount { get; set; }
         public int ViewsCount { get; set; }

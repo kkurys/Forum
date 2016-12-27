@@ -95,3 +95,13 @@ textarea {
     font-size: 14px;
     color: #cfcfcf;
 }
+
+.right-options{
+    float: right;
+    margin: -4px 5px;
+    padding: 7px 10px;
+}
+
+.label-default {
+  color: #ffffff!important;
+}

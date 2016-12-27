@@ -12,6 +12,7 @@ namespace Forum.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Category
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             var categories = db.Categories.ToList();
@@ -29,6 +30,7 @@ namespace Forum.Controllers
         }
 
         // GET: Category/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -36,6 +38,7 @@ namespace Forum.Controllers
 
         // POST: Category/Create
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create(Category category)
         {
             db.Categories.Add(category);
@@ -45,6 +48,7 @@ namespace Forum.Controllers
         }
 
         // GET: Category/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
             Category category = db.Categories.Find(id);
@@ -53,6 +57,7 @@ namespace Forum.Controllers
 
         // POST: Category/Edit/5
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id, Category category)
         {
 
@@ -63,6 +68,7 @@ namespace Forum.Controllers
         }
 
         // GET: Category/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             Category toDelete = db.Categories.Find(id);
@@ -74,6 +80,7 @@ namespace Forum.Controllers
 
         // POST: Category/Delete/5
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id, FormCollection collection)
         {
             try

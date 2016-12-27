@@ -10,18 +10,6 @@
         <b>></b>
         <a href="@Url.Action("Details", "Category", new { id = Model.Category.ID })" class="btn btn-link">@Model.Category.Name</a>
     </div>
-
-    <div class="row navigation-row">
-        <ul class="pagination pagination-sm">
-            <li class="disabled"><a href="#">&laquo;</a></li>
-            <li class="active"><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">&raquo;</a></li>
-        </ul>
-    </div>
     <div class="panel panel-primary">
         <div class="panel-heading category-heading">
             @Model.Category.Name
