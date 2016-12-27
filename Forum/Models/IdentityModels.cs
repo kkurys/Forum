@@ -15,19 +15,12 @@ namespace Forum.Models
         Russian,
         German
     }
-    public enum PostsPerPage
-    {
-        [Display(Name = "10")]
-        Ten,
-        [Display(Name = "25")]
-        TwentyFive,
-        [Display(Name = "50")]
-        Fifty
-    }
+
     public class User : IdentityUser
     {
         public Language Language { get; set; }
-        public PostsPerPage PostsPerPage { get; set; }
+        public int? PostsPerPageID { get; set; }
+        public virtual PostsPerPage PostsPerPage { get; set; }
         public TimeSpan SessionTime { get; set; }
         public string AvatarFilename { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
@@ -59,5 +52,6 @@ namespace Forum.Models
         public DbSet<PrivateThread> PrivateThreads { get; set; }
         public DbSet<PrivateMessage> PrivateMessages { get; set; }
         public DbSet<MessageFile> MessageFiles { get; set; }
+        public DbSet<PostsPerPage> PostsPerPage { get; set; }
     }
 }

@@ -234,6 +234,18 @@
     <Compile Include="Migrations\201612271133349_lastpostdate-in-topic.Designer.cs">
       <DependentUpon>201612271133349_lastpostdate-in-topic.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612271221320_postsperpage-table.cs" />
+    <Compile Include="Migrations\201612271221320_postsperpage-table.Designer.cs">
+      <DependentUpon>201612271221320_postsperpage-table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612271223114_postsperpage-db.cs" />
+    <Compile Include="Migrations\201612271223114_postsperpage-db.Designer.cs">
+      <DependentUpon>201612271223114_postsperpage-db.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612271244244_postsperpagefix.cs" />
+    <Compile Include="Migrations\201612271244244_postsperpagefix.Designer.cs">
+      <DependentUpon>201612271244244_postsperpagefix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Announcement.cs" />
@@ -247,6 +259,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MessageFile.cs" />
     <Compile Include="Models\Post.cs" />
+    <Compile Include="Models\PostsPerPage.cs" />
     <Compile Include="Models\PrivateMessage.cs" />
     <Compile Include="Models\PrivateThread.cs" />
     <Compile Include="Models\Topic.cs" />
@@ -366,6 +379,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612271133349_lastpostdate-in-topic.resx">
       <DependentUpon>201612271133349_lastpostdate-in-topic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612271221320_postsperpage-table.resx">
+      <DependentUpon>201612271221320_postsperpage-table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612271223114_postsperpage-db.resx">
+      <DependentUpon>201612271223114_postsperpage-db.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612271244244_postsperpagefix.resx">
+      <DependentUpon>201612271244244_postsperpagefix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

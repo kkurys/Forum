@@ -23,11 +23,46 @@ namespace Forum.Controllers
         }
 
         // GET: Topic/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int id, int? page)
         {
+            int startIndex, endIndex, postsPerPage;
             TopicViewModel viewModel = new TopicViewModel();
+
+            var user = db.Users.Find(User.Identity.GetUserId());
+            if (User.Identity.IsAuthenticated)
+            {
+                postsPerPage = user.PostsPerPage.Quantity;
+            }
+            else
+            {
+                postsPerPage = 25;
+            }
             viewModel.Topic = db.Topics.Find(id);
-            viewModel.Posts = db.Posts.ToList().FindAll(f => f.TopicID == viewModel.Topic.ID);
+            var tmpList = db.Posts.ToList().FindAll(f => f.TopicID == viewModel.Topic.ID);
+            viewModel.Pages = tmpList.Count() / postsPerPage + 1;
+
+            if (page == null)
+            {
+                startIndex = 0;
+                viewModel.CurrentPage = 0;
+            }
+            else
+            {
+                startIndex = (int)page * postsPerPage;
+                viewModel.CurrentPage = (int)page;
+            }
+
+            if (tmpList.Count() < startIndex + postsPerPage)
+            {
+                endIndex = tmpList.Count();
+            }
+            else
+            {
+                endIndex = startIndex + postsPerPage;
+            }
+
+
+            viewModel.Posts = tmpList.GetRange(startIndex, endIndex - startIndex);
 
             return View(viewModel);
         }

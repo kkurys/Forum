@@ -9,5 +9,7 @@ namespace Forum.Models
     {
         public Topic Topic { get; set; }
         public List<Post> Posts { get; set; }
+        public int Pages { get; set; }
+        public int CurrentPage { get; set; }
     }
 }
