@@ -15,6 +15,7 @@ namespace Forum.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         public ManageController()
         {
@@ -70,7 +71,9 @@ namespace Forum.Controllers
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
+                User = db.Users.Find(userId),
+                PostsCount = db.Posts.ToList().FindAll(x => x.UserID == userId).Count()
             };
             return View(model);
         }
@@ -333,7 +336,25 @@ namespace Forum.Controllers
             base.Dispose(disposing);
         }
 
-#region Helpers
+        [HttpGet]
+        public ActionResult EditProfile()
+        {
+            ViewBag.PostsPerPageID = new SelectList(db.PostsPerPage, "ID", "Quantity");
+
+            User user = db.Users.Find(User.Identity.GetUserId());
+            return View(user);
+        }
+
+        [HttpPost]
+        public ActionResult EditProfile(User user)
+        {
+            db.Entry(user).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 

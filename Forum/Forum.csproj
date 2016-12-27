@@ -346,6 +346,7 @@
     <Content Include="Views\Forum\Details.cshtml" />
     <Content Include="Views\Category\Details.cshtml" />
     <Content Include="Views\Topic\Details.cshtml" />
+    <Content Include="Views\Manage\EditProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
