@@ -26,7 +26,17 @@
             <li><a href="#">&raquo;</a></li>
         </ul>
 
-        <a href="@Url.Action("Create", "Post", new { id = Model.Topic.ID })" class="btn btn-default pull-right">Nowa wiadomość</a>
+        @if (Model.Topic.Forum.IsPublic)
+        {
+            <a href="@Url.Action("Create", "Post", new { id = Model.Topic.ID })" class="btn btn-default pull-right">Nowa wiadomość</a>
+        }
+        else
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                <a href="@Url.Action("Create", "Post", new { id = Model.Topic.ID })" class="btn btn-default pull-right">Nowa wiadomość</a>
+            }
+        }
     </div>
     <div class="panel panel-primary">
         <div class="panel-heading">

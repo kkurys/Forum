@@ -23,8 +23,17 @@
             <li><a href="#">5</a></li>
             <li><a href="#">&raquo;</a></li>
         </ul>
-
-        <a href="@Url.Action("Create", "Topic", new { id = Model.Forum.ID })" class="btn btn-default pull-right">Nowy temat</a>
+        @if (Model.Forum.IsPublic)
+        {
+            <a href="@Url.Action("Create", "Topic", new { id = Model.Forum.ID })" class="btn btn-default pull-right">Nowy temat</a>
+        }
+        else
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                <a href="@Url.Action("Create", "Topic", new { id = Model.Forum.ID })" class="btn btn-default pull-right">Nowy temat</a>
+            }
+        }
     </div>
     <div class="panel panel-primary">
         <div class="panel-heading category-heading">
