@@ -151,7 +151,7 @@ namespace Forum.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.Email, Email = model.Email };
+                var user = new User { UserName = model.Login, Email = model.Email };
                 user.PostsPerPageID = 3;
                 user.SessionTime = new TimeSpan(0, 10, 0);
                 var result = await UserManager.CreateAsync(user, model.Password);
