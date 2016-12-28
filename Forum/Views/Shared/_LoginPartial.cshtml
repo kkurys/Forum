@@ -8,8 +8,30 @@
         <ul class="nav navbar-nav navbar-right">
             @if (User.IsInRole("Admin"))
             {
-                <li>
-                    @Html.ActionLink("Administracja", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Administracja <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            @Html.ActionLink("Kategorie", "Index", "Category", routeValues: null, htmlAttributes: new { title = "Kategorie" })
+                        </li>
+                        <li>
+                            @Html.ActionLink("Fora", "Index", "Forum", routeValues: null, htmlAttributes: new { title = "Fora" })
+                        </li>
+                        <li>
+                            @Html.ActionLink("Tematy*", "Index", "Topic", routeValues: null, htmlAttributes: new { title = "Tematy" })
+                        </li>
+                        <li>
+                            @Html.ActionLink("Posty*", "Index", "Post", routeValues: null, htmlAttributes: new { title = "Posty" })
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            @Html.ActionLink("Ogłoszenia", "Index", "Announcement", routeValues: null, htmlAttributes: new { title = "Ogłoszenia" })
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            @Html.ActionLink("Użytkownicy", "Index", "Users", routeValues: null, htmlAttributes: new { title = "Użytkownicy" })
+                        </li>
+                    </ul>
                 </li>
             }
             <li>

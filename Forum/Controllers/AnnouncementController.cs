@@ -13,6 +13,7 @@ namespace Forum.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Announcement
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             var announcementList = db.Announcements.ToList();
@@ -21,12 +22,16 @@ namespace Forum.Controllers
         }
 
         // GET: Announcement/Details/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Details(int id)
         {
-            return View();
+            Announcement viewModel = db.Announcements.Find(id);
+
+            return View(viewModel);
         }
 
         // GET: Announcement/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -34,6 +39,7 @@ namespace Forum.Controllers
 
         // POST: Announcement/Create
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create(Announcement announcement)
         {
             announcement.UserID = User.Identity.GetUserId();
@@ -45,6 +51,7 @@ namespace Forum.Controllers
         }
 
         // GET: Announcement/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
             Announcement announcement = db.Announcements.Find(id);
@@ -55,6 +62,7 @@ namespace Forum.Controllers
         // POST: Announcement/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id, Announcement announcement)
         {
             announcement.Date = DateTime.Now;
@@ -65,6 +73,7 @@ namespace Forum.Controllers
         }
 
         // GET: Announcement/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             Announcement toDelete = db.Announcements.Find(id);
@@ -76,6 +85,7 @@ namespace Forum.Controllers
 
         // POST: Announcement/Delete/5
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id, FormCollection collection)
         {
             try

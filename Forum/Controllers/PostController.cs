@@ -13,11 +13,20 @@ namespace Forum.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Post
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             var postList = db.Posts.ToList();
 
             return View(postList);
+        }
+
+        [HttpGet]
+        public ActionResult Details(int id)
+        {
+            var post = db.Posts.Find(id);
+
+            return View(post);
         }
 
         [HttpGet]
@@ -67,7 +76,7 @@ namespace Forum.Controllers
             db.Entry(post).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", "Topic", new { id = post.TopicID });
         }
 
     }

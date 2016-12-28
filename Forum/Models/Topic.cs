@@ -10,14 +10,16 @@ namespace Forum.Models
         public int ForumID { get; set; }
         public string UserID { get; set; }
 
-        [Display(Name = "Tytuł")]
+        [Display(Name = "Temat")]
         public string Title { get; set; }
 
         [Display(Name = "Opis")]
         public string Description { get; set; }
         [Display(Name = "Przyklejony")]
         public bool IsGlued { get; set; }
+        [Display(Name = "Postów")]
         public int PostCount { get; set; }
+        [Display(Name = "Odsłon")]
         public int ViewsCount { get; set; }
         public DateTime LastPostDate { get; set; }
 

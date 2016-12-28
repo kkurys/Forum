@@ -48,13 +48,13 @@
 
         @if (Model.Topic.Forum.IsPublic)
         {
-            <a href="@Url.Action("Create", "Post", new { id = Model.Topic.ID })" class="btn btn-default pull-right">Nowa wiadomość</a>
+            <a href="@Url.Action("Create", "Post", new { id = Model.Topic.ID })" class="btn btn-primary pull-right">Nowa wiadomość</a>
         }
         else
         {
             if (User.Identity.IsAuthenticated)
             {
-                <a href="@Url.Action("Create", "Post", new { id = Model.Topic.ID })" class="btn btn-default pull-right">Nowa wiadomość</a>
+                <a href="@Url.Action("Create", "Post", new { id = Model.Topic.ID })" class="btn btn-primary pull-right">Nowa wiadomość</a>
             }
         }
     </div>
@@ -101,7 +101,7 @@
                         <div class="panel panel-default post">
                             <div class="panel-heading">
                                 <h3 class="panel-title">
-                                    @item.Date
+                                    @Html.DisplayFor(modelItem => item.Date)
                                     @if (Model.Admin)
                                     {
                                         <a href="@Url.Action("Delete","Post", new { id = item.ID })" class="label label-default right-options">Usuń</a>

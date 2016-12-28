@@ -1,0 +1,22 @@
+﻿@model Forum.Models.Announcement
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@Html.DisplayFor(model => model.Title)</h2>
+
+<div>
+    <h4>
+        @Html.DisplayFor(model => model.Content)
+    </h4>
+    <div class="well well-sm">
+        @Html.DisplayFor(model => model.User.UserName), 
+        @Html.DisplayFor(model => model.Date)
+    </div>
+    <hr />
+</div>
+<p>
+    <a href="@Url.Action("Index", "Announcement")" class="btn btn-default btn-sm">Powrót</a>
+    <a href="@Url.Action("Edit", "Announcement", new { id = Model.ID })" class="btn btn-default btn-sm">Edytuj</a>
+</p>

@@ -105,3 +105,19 @@ textarea {
 .label-default {
   color: #ffffff!important;
 }
+
+.text-delete{
+    color: red;
+}
+
+.text-delete:hover{
+    color: #c40000;
+}
+
+.text-details{
+    color: #c51aff
+}
+
+.text-details:hover{
+    color: #9900ce
+}

@@ -15,6 +15,7 @@ namespace Forum.Controllers
 
 
         // GET: Topic
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             var topicList = db.Topics.ToList();
@@ -138,7 +139,7 @@ namespace Forum.Controllers
             db.Entry(topic).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", new { id = id });
         }
 
         // GET: Topic/Delete/5
