@@ -45,9 +45,9 @@ namespace Forum.Controllers
             int startIndex, endIndex, postsPerPage;
             TopicViewModel viewModel = new TopicViewModel();
             viewModel.Admin = false;
-            viewModel.Owner = false;
+            viewModel.CurrentUserId = User.Identity.GetUserId();
 
-            var user = db.Users.Find(User.Identity.GetUserId());
+            var user = db.Users.Find(viewModel.CurrentUserId);
             if (User.Identity.IsAuthenticated)
             {
                 postsPerPage = user.PostsPerPage.Quantity;
@@ -79,12 +79,10 @@ namespace Forum.Controllers
             {
                 endIndex = startIndex + postsPerPage;
             }
-
-            if (viewModel.Topic.UserID == User.Identity.GetUserId()) viewModel.Owner = true;
+            
             if (User.IsInRole("Admin"))
             {
                 viewModel.Admin = true;
-                viewModel.Owner = true;
             }
 
             viewModel.Posts = tmpList.GetRange(startIndex, endIndex - startIndex);
