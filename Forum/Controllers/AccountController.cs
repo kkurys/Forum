@@ -155,6 +155,7 @@ namespace Forum.Controllers
                 user.PostsPerPageID = 3;
                 user.SessionTime = new TimeSpan(0, 10, 0);
                 var result = await UserManager.CreateAsync(user, model.Password);
+                UserManager.AddToRole(user.Id, "User");
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);

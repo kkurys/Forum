@@ -121,3 +121,12 @@ textarea {
 .text-details:hover{
     color: #9900ce
 }
+
+img.center {
+    display: block;
+    margin: 0 auto;
+}
+
+.text-right{
+    text-align: right;
+}

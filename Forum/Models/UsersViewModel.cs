@@ -23,6 +23,6 @@ namespace Forum.Models
     public class UserDetailsViewModel
     {
         public User User { get; set; }
-        public List<string> Roles { get; set; }
+        public UserDetails Details { get; set; }
     }
 }

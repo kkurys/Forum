@@ -8,51 +8,6 @@ using System.Web.Mvc;
 
 namespace Forum.Controllers
 {
-    public class OwnerAuthorize : AuthorizeAttribute
-    {
-        protected override bool AuthorizeCore(HttpContextBase httpContext)
-        {
-            if (httpContext.User.IsInRole("Admin"))
-            {
-                return true;
-            }
-            else
-            {
-                ApplicationDbContext db = new ApplicationDbContext();
-
-                var authorized = base.AuthorizeCore(httpContext);
-                if (!authorized)
-                {
-                    return false;
-                }
-
-                var rd = httpContext.Request.RequestContext.RouteData;
-
-                var tmpId = rd.Values["id"];
-                int id = Int32.Parse(tmpId.ToString());
-                string controller = rd.Values["controller"].ToString();
-                
-                var userId = httpContext.User.Identity.GetUserId();
-
-                if (controller == "Post")
-                {
-                    var userItemId = db.Posts.Find(id).UserID;
-                    return userItemId == userId;
-                }
-                else if (controller == "Topic")
-                {
-                    var userItemId = db.Topics.Find(id).UserID;
-                    return userItemId == userId;
-                }
-                else
-                {
-                    return false;
-                }
-
-            }
-        }
-    }
-
     public class PostController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

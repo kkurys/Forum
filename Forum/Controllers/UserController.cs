@@ -1,4 +1,5 @@
 ﻿using Forum.Models;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
@@ -40,9 +41,24 @@ namespace Forum.Controllers
         }
 
         // GET: User/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(string userName)
         {
-            return View();
+            UserDetailsViewModel viewModel = new UserDetailsViewModel();
+            viewModel.User = db.Users.ToList().Find(x => x.UserName == userName);
+
+            viewModel.Details = new UserDetails();
+
+            viewModel.Details.PostsCount = db.Posts.ToList().FindAll(x => x.UserID == viewModel.User.Id).Count();
+            viewModel.Details.TopicsCount = db.Topics.ToList().FindAll(x => x.UserID == viewModel.User.Id).Count();
+
+            viewModel.Details.Roles = new List<IdentityRole>();
+
+            foreach (IdentityUserRole role in viewModel.User.Roles)
+            {
+                viewModel.Details.Roles.Add(db.Roles.ToList().Find(x => x.Id == role.RoleId));
+            }
+
+            return View(viewModel);
         }
 
         // GET: User/Create
@@ -68,20 +84,27 @@ namespace Forum.Controllers
         }
 
         // GET: User/Edit/5
-        public ActionResult Edit(int id)
+        [HttpGet]
+        [OwnerAuthorize]
+        public ActionResult Edit(string id)
         {
-            return View();
+            ViewBag.PostsPerPageID = new SelectList(db.PostsPerPage, "ID", "Quantity");
+
+            User user = db.Users.ToList().Find(x => x.UserName == id);
+            return View(user);
         }
 
         // POST: User/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [OwnerAuthorize]
+        public ActionResult Edit(User user)
         {
             try
             {
-                // TODO: Add update logic here
+                db.Entry(user).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", new { userName = user.UserName });
             }
             catch
             {

@@ -107,5 +107,5 @@
         </dd>
     </dl>
 
-    @Html.ActionLink("Edytuj profil", "EditProfile", "Manage")
+    @Html.ActionLink("Edytuj profil: " + Model.User.UserName, "EditProfile", new { userName = Model.User.UserName })
 </div>

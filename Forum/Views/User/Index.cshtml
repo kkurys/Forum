@@ -12,7 +12,7 @@
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title">
-                    @Html.ActionLink(pair.Key.UserName, "Details", new { id = pair.Key.Id })
+                    @Html.ActionLink(pair.Key.UserName, "Details", new { userName = pair.Key.UserName })
                 </h3>
             </div>
             <div class="panel-body">

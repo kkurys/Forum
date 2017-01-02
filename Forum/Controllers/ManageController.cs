@@ -10,6 +10,58 @@ using Forum.Models;
 
 namespace Forum.Controllers
 {
+    public class OwnerAuthorize : AuthorizeAttribute
+    {
+        protected override bool AuthorizeCore(HttpContextBase httpContext)
+        {
+            if (httpContext.User.IsInRole("Admin"))
+            {
+                return true;
+            }
+            else
+            {
+                ApplicationDbContext db = new ApplicationDbContext();
+
+                var authorized = base.AuthorizeCore(httpContext);
+                if (!authorized)
+                {
+                    return false;
+                }
+
+                var rd = httpContext.Request.RequestContext.RouteData;
+
+                string controller = rd.Values["controller"].ToString();
+                var userId = httpContext.User.Identity.GetUserId();
+
+                if (controller == "Post")
+                {
+                    var tmpId = rd.Values["id"];
+                    int id = Int32.Parse(tmpId.ToString());
+                    var userItemId = db.Posts.Find(id).UserID;
+                    return userItemId == userId;
+                }
+                else if (controller == "Topic")
+                {
+                    var tmpId = rd.Values["id"];
+                    int id = Int32.Parse(tmpId.ToString());
+                    var userItemId = db.Topics.Find(id).UserID;
+                    return userItemId == userId;
+                }
+                else if (controller == "User")
+                {
+                    var userName = (string) rd.Values["id"];
+                    var userItemId = db.Users.ToList().Find(x => x.UserName == userName).Id;
+                    return userItemId == userId;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+        }
+    }
+
     [Authorize]
     public class ManageController : Controller
     {
@@ -337,11 +389,11 @@ namespace Forum.Controllers
         }
 
         [HttpGet]
-        public ActionResult EditProfile()
+        public ActionResult EditProfile(string userName)
         {
             ViewBag.PostsPerPageID = new SelectList(db.PostsPerPage, "ID", "Quantity");
 
-            User user = db.Users.Find(User.Identity.GetUserId());
+            User user = db.Users.ToList().Find(x => x.UserName == userName);
             return View(user);
         }
 
