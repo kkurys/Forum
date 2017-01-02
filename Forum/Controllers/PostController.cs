@@ -8,6 +8,51 @@ using System.Web.Mvc;
 
 namespace Forum.Controllers
 {
+    public class OwnerAuthorize : AuthorizeAttribute
+    {
+        protected override bool AuthorizeCore(HttpContextBase httpContext)
+        {
+            if (httpContext.User.IsInRole("Admin"))
+            {
+                return true;
+            }
+            else
+            {
+                ApplicationDbContext db = new ApplicationDbContext();
+
+                var authorized = base.AuthorizeCore(httpContext);
+                if (!authorized)
+                {
+                    return false;
+                }
+
+                var rd = httpContext.Request.RequestContext.RouteData;
+
+                var tmpId = rd.Values["id"];
+                int id = Int32.Parse(tmpId.ToString());
+                string controller = rd.Values["controller"].ToString();
+                
+                var userId = httpContext.User.Identity.GetUserId();
+
+                if (controller == "Post")
+                {
+                    var userItemId = db.Posts.Find(id).UserID;
+                    return userItemId == userId;
+                }
+                else if (controller == "Topic")
+                {
+                    var userItemId = db.Topics.Find(id).UserID;
+                    return userItemId == userId;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+        }
+    }
+
     public class PostController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -19,6 +64,22 @@ namespace Forum.Controllers
             var postList = db.Posts.ToList();
 
             return View(postList);
+        }
+        
+        [HttpGet]
+        public ActionResult Index(string id)
+        {
+            List<Post> viewModel = new List<Post>();
+            if (id == null)
+            {
+                viewModel = db.Posts.ToList();
+            }
+            else
+            {
+                viewModel = db.Posts.ToList().FindAll(x => x.UserID == id);
+            }
+
+            return View(viewModel);
         }
 
         [HttpGet]
@@ -63,6 +124,7 @@ namespace Forum.Controllers
             return RedirectToAction("Details", "Topic", new { id = post.TopicID });
         }
 
+        [OwnerAuthorize]
         public ActionResult Edit(int id)
         {
             Post post = db.Posts.Find(id);
@@ -71,6 +133,7 @@ namespace Forum.Controllers
 
         // POST: Topic/Edit/5
         [HttpPost]
+        [OwnerAuthorize]
         public ActionResult Edit(int id, Post post)
         {
             db.Entry(post).State = System.Data.Entity.EntityState.Modified;

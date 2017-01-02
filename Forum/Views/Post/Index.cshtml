@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Forum.Models.Post>
+﻿@using Microsoft.AspNet.Identity
+@model IEnumerable<Forum.Models.Post>
 
 @{
     ViewBag.Title = "Index";
@@ -45,9 +46,14 @@
             @Html.DisplayFor(modelItem => item.Date)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }, new { @class = "text-details" }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID }, new { @class = "text-delete" })
+            @if (User.Identity.IsAuthenticated)
+            {
+                if (User.Identity.GetUserId() == item.UserID || User.IsInRole("Admin"))
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) <span>| </span>
+                }
+                @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "text-details" })
+            }
         </td>
     </tr>
 }

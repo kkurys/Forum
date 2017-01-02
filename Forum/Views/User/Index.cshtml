@@ -1,0 +1,73 @@
+﻿@model Forum.Models.UserIndexViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Użytkownicy</h2>
+
+@foreach (KeyValuePair<Forum.Models.User, Forum.Models.UserDetails> pair in Model.UserPostCount)
+{
+    <div class="row">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    @Html.ActionLink(pair.Key.UserName, "Details", new { id = pair.Key.Id })
+                </h3>
+            </div>
+            <div class="panel-body">
+                <div class="col-lg-2">
+                    <div class="pull-left avatar">
+                        <img src="http://letsplej.pl/uploads/avatars/avatar_13921.jpg" />
+                    </div>
+                </div>
+                <div class="col-lg-10">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            Język:
+                        </div>
+                        <div class="col-sm-8">
+                            @Html.DisplayFor(modelItem => pair.Key.Language)
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-2">
+                            Postów:
+                        </div>
+                        <div class="col-sm-1">
+                            @Html.DisplayFor(modelItem => pair.Value.PostsCount)
+                        </div>
+                        <div class="col-sm-2">
+                            <a href="@Url.Action("Index", "Post", new { id = pair.Key.Id })" class="btn btn-default btn-xs">Posty</a>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-2">
+                            Tematów:
+                        </div>
+                        <div class="col-sm-1">
+                            @Html.DisplayFor(modelItem => pair.Value.TopicsCount)
+                        </div>
+                        <div class="col-sm-2">
+                            <a href="@Url.Action("Index", "Topic", new { id = pair.Key.Id })" class="btn btn-default btn-xs">Tematy</a>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-2">
+                            Grupy:
+                        </div>
+                        <div class="col-sm-4">
+                            @foreach (var role in pair.Value.Roles)
+                            {
+                                @Html.DisplayFor(modelItem => role.Name)
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

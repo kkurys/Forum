@@ -23,6 +23,22 @@ namespace Forum.Controllers
             return View(topicList);
         }
 
+        [HttpGet]
+        public ActionResult Index(string id)
+        {
+            List<Topic> viewModel = new List<Topic>();
+            if (id == null)
+            {
+                viewModel = db.Topics.ToList();
+            }
+            else
+            {
+                viewModel = db.Topics.ToList().FindAll(x => x.UserID == id);
+            }
+
+            return View(viewModel);
+        }
+
         // GET: Topic/Details/5
         public ActionResult Details(int id, int? page)
         {
@@ -126,6 +142,7 @@ namespace Forum.Controllers
         }
 
         // GET: Topic/Edit/5
+        [OwnerAuthorize]
         public ActionResult Edit(int id)
         {
             Topic topic = db.Topics.Find(id);
@@ -134,6 +151,7 @@ namespace Forum.Controllers
 
         // POST: Topic/Edit/5
         [HttpPost]
+        [OwnerAuthorize]
         public ActionResult Edit(int id, Topic topic)
         {
             db.Entry(topic).State = System.Data.Entity.EntityState.Modified;
