@@ -65,8 +65,9 @@
                 @if (Model.Admin)
                 {
                     <a href="@Url.Action("Delete","Topic", new { id = Model.Topic.ID })" class="label label-default right-options">Usuń</a>
+                    <a href="@Url.Action("Edit","Topic", new { id = Model.Topic.ID })" class="label label-default right-options">Edytuj</a>
                 }
-                @if (Model.CurrentUserId == Model.Topic.UserID)
+                else if (Model.CurrentUserId == Model.Topic.UserID)
                 {
                     <a href="@Url.Action("Edit","Topic", new { id = Model.Topic.ID })" class="label label-default right-options">Edytuj</a>
                 }
@@ -114,7 +115,7 @@
                                 </h3>
                             </div>
                             <div class="panel-body">
-                                @item.Content
+                                @Html.Raw(item.Content.Replace("\n", "<br />"))
                             </div>
                         </div>
                     </div>

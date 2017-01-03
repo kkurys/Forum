@@ -106,6 +106,5 @@
             @Model.PostsCount
         </dd>
     </dl>
-
-    @Html.ActionLink("Edytuj profil: " + Model.User.UserName, "EditProfile", new { userName = Model.User.UserName })
+    <a href="@Url.Action("Edit", "User", new { id = Model.User.UserName })" class="btn btn-default">Edytuj profil</a>
 </div>
