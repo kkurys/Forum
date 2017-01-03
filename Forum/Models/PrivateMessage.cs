@@ -9,7 +9,6 @@ namespace Forum.Models
         public int PrivateThreadID { get; set; }
         public string Content { get; set; }
         public DateTime Date { get; set; }
-
-        public virtual ICollection<PostFile> MessageFiles { get; set; }
+        public virtual ICollection<MessageFile> MessageFiles { get; set; }
     }
 }

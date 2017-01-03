@@ -248,6 +248,14 @@
     <Compile Include="Migrations\201612271244244_postsperpagefix.Designer.cs">
       <DependentUpon>201612271244244_postsperpagefix.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701021721153_private-msgs1.cs" />
+    <Compile Include="Migrations\201701021721153_private-msgs1.Designer.cs">
+      <DependentUpon>201701021721153_private-msgs1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701021726225_private_msgs2.cs" />
+    <Compile Include="Migrations\201701021726225_private_msgs2.Designer.cs">
+      <DependentUpon>201701021726225_private_msgs2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\201701031117348_html-markers.cs" />
     <Compile Include="Migrations\201701031117348_html-markers.Designer.cs">
       <DependentUpon>201701031117348_html-markers.cs</DependentUpon>
@@ -405,6 +413,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612271244244_postsperpagefix.resx">
       <DependentUpon>201612271244244_postsperpagefix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701021721153_private-msgs1.resx">
+      <DependentUpon>201701021721153_private-msgs1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701021726225_private_msgs2.resx">
+      <DependentUpon>201701021726225_private_msgs2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701031117348_html-markers.resx">
       <DependentUpon>201701031117348_html-markers.cs</DependentUpon>
