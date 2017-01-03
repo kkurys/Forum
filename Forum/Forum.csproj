@@ -255,6 +255,14 @@
     <Compile Include="Migrations\201701021726225_private_msgs2.Designer.cs">
       <DependentUpon>201701021726225_private_msgs2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701031156208_dzialaj.cs" />
+    <Compile Include="Migrations\201701031156208_dzialaj.Designer.cs">
+      <DependentUpon>201701031156208_dzialaj.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701031158599_adding-droped-tables.cs" />
+    <Compile Include="Migrations\201701031158599_adding-droped-tables.Designer.cs">
+      <DependentUpon>201701031158599_adding-droped-tables.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Announcement.cs" />
@@ -410,6 +418,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701021726225_private_msgs2.resx">
       <DependentUpon>201701021726225_private_msgs2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701031156208_dzialaj.resx">
+      <DependentUpon>201701031156208_dzialaj.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701031158599_adding-droped-tables.resx">
+      <DependentUpon>201701031158599_adding-droped-tables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
