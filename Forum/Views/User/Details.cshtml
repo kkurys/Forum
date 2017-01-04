@@ -3,6 +3,7 @@
 
 @{
     ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_ProfileLayout.cshtml";
 }
 
 <h2>@Html.DisplayFor(model => model.User.UserName)</h2>
@@ -18,7 +19,7 @@
                             Postów:
                         </div>
                         <div class="col-sm-4 text-right">
-                            @Html.DisplayFor(modelItem => Model.Details.PostsCount)
+                            @Html.DisplayFor(modelItem => Model.PostsCount)
                         </div>
                     </div>
                     <div class="row">
@@ -26,7 +27,7 @@
                             Tematów:
                         </div>
                         <div class="col-sm-4 text-right">
-                            @Html.DisplayFor(modelItem => Model.Details.TopicsCount)
+                            @Html.DisplayFor(modelItem => Model.TopicsCount)
                         </div>
                     </div>
                 </div>
@@ -56,11 +57,5 @@
 </div>
 
 <p>
-    @if (User.Identity.IsAuthenticated)
-    {
-        if (User.Identity.GetUserId() == Model.User.Id || User.IsInRole("Admin"))
-        {
-            <a href="@Url.Action("Edit", "User", new { id = Model.User.UserName })" class class="btn btn-primary btn-sm">Edytuj</a>
-        }
-    }
+
 </p>

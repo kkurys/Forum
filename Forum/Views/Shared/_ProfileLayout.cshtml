@@ -10,16 +10,41 @@
     </div>
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <b>@User.Identity.GetUserName() - Profil </b>
+            <b>@Model.User.UserName - Profil </b>
+            @if (User.Identity.IsAuthenticated)
+            {
+                if (User.Identity.GetUserId() == Model.User.Id || User.IsInRole("Admin"))
+                {
+                    <a href="@Url.Action("Edit", "User", new { id = Model.User.UserName })" class="btn btn-primary btn-sm panel-button">Edytuj</a>
+                }
+                if (User.Identity.GetUserId() == Model.User.Id)
+                {
+                    <a href="#" class="btn btn-primary btn-sm panel-button"><b>Wiadomości</b></a>
+                }
+                else
+                {
+                    <a href="#" class="btn btn-primary btn-sm panel-button"><b>Wyślij wiadomość</b></a>
+                }
+            }
+
+
         </div>
+
     </div>
     <div class="col-md-3">
         <div class="profile-avatar">
             <img class="avatar-full" src="@Url.Content(@Model.User.AvatarFilename)" />
         </div>
-        <div class="panel panel-primary profile-avatar-edit">
-            <a href="@Url.Action("EditAvatar", "Manage")" class="btn btn-link">Edytuj</a>
-        </div>
+        @if (User.Identity.IsAuthenticated)
+        {
+            if (User.Identity.GetUserId() == Model.User.Id || User.IsInRole("Admin"))
+            {
+                <div class="panel panel-primary profile-avatar-edit">
+                    <a href="@Url.Action("EditAvatar", "Manage")" class="btn btn-link">Edytuj</a>
+                </div>
+            }
+        }
+
         <div class="row">
             <div class="col-md-6">
                 <p><b>Grupa</b></p>
