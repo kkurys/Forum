@@ -195,13 +195,17 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Classes\Html.cs" />
+    <Compile Include="Classes\Search.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AnnouncementController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ForumController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HtmlController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PostController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\TopicController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -263,6 +267,14 @@
     <Compile Include="Migrations\201701031158599_adding-droped-tables.Designer.cs">
       <DependentUpon>201701031158599_adding-droped-tables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701031304489_add-html-table.cs" />
+    <Compile Include="Migrations\201701031304489_add-html-table.Designer.cs">
+      <DependentUpon>201701031304489_add-html-table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701031342168_addActiveFieldToHtmlMarkers.cs" />
+    <Compile Include="Migrations\201701031342168_addActiveFieldToHtmlMarkers.Designer.cs">
+      <DependentUpon>201701031342168_addActiveFieldToHtmlMarkers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Announcement.cs" />
@@ -272,6 +284,7 @@
     <Compile Include="Models\Forum.cs" />
     <Compile Include="Models\ForumHomeViewModel.cs" />
     <Compile Include="Models\ForumTopicsViewModel.cs" />
+    <Compile Include="Models\HtmlMarker.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MessageFile.cs" />
@@ -279,6 +292,7 @@
     <Compile Include="Models\PostsPerPage.cs" />
     <Compile Include="Models\PrivateMessage.cs" />
     <Compile Include="Models\PrivateThread.cs" />
+    <Compile Include="Models\SearchViewModel.cs" />
     <Compile Include="Models\Topic.cs" />
     <Compile Include="Models\PostFile.cs" />
     <Compile Include="Models\TopicViewModel.cs" />
@@ -370,6 +384,11 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\Details.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\Html\Index.cshtml" />
+    <Content Include="Views\Html\Create.cshtml" />
+    <Content Include="Views\Html\Edit.cshtml" />
+    <Content Include="Views\Search\Create.cshtml" />
+    <Content Include="Views\Search\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -424,6 +443,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701031158599_adding-droped-tables.resx">
       <DependentUpon>201701031158599_adding-droped-tables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701031304489_add-html-table.resx">
+      <DependentUpon>201701031304489_add-html-table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701031342168_addActiveFieldToHtmlMarkers.resx">
+      <DependentUpon>201701031342168_addActiveFieldToHtmlMarkers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

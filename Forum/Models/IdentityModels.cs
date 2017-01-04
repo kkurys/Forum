@@ -55,5 +55,6 @@ namespace Forum.Models
         public DbSet<PrivateMessage> PrivateMessages { get; set; }
         public DbSet<Announcement> Announcements { get; set; }
         public DbSet<PostsPerPage> PostsPerPage { get; set; }
+        public DbSet<HtmlMarker> HtmlMarkers { get; set; }
     }
 }

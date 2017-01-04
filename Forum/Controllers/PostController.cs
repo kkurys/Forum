@@ -1,4 +1,5 @@
-﻿using Forum.Models;
+﻿using Forum.Classes;
+using Forum.Models;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -67,6 +68,7 @@ namespace Forum.Controllers
             {
                 post.UserID = null;
             }
+            post.Content = Html.EditMarkers(post.Content);
 
             db.Posts.Add(post);
             db.Topics.Find(post.TopicID).PostCount++;
@@ -91,6 +93,7 @@ namespace Forum.Controllers
         [OwnerAuthorize]
         public ActionResult Edit(int id, Post post)
         {
+            post.Content = Html.EditMarkers(post.Content);
             db.Entry(post).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
 

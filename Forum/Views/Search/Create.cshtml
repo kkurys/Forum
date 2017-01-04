@@ -1,0 +1,111 @@
+﻿@model Forum.Models.SearchResultViewModel
+@{
+    ViewBag.Title = "Create";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SearchProperties.Keywords, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SearchProperties.Keywords, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SearchProperties.Keywords, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SearchProperties.SizeDoesMatter, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.CheckBoxFor(model => model.SearchProperties.SizeDoesMatter, new { htmlAttributes = new { @class = "form-control" } }) Odróżniaj wielkość liter
+                @Html.ValidationMessageFor(model => model.SearchProperties.SizeDoesMatter, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SearchProperties.KeywordsAll, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.CheckBoxFor(model => model.SearchProperties.KeywordsAll, new { htmlAttributes = new { @class = "form-control" } }) Szukaj wszystkich słów razem
+                @Html.ValidationMessageFor(model => model.SearchProperties.KeywordsAll, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SearchProperties.Negation, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.CheckBoxFor(model => model.SearchProperties.Negation, new { htmlAttributes = new { @class = "form-control" } }) Odwróć wynik wyszukiwania
+                @Html.ValidationMessageFor(model => model.SearchProperties.Negation, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Szukaj" class="btn btn-primary btn-sm" />
+            </div>
+        </div>
+    </div>
+}
+
+
+@if (Model.PostTopic != null)
+{
+    foreach (KeyValuePair<Forum.Models.Post, Forum.Models.Topic> pair in Model.PostTopic)
+    {
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <a href="@Url.Action("Details","Topic", new { id = pair.Value.ID })">
+                        @pair.Value.Title <span class="text-muted topic-description">@pair.Value.Description</span>
+                    </a>
+                </h3>
+            </div>
+            <div class="panel-body">
+                <div class="row post-row">
+                    <div class="col-sm-2">
+                        <div class="panel panel-default post-user">
+                            <div class="panel-heading">
+                                @if (pair.Key.User == null)
+                                {
+                                    <h3 class="panel-title">Anonimowy</h3>
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("Details", "User", new { userName = pair.Key.User.UserName })">
+                                        <h3 class="panel-title">@pair.Key.User.UserName</h3>
+                                    </a>
+                                }
+                            </div>
+                            <div class="panel-body">
+                                <!-- AVATAR -->
+                                <img src="http://letsplej.pl/uploads/avatars/avatar_13921.jpg" />
+
+                                <!-- plus jakies dane o użytkowniku ?? -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-10">
+                        <div class="panel panel-default post">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    @Html.DisplayFor(modelItem => pair.Key.Date)
+                                </h3>
+                            </div>
+                            <div class="panel-body">
+                                @Html.Raw(pair.Key.Content.Replace(Environment.NewLine, "<br />"))
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+
