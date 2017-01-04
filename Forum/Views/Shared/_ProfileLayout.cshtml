@@ -19,7 +19,7 @@
                 }
                 if (User.Identity.GetUserId() == Model.User.Id)
                 {
-                    <a href="#" class="btn btn-primary btn-sm panel-button"><b>Wiadomości</b></a>
+                    <a href="@Url.Action("Index", "PrivateMessage")" class="btn btn-primary btn-sm panel-button"><b>Wiadomości</b></a>
                 }
                 else
                 {

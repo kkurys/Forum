@@ -202,6 +202,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PostController.cs" />
+    <Compile Include="Controllers\PrivateMessageController.cs" />
     <Compile Include="Controllers\TopicController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -263,6 +264,18 @@
     <Compile Include="Migrations\201701031158599_adding-droped-tables.Designer.cs">
       <DependentUpon>201701031158599_adding-droped-tables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701041422374_private_thread_fix.cs" />
+    <Compile Include="Migrations\201701041422374_private_thread_fix.Designer.cs">
+      <DependentUpon>201701041422374_private_thread_fix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701041545485_private-msg-fix.cs" />
+    <Compile Include="Migrations\201701041545485_private-msg-fix.Designer.cs">
+      <DependentUpon>201701041545485_private-msg-fix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701041554271_private-msg-fix2.cs" />
+    <Compile Include="Migrations\201701041554271_private-msg-fix2.Designer.cs">
+      <DependentUpon>201701041554271_private-msg-fix2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Announcement.cs" />
@@ -278,6 +291,7 @@
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\PostsPerPage.cs" />
     <Compile Include="Models\PrivateMessage.cs" />
+    <Compile Include="Models\PrivateMessagesViewModels.cs" />
     <Compile Include="Models\PrivateThread.cs" />
     <Compile Include="Models\Topic.cs" />
     <Compile Include="Models\PostFile.cs" />
@@ -373,6 +387,8 @@
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\Shared\_ProfileLayout.cshtml" />
     <Content Include="Views\Manage\EditAvatar.cshtml" />
+    <Content Include="Views\PrivateMessage\Index.cshtml" />
+    <Content Include="Views\PrivateMessage\CreateThread.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -427,6 +443,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701031158599_adding-droped-tables.resx">
       <DependentUpon>201701031158599_adding-droped-tables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701041422374_private_thread_fix.resx">
+      <DependentUpon>201701041422374_private_thread_fix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701041545485_private-msg-fix.resx">
+      <DependentUpon>201701041545485_private-msg-fix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701041554271_private-msg-fix2.resx">
+      <DependentUpon>201701041554271_private-msg-fix2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

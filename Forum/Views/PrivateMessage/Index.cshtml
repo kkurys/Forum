@@ -1,0 +1,62 @@
+﻿@using Forum.Models;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_ProfileLayout.cshtml";
+}
+
+<div class="panel panel-primary">
+    <div class="panel-heading category-heading">
+        Prywatne wątki
+        <a href="@Url.Action("CreateThread", "PrivateMessage")" class="btn btn-primary btn-sm panel-button"><b>Utwórz nowy</b></a>
+    </div>
+    <table class="table table-striped">
+        <thead class="thead-inverse forum-heading">
+            <tr>
+                <th class="col-md-6">Temat</th>
+                <th class="col-md-2">Zaczęty przez</th>
+                <th class="col-md-2">Odpowiedzi</th>
+                <th class="col-md-2">Ostatnia wiadomość</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (@Model.PrivateThreadsCount == 0)
+            {
+                <tr>
+                    <td class="col-md-6"><b>Brak wątków</b></td>
+                    <td class="col-md-2"></td>
+                    <td class="col-md-2"></td>
+                    <td class="col-md-2"></td>
+                </tr>
+            }
+            else
+            {
+                foreach (PrivateThread item in Model.Threads)
+                {
+                    <tr>
+                        <td class="col-md-4">
+                            @if (@item.LastPostAuthor() != @Model.User && item.Seen == false)
+                            {
+                                <a href="@Url.Action("Details", "PrivateMessage", new { id = item.ID})"><b>@item.Title - NOWY</b></a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("Details", "PrivateMessage", new { id = item.ID})">@item.Title</a>
+                            }                         
+                        </td>
+
+                            <td class="col-md-2">@item.Sender.UserName</td>
+                            <td class="col-md-2">@item.PostCount()</td>
+                            <td class="col-md-4">
+                                @item.LastPostAuthor().UserName
+                                @item.LastPostDate()
+
+                            </td>
+                        </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+
+
