@@ -14,7 +14,7 @@ namespace Forum.Controllers
         ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Index()
         {
-            PrivateThreadsViewModel viewModel = new PrivateThreadsViewModel();
+            PrivateThreadsListViewModel viewModel = new PrivateThreadsListViewModel();
             var userId = User.Identity.GetUserId();
 
             viewModel.User = db.Users.ToList().Find(x => x.Id == userId);
@@ -34,9 +34,67 @@ namespace Forum.Controllers
         }
 
         // GET: PrivateMessage/Details/5
-        public ActionResult Details(int id)
+        public ActionResult ViewThread(int id)
         {
-            return View();
+            PrivateThreadViewModel viewModel = new PrivateThreadViewModel();
+            var userId = User.Identity.GetUserId();
+            viewModel.User = db.Users.ToList().Find(x => x.Id == userId);
+            viewModel.PostsCount = db.Posts.ToList().FindAll(x => x.UserID == viewModel.User.Id).Count();
+            viewModel.TopicsCount = db.Topics.ToList().FindAll(x => x.UserID == viewModel.User.Id).Count();
+
+            viewModel.Roles = new List<IdentityRole>();
+
+            viewModel.Messages = db.PrivateMessages.ToList().FindAll(x => x.PrivateThreadID == id);
+            viewModel.PrivateThread = db.PrivateThreads.ToList().Find(x => x.ID == id);
+            viewModel.PrivateThread.Seen = true;
+            db.SaveChanges();
+
+            foreach (IdentityUserRole role in viewModel.User.Roles)
+            {
+                viewModel.Roles.Add(db.Roles.ToList().Find(x => x.Id == role.RoleId));
+            }
+
+
+            return View(viewModel);
+        }
+        [HttpPost]
+        public ActionResult CreateReply(PrivateThreadViewModel request, int id)
+        {
+            var _newMessage = new PrivateMessage();
+            var userId = User.Identity.GetUserId();
+
+            _newMessage.Content = request.Content;
+            _newMessage.Date = DateTime.Now;
+            _newMessage.Author = db.Users.ToList().Find(x => x.Id == userId);
+
+            request.User = _newMessage.Author;
+
+            request.PostsCount = db.Posts.ToList().FindAll(x => x.UserID == request.User.Id).Count();
+            request.TopicsCount = db.Topics.ToList().FindAll(x => x.UserID == request.User.Id).Count();
+
+            request.Roles = new List<IdentityRole>();
+
+            request.Messages = db.PrivateMessages.ToList().FindAll(x => x.PrivateThreadID == id);
+            request.PrivateThread = db.PrivateThreads.ToList().Find(x => x.ID == id);
+            request.PrivateThread.Seen = false;
+
+            _newMessage.PrivateThreadID = id;
+
+            db.PrivateMessages.Add(_newMessage);
+            db.SaveChanges();
+            /*
+            foreach (HttpPostedFileBase file in Request.Files)
+            {
+                file.SaveAs(HttpContext.Server.MapPath("~/Content/Attachments/")
+                         + file.FileName);
+                MessageFile _messageFile = new MessageFile();
+                _messageFile.Filename = "~/Content/Attachments/" + file.FileName;
+                _messageFile.PrivateMessage = _newMessage;
+                db.MessageFiles.Add(_messageFile);
+                db.SaveChanges();
+            }
+            */
+            return View("ViewThread", request);
         }
 
         // GET: PrivateMessage/Create

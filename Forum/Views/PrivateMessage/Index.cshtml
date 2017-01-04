@@ -36,22 +36,22 @@
                         <td class="col-md-4">
                             @if (@item.LastPostAuthor() != @Model.User && item.Seen == false)
                             {
-                                <a href="@Url.Action("Details", "PrivateMessage", new { id = item.ID})"><b>@item.Title - NOWY</b></a>
+                                <a href="@Url.Action("ViewThread", "PrivateMessage", new { id = item.ID})"><b>@item.Title - NOWY</b></a>
                             }
                             else
                             {
-                                <a href="@Url.Action("Details", "PrivateMessage", new { id = item.ID})">@item.Title</a>
-                            }                         
+                                <a href="@Url.Action("ViewThread", "PrivateMessage", new { id = item.ID})">@item.Title</a>
+                            }
                         </td>
 
-                            <td class="col-md-2">@item.Sender.UserName</td>
-                            <td class="col-md-2">@item.PostCount()</td>
-                            <td class="col-md-4">
-                                @item.LastPostAuthor().UserName
-                                @item.LastPostDate()
+                        <td class="col-md-2">@item.Sender.UserName</td>
+                        <td class="col-md-2">@item.PostCount()</td>
+                        <td class="col-md-4">
+                            @item.LastPostAuthor().UserName
+                            @item.LastPostDate()
 
-                            </td>
-                        </tr>
+                        </td>
+                    </tr>
                 }
             }
         </tbody>

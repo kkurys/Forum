@@ -6,7 +6,7 @@ namespace Forum.Models
     public class PrivateMessagesViewModels
     {
     }
-    public class PrivateThreadsViewModel : UserDetailsViewModel
+    public class PrivateThreadsListViewModel : UserDetailsViewModel
     {
         public List<PrivateThread> Threads
         {
@@ -20,6 +20,15 @@ namespace Forum.Models
                 return Threads.Count;
             }
         }
+    }
+    public class PrivateThreadViewModel : UserDetailsViewModel
+    {
+        public PrivateThread PrivateThread { get; set; }
+        public List<PrivateMessage> Messages { get; set; }
+        [Display(Name = "Treść")]
+        [DataType(DataType.MultilineText)]
+        public string Content { get; set; }
+
     }
     public class CreateThreadViewModel : UserDetailsViewModel
     {

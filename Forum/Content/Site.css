@@ -148,6 +148,10 @@ img.center {
     width: 96px;
     height: 96px;
 }
+.avatar-post {
+    width: 96px;
+    height: 96px;
+}
 .avatar-size {
     text-align: center;
 }

@@ -276,6 +276,10 @@
     <Compile Include="Migrations\201701041554271_private-msg-fix2.Designer.cs">
       <DependentUpon>201701041554271_private-msg-fix2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701041617197_private-msg-fix3.cs" />
+    <Compile Include="Migrations\201701041617197_private-msg-fix3.Designer.cs">
+      <DependentUpon>201701041617197_private-msg-fix3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Announcement.cs" />
@@ -389,6 +393,7 @@
     <Content Include="Views\Manage\EditAvatar.cshtml" />
     <Content Include="Views\PrivateMessage\Index.cshtml" />
     <Content Include="Views\PrivateMessage\CreateThread.cshtml" />
+    <Content Include="Views\PrivateMessage\ViewThread.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -452,6 +457,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701041554271_private-msg-fix2.resx">
       <DependentUpon>201701041554271_private-msg-fix2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701041617197_private-msg-fix3.resx">
+      <DependentUpon>201701041617197_private-msg-fix3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
