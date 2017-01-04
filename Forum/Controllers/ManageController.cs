@@ -1,12 +1,14 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
+﻿using Forum.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using Forum.Models;
+using System;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Web;
+using System.Web.Helpers;
+using System.Web.Mvc;
 
 namespace Forum.Controllers
 {
@@ -49,7 +51,7 @@ namespace Forum.Controllers
                 }
                 else if (controller == "User")
                 {
-                    var userName = (string) rd.Values["id"];
+                    var userName = (string)rd.Values["id"];
                     var userItemId = db.Users.ToList().Find(x => x.UserName == userName).Id;
                     return userItemId == userId;
                 }
@@ -85,9 +87,9 @@ namespace Forum.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -125,11 +127,11 @@ namespace Forum.Controllers
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
                 User = db.Users.Find(userId),
-                PostsCount = db.Posts.ToList().FindAll(x => x.UserID == userId).Count()
+                PostsCount = db.Posts.ToList().FindAll(x => x.UserID == userId).Count(),
+                TopicsCount = db.Topics.ToList().FindAll(x => x.UserID == userId).Count()
             };
             return View(model);
         }
-
         //
         // POST: /Manage/RemoveLogin
         [HttpPost]
@@ -406,6 +408,58 @@ namespace Forum.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult EditAvatar()
+        {
+            var userId = User.Identity.GetUserId();
+            var model = new EditAvatarViewModel
+            {
+                User = db.Users.Find(userId),
+                PostsCount = db.Posts.ToList().FindAll(x => x.UserID == userId).Count(),
+                TopicsCount = db.Topics.ToList().FindAll(x => x.UserID == userId).Count()
+            };
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult EditAvatar(HttpPostedFileBase file)
+        {
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
+
+            var model = new EditAvatarViewModel
+            {
+                User = user,
+                PostsCount = db.Posts.ToList().FindAll(x => x.UserID == userId).Count(),
+                TopicsCount = db.Topics.ToList().FindAll(x => x.UserID == userId).Count()
+            };
+
+
+            if (file == null)
+            {
+                return View(model);
+            }
+
+
+            var fileName = Path.GetFileName(file.FileName);
+            WebImage img = new WebImage(file.InputStream);
+            if (img.Width > 192 || img.Height > 192)
+            {
+                ViewBag.SizeError = true;
+                return View(model);
+            }
+            var path = HttpContext.Server.MapPath("~/Content/Avatars/") + file.FileName;
+
+            if (user.AvatarFilename != "~/Content/Avatars/default.jpg")
+            {
+                System.IO.File.Delete(HttpContext.Server.MapPath(user.AvatarFilename));
+            }
+
+            user.AvatarFilename = "~/Content/Avatars/" + file.FileName;
+
+            db.SaveChanges();
+            file.SaveAs(path);
+
+            return View(model);
+        }
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
@@ -457,6 +511,6 @@ namespace Forum.Controllers
             Error
         }
 
-#endregion
+        #endregion
     }
 }
