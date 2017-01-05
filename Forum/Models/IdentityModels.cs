@@ -56,5 +56,6 @@ namespace Forum.Models
         public DbSet<Announcement> Announcements { get; set; }
         public DbSet<PostsPerPage> PostsPerPage { get; set; }
         public DbSet<HtmlMarker> HtmlMarkers { get; set; }
+        public DbSet<Dictionary> Dictionary { get; set; }
     }
 }

@@ -130,3 +130,10 @@ img.center {
 .text-right{
     text-align: right;
 }
+
+.field-validation-valid
+{
+  padding: 0 !important;
+  margin: 0 !important;
+  display: none !important;
+}

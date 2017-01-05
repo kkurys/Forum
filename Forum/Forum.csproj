@@ -197,9 +197,11 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Classes\Html.cs" />
     <Compile Include="Classes\Search.cs" />
+    <Compile Include="Classes\Validators.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AnnouncementController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\DictionaryController.cs" />
     <Compile Include="Controllers\ForumController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HtmlController.cs" />
@@ -275,12 +277,21 @@
     <Compile Include="Migrations\201701031342168_addActiveFieldToHtmlMarkers.Designer.cs">
       <DependentUpon>201701031342168_addActiveFieldToHtmlMarkers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701051446284_add-dictionary.cs" />
+    <Compile Include="Migrations\201701051446284_add-dictionary.Designer.cs">
+      <DependentUpon>201701051446284_add-dictionary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701051519311_dictionary-bug-fix.cs" />
+    <Compile Include="Migrations\201701051519311_dictionary-bug-fix.Designer.cs">
+      <DependentUpon>201701051519311_dictionary-bug-fix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Announcement.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\CreateTopicViewModel.cs" />
+    <Compile Include="Models\Dictionary.cs" />
     <Compile Include="Models\Forum.cs" />
     <Compile Include="Models\ForumHomeViewModel.cs" />
     <Compile Include="Models\ForumTopicsViewModel.cs" />
@@ -290,6 +301,7 @@
     <Compile Include="Models\MessageFile.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\PostsPerPage.cs" />
+    <Compile Include="Models\PostViewModel.cs" />
     <Compile Include="Models\PrivateMessage.cs" />
     <Compile Include="Models\PrivateThread.cs" />
     <Compile Include="Models\SearchViewModel.cs" />
@@ -389,6 +401,9 @@
     <Content Include="Views\Html\Edit.cshtml" />
     <Content Include="Views\Search\Create.cshtml" />
     <Content Include="Views\Search\Details.cshtml" />
+    <Content Include="Views\Dictionary\Index.cshtml" />
+    <Content Include="Views\Dictionary\Create.cshtml" />
+    <Content Include="Views\Dictionary\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -449,6 +464,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701031342168_addActiveFieldToHtmlMarkers.resx">
       <DependentUpon>201701031342168_addActiveFieldToHtmlMarkers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701051446284_add-dictionary.resx">
+      <DependentUpon>201701051446284_add-dictionary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701051519311_dictionary-bug-fix.resx">
+      <DependentUpon>201701051519311_dictionary-bug-fix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

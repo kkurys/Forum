@@ -86,7 +86,9 @@
                                 }
                                 else
                                 {
-                                    <h3 class="panel-title">@item.User.UserName</h3>
+                                    <a href="@Url.Action("Details", "User", new { userName = item.User.UserName })">
+                                        <h3 class="panel-title">@item.User.UserName</h3>
+                                    </a>
                                 }
                             </div>
                             <div class="panel-body">

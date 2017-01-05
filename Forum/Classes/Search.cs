@@ -8,7 +8,7 @@ namespace Forum.Classes
 {
     static public class Search
     {
-        static public Dictionary<Post, Topic> SearchPostsAnd(List<Post> postsList, string[] keywordList, bool upperCase)
+        static public Dictionary<Post, Topic> SearchPostsAnd(List<Post> postsList, string[] keywordList, bool sizeDoesMatter)
         {
             Dictionary<Post, Topic> result = new Dictionary<Post, Topic>();
 
@@ -18,7 +18,7 @@ namespace Forum.Classes
 
                 foreach (var word in keywordList)
                 {
-                    if (!upperCase)
+                    if (!sizeDoesMatter)
                     {
                         if (!post.Content.ToUpper().Contains(word.ToUpper()))
                         {
@@ -48,7 +48,7 @@ namespace Forum.Classes
             return result;
         }
 
-        static public Dictionary<Post, Topic> SearchPostsOr(List<Post> postsList, string[] keywordList, bool upperCase)
+        static public Dictionary<Post, Topic> SearchPostsOr(List<Post> postsList, string[] keywordList, bool sizeDoesMatter)
         {
             Dictionary<Post, Topic> result = new Dictionary<Post, Topic>();
 
@@ -56,7 +56,7 @@ namespace Forum.Classes
             {
                 foreach (var word in keywordList)
                 {
-                    if (!upperCase)
+                    if (!sizeDoesMatter)
                     {
                         if (post.Content.ToUpper().Contains(word.ToUpper()))
                         {
@@ -91,6 +91,25 @@ namespace Forum.Classes
             foreach (var item in toRemove)
             {
                 result.Remove(item.Key);
+            }
+
+            return result;
+        }
+
+        static public bool IsAllowed(string toCheck)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            List<Dictionary> dictionary = db.Dictionary.ToList();
+
+            bool result = true;
+
+            foreach (Dictionary dict in dictionary)
+            {
+                if (toCheck.ToUpper().Contains(dict.ForbiddenWord.ToUpper()))
+                {
+                    result = false;
+                    break;
+                }
             }
 
             return result;

@@ -20,21 +20,4 @@ namespace Forum.Models
         [Display(Name = "Aktywny")]
         public bool Active { get; set; }
     }
-
-    public class HtmlMarkerValidation : ValidationAttribute
-    {
-        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
-        {
-            var model = (HtmlMarker)validationContext.ObjectInstance;
-
-            if(Html.MarkerValidate(model.Code))
-            {
-                return ValidationResult.Success;
-            }
-            else
-            {
-                return new ValidationResult("Znacznik musi się zaczynać znakiem \"<\" oraz kończyć \">\", a pomiędzy nimi mogą zawierać się tylko litery i cyfry");
-            }
-        }
-    }
 }

@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Forum.Models.Dictionary>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Słownik</h2>
+
+<table class="table table-striped table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ForbiddenWord)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsForbidden)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ForbiddenWord)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsForbidden)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "text-delete", onclick = "return confirm('Na pewno chcesz usunąć?');" })
+        </td>
+    </tr>
+}
+
+</table>
+
+<a href="@Url.Action("Create")" class="btn btn-primary btn-sm">Dodaj</a>

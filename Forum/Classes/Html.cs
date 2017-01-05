@@ -14,6 +14,7 @@ namespace Forum.Classes
             bool result = false;
             
             Regex reg = new Regex("<[/]?[a-zA-Z0-9]+>");
+            //Regex reg = new Regex("<[^>]*>");
             if (reg.IsMatch(marker))
             {
                 result = true;
@@ -62,6 +63,7 @@ namespace Forum.Classes
             //toEdit = Regex.Replace(toEdit, @"\r\n?|\n", "<br>");
             //var wordList = toEdit.Split();
             var wordList = Regex.Split(toEdit, @"(<[/]?[a-zA-Z0-9]+>)");
+            //var wordList = Regex.Split(toEdit, @"(<[^>]*>)");
             List<string> finalWordList = new List<string>();
 
             foreach (var word in wordList)
