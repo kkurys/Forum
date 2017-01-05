@@ -74,7 +74,6 @@ namespace Forum.Controllers
 
             request.Roles = new List<IdentityRole>();
 
-            request.Messages = db.PrivateMessages.ToList().FindAll(x => x.PrivateThreadID == id);
             request.PrivateThread = db.PrivateThreads.ToList().Find(x => x.ID == id);
             request.PrivateThread.Seen = false;
 
@@ -82,9 +81,12 @@ namespace Forum.Controllers
 
             db.PrivateMessages.Add(_newMessage);
             db.SaveChanges();
-            /*
-            foreach (HttpPostedFileBase file in Request.Files)
+
+            request.Messages = db.PrivateMessages.ToList().FindAll(x => x.PrivateThreadID == id);
+
+            for (int i = 0; i < Request.Files.Count; i++)
             {
+                HttpPostedFileBase file = Request.Files[i];
                 file.SaveAs(HttpContext.Server.MapPath("~/Content/Attachments/")
                          + file.FileName);
                 MessageFile _messageFile = new MessageFile();
@@ -93,7 +95,6 @@ namespace Forum.Controllers
                 db.MessageFiles.Add(_messageFile);
                 db.SaveChanges();
             }
-            */
             return View("ViewThread", request);
         }
 
