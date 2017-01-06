@@ -155,3 +155,11 @@ img.center {
 .avatar-size {
     text-align: center;
 }
+}
+
+.field-validation-valid
+{
+  padding: 0 !important;
+  margin: 0 !important;
+  display: none !important;
+}

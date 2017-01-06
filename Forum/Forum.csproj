@@ -195,14 +195,19 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Classes\Html.cs" />
+    <Compile Include="Classes\Search.cs" />
+    <Compile Include="Classes\Validators.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AnnouncementController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\DictionaryController.cs" />
     <Compile Include="Controllers\ForumController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HtmlController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PostController.cs" />
-    <Compile Include="Controllers\PrivateMessageController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\TopicController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -264,21 +269,21 @@
     <Compile Include="Migrations\201701031158599_adding-droped-tables.Designer.cs">
       <DependentUpon>201701031158599_adding-droped-tables.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201701041422374_private_thread_fix.cs" />
-    <Compile Include="Migrations\201701041422374_private_thread_fix.Designer.cs">
-      <DependentUpon>201701041422374_private_thread_fix.cs</DependentUpon>
+    <Compile Include="Migrations\201701031304489_add-html-table.cs" />
+    <Compile Include="Migrations\201701031304489_add-html-table.Designer.cs">
+      <DependentUpon>201701031304489_add-html-table.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201701041545485_private-msg-fix.cs" />
-    <Compile Include="Migrations\201701041545485_private-msg-fix.Designer.cs">
-      <DependentUpon>201701041545485_private-msg-fix.cs</DependentUpon>
+    <Compile Include="Migrations\201701031342168_addActiveFieldToHtmlMarkers.cs" />
+    <Compile Include="Migrations\201701031342168_addActiveFieldToHtmlMarkers.Designer.cs">
+      <DependentUpon>201701031342168_addActiveFieldToHtmlMarkers.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201701041554271_private-msg-fix2.cs" />
-    <Compile Include="Migrations\201701041554271_private-msg-fix2.Designer.cs">
-      <DependentUpon>201701041554271_private-msg-fix2.cs</DependentUpon>
+    <Compile Include="Migrations\201701051446284_add-dictionary.cs" />
+    <Compile Include="Migrations\201701051446284_add-dictionary.Designer.cs">
+      <DependentUpon>201701051446284_add-dictionary.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201701041617197_private-msg-fix3.cs" />
-    <Compile Include="Migrations\201701041617197_private-msg-fix3.Designer.cs">
-      <DependentUpon>201701041617197_private-msg-fix3.cs</DependentUpon>
+    <Compile Include="Migrations\201701051519311_dictionary-bug-fix.cs" />
+    <Compile Include="Migrations\201701051519311_dictionary-bug-fix.Designer.cs">
+      <DependentUpon>201701051519311_dictionary-bug-fix.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -286,17 +291,20 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\CreateTopicViewModel.cs" />
+    <Compile Include="Models\Dictionary.cs" />
     <Compile Include="Models\Forum.cs" />
     <Compile Include="Models\ForumHomeViewModel.cs" />
     <Compile Include="Models\ForumTopicsViewModel.cs" />
+    <Compile Include="Models\HtmlMarker.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MessageFile.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\PostsPerPage.cs" />
+    <Compile Include="Models\PostViewModel.cs" />
     <Compile Include="Models\PrivateMessage.cs" />
-    <Compile Include="Models\PrivateMessagesViewModels.cs" />
     <Compile Include="Models\PrivateThread.cs" />
+    <Compile Include="Models\SearchViewModel.cs" />
     <Compile Include="Models\Topic.cs" />
     <Compile Include="Models\PostFile.cs" />
     <Compile Include="Models\TopicViewModel.cs" />
@@ -305,7 +313,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Avatars\default.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\flat-ui.css" />
@@ -389,15 +396,17 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\Details.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
-    <Content Include="Views\Shared\_ProfileLayout.cshtml" />
-    <Content Include="Views\Manage\EditAvatar.cshtml" />
-    <Content Include="Views\PrivateMessage\Index.cshtml" />
-    <Content Include="Views\PrivateMessage\CreateThread.cshtml" />
-    <Content Include="Views\PrivateMessage\ViewThread.cshtml" />
+    <Content Include="Views\Html\Index.cshtml" />
+    <Content Include="Views\Html\Create.cshtml" />
+    <Content Include="Views\Html\Edit.cshtml" />
+    <Content Include="Views\Search\Create.cshtml" />
+    <Content Include="Views\Search\Details.cshtml" />
+    <Content Include="Views\Dictionary\Index.cshtml" />
+    <Content Include="Views\Dictionary\Create.cshtml" />
+    <Content Include="Views\Dictionary\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Attachments\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -450,17 +459,17 @@
     <EmbeddedResource Include="Migrations\201701031158599_adding-droped-tables.resx">
       <DependentUpon>201701031158599_adding-droped-tables.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201701041422374_private_thread_fix.resx">
-      <DependentUpon>201701041422374_private_thread_fix.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201701031304489_add-html-table.resx">
+      <DependentUpon>201701031304489_add-html-table.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201701041545485_private-msg-fix.resx">
-      <DependentUpon>201701041545485_private-msg-fix.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201701031342168_addActiveFieldToHtmlMarkers.resx">
+      <DependentUpon>201701031342168_addActiveFieldToHtmlMarkers.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201701041554271_private-msg-fix2.resx">
-      <DependentUpon>201701041554271_private-msg-fix2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201701051446284_add-dictionary.resx">
+      <DependentUpon>201701051446284_add-dictionary.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201701041617197_private-msg-fix3.resx">
-      <DependentUpon>201701041617197_private-msg-fix3.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201701051519311_dictionary-bug-fix.resx">
+      <DependentUpon>201701051519311_dictionary-bug-fix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

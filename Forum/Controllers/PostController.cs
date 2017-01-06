@@ -1,4 +1,5 @@
-﻿using Forum.Models;
+﻿using Forum.Classes;
+using Forum.Models;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -46,7 +47,7 @@ namespace Forum.Controllers
         }
 
         [HttpGet]
-        public ActionResult Create(int id)
+        public ActionResult Create(int id, int? error)
         {
             var newPost = new Post();
             newPost.Topic = db.Topics.Find(id);
@@ -58,25 +59,33 @@ namespace Forum.Controllers
         [HttpPost]
         public ActionResult Create(Post post)
         {
-            post.Date = DateTime.Now;
-            if (User.Identity.IsAuthenticated)
+            try
             {
-                post.UserID = User.Identity.GetUserId();
+                post.Date = DateTime.Now;
+                if (User.Identity.IsAuthenticated)
+                {
+                    post.UserID = User.Identity.GetUserId();
+                }
+                else
+                {
+                    post.UserID = null;
+                }
+
+                post.Content = Html.EditMarkers(post.Content);
+
+                db.Posts.Add(post);
+                db.Topics.Find(post.TopicID).PostCount++;
+                db.Fora.Find(db.Topics.Find(post.TopicID).ForumID).PostCount++;
+                db.Topics.Find(post.TopicID).LastPostDate = post.Date;
+
+                db.SaveChanges();
+
+                return RedirectToAction("Details", "Topic", new { id = post.TopicID });
             }
-            else
+            catch
             {
-                post.UserID = null;
+                return View(post);
             }
-
-            db.Posts.Add(post);
-            db.Topics.Find(post.TopicID).PostCount++;
-            db.Fora.Find(db.Topics.Find(post.TopicID).ForumID).PostCount++;
-            db.Topics.Find(post.TopicID).LastPostDate = post.Date;
-
-            db.SaveChanges();
-
-
-            return RedirectToAction("Details", "Topic", new { id = post.TopicID });
         }
 
         [OwnerAuthorize]
@@ -91,10 +100,18 @@ namespace Forum.Controllers
         [OwnerAuthorize]
         public ActionResult Edit(int id, Post post)
         {
-            db.Entry(post).State = System.Data.Entity.EntityState.Modified;
-            db.SaveChanges();
+            try
+            {
+                post.Content = Html.EditMarkers(post.Content);
+                db.Entry(post).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
 
-            return RedirectToAction("Details", "Topic", new { id = post.TopicID });
+                return RedirectToAction("Details", "Topic", new { id = post.TopicID });
+            }
+            catch
+            {
+                return View(post);
+            }
         }
 
     }

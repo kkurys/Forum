@@ -86,7 +86,9 @@
                                 }
                                 else
                                 {
-                                    <h3 class="panel-title">@item.User.UserName</h3>
+                                    <a href="@Url.Action("Details", "User", new { userName = item.User.UserName })">
+                                        <h3 class="panel-title">@item.User.UserName</h3>
+                                    </a>
                                 }
                             </div>
                             <div class="panel-body">
@@ -114,7 +116,7 @@
                                 </h3>
                             </div>
                             <div class="panel-body">
-                                @item.Content
+                                @Html.Raw(item.Content.Replace(Environment.NewLine, "<br />"))
                             </div>
                         </div>
                     </div>

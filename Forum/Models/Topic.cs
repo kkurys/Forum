@@ -1,18 +1,18 @@
-﻿using System;
+﻿using Forum.Classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Forum.Models
 {
+    [IsAllowed]
     public class Topic : IComparable<Topic>
     {
         public int ID { get; set; }
         public int ForumID { get; set; }
         public string UserID { get; set; }
-
         [Display(Name = "Temat")]
         public string Title { get; set; }
-
         [Display(Name = "Opis")]
         public string Description { get; set; }
         [Display(Name = "Przyklejony")]
@@ -22,7 +22,6 @@ namespace Forum.Models
         [Display(Name = "Odsłon")]
         public int ViewsCount { get; set; }
         public DateTime LastPostDate { get; set; }
-
         public virtual User User { get; set; }
         public virtual Forum Forum { get; set; }
         public virtual ICollection<Post> Posts { get; set; }

@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Forum.Classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace Forum.Models
 {
@@ -10,6 +12,8 @@ namespace Forum.Models
         public int TopicID { get; set; }
         public string UserID { get; set; }
 
+        [IsAllowed]
+        [AllowHtml]
         [Display(Name = "Treść")]
         [DataType(DataType.MultilineText)]
         public string Content { get; set; }
