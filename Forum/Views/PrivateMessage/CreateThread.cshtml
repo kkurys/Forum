@@ -25,7 +25,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Recipient, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Recipient, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Recipient, new { htmlAttributes = new { @class = "form-control", @id = "user-lookup" } })
                 @Html.ValidationMessageFor(model => model.Recipient, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -49,4 +49,35 @@
             </div>
         </div>
     </div>
+}
+@section scripts
+{  
+    <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet" />
+    <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $("#user-lookup").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/PrivateMessage/GetMatchingUsers",
+                    type: "POST",
+                    dataType: "json",
+                    data: { term: request.term },
+                    success: function (data) {
+                        console.log(data[0].value)
+                        response($.map(data, function (item) {
+                            return { label: item.value, value: item.value };
+                        }))
+
+                    }
+                })
+            },
+            messages: {
+                noResults: "", results: function () { }
+            },
+            minLength: 2
+        });
+    })
+</script>  
 }

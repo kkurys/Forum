@@ -259,6 +259,12 @@ namespace Forum.Controllers
 
             return File(Filename, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
         }
+        public JsonResult GetMatchingUsers(string term)
+        {
+            var results = db.Users.Where(user => term == null || user.UserName.ToLower().Contains(term.ToLower())).Select(x => new { id = x.Id, value = x.UserName }).Take(5).ToList();
+
+            return Json(results, JsonRequestBehavior.AllowGet);
+        }
     }
 
 }
