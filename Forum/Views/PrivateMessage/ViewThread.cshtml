@@ -44,6 +44,21 @@
                         <div class="panel-body">
                             @item.Content
                         </div>
+                        @if (@item.MessageFiles != null && @item.MessageFiles.Count > 0)
+                        {
+                            <hr />
+                            <div class="panel-body">
+                                <ul>
+                                    @foreach (var _attachment in @item.MessageFiles)
+                                    {
+                                        <li><a href="@Url.Action("DownloadAttachment", "PrivateMessage", new { fileName = _attachment.Filename })">@_attachment.Filename.Split('/').Last()</a></li>
+                                    }
+                                </ul>
+
+                            </div>
+                        }
+
+
                     </div>
                 </div>
             </div>
@@ -69,7 +84,7 @@
                     </div>
                     <div class="panel-body">
                         @using (Html.BeginForm("CreateReply", "PrivateMessage", new { id = @Model.PrivateThread.ID }, FormMethod.Post,
-                      new { enctype = "multipart/form-data" }))
+new { enctype = "multipart/form-data" }))
                         {
                             @Html.AntiForgeryToken()
 
@@ -102,3 +117,7 @@
 
     </div>
 </div>
+@section scripts
+    {
+    
+    }

@@ -20,6 +20,9 @@ namespace Forum.Models
                 return Threads.Count;
             }
         }
+        public int Pages { get; set; }
+        public int CurrentPage { get; set; }
+
     }
     public class PrivateThreadViewModel : UserDetailsViewModel
     {
