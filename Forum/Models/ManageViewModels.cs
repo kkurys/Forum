@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Forum.Models
 {
@@ -14,8 +14,14 @@ namespace Forum.Models
         public bool BrowserRemembered { get; set; }
         public User User { get; set; }
         public int PostsCount { get; set; }
+        public int TopicsCount { get; set; }
     }
-
+    public class EditAvatarViewModel
+    {
+        public User User { get; set; }
+        public int PostsCount { get; set; }
+        public int TopicsCount { get; set; }
+    }
     public class ManageLoginsViewModel
     {
         public IList<UserLoginInfo> CurrentLogins { get; set; }

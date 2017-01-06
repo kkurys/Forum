@@ -1,0 +1,86 @@
+﻿
+@{
+    ViewBag.Title = "EditAvatar";
+    Layout = "~/Views/Shared/_ProfileLayout.cshtml";
+}
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Edytuj avatar
+    </div>
+</div>
+<div class="row">
+    <div id="avatar-min" class="col-md-offset-1 col-md-3">
+        <img  src="@Url.Content(@Model.User.AvatarFilename)" class="avatar-min" />
+    </div>
+    <div id="avatar-full" class="col-md-offset-1 col-md-5">
+        <img  src="@Url.Content(@Model.User.AvatarFilename)" class="avatar-full" />
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-offset-1 col-md-3">
+        <div class="text-muted avatar-size">96px</div>
+    </div>
+    <div class="col-md-offset-1 col-md-5">
+        <div class="text-muted avatar-size">192px</div>
+    </div>
+</div>
+<div class="row">
+
+    @using (Html.BeginForm("EditAvatar", "Manage", null, FormMethod.Post,
+                              new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                <div class="control-label col-md-2">
+                    Wgraj nowy:
+                </div>
+                <div class="col-md-10">
+                    <input type="file" class="form-control" id="newImage" name="file" />
+                </div>
+            </div>
+
+            
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-5">
+                    <input type="button" value="Anuluj" class="btn btn-default" />
+                </div>
+                <div class="col-md-5">
+                    <input type="submit" value="Zapisz" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+@section scripts {
+    <script type="text/javascript">
+        function previewImage(evt) {
+            var file = evt.target.files[0];
+            if (!file.type.match('image.*')) {
+                return;
+            }
+
+            var reader = new FileReader();
+
+            reader.onload = (function (theFile) {
+                return function (e) {
+                    // Render thumbnail.
+                    var avatarMin = document.getElementById('avatar-min');
+                    var avatarFull = document.getElementById('avatar-full');
+                    avatarMin.innerHTML = ['<img class="avatar-min" src="', e.target.result, '" />'].join('');
+                    avatarFull.innerHTML = ['<img class="avatar-full" src="', e.target.result, '" />'].join('');
+                };
+            })(file);
+            reader.readAsDataURL(file);
+
+        }
+
+        document.getElementById('newImage').addEventListener('change', previewImage, false);
+    </script>
+}
+

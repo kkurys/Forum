@@ -1,7 +1,6 @@
 ﻿using Forum.Models;
 using Microsoft.AspNet.Identity;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -116,6 +115,24 @@ namespace Forum.Classes
                 }
             }
             return new ValidationResult("Treść zawiera niedozwolone słowa!");
+        }
+    }
+    public class UserExists : ValidationAttribute
+    {
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            if (validationContext.ObjectInstance is CreateThreadViewModel)
+            {
+                ApplicationDbContext db = new ApplicationDbContext();
+
+                var model = (CreateThreadViewModel)validationContext.ObjectInstance;
+                if (db.Users.ToList().Find(user => user.UserName == value as string) != null)
+                {
+                    return ValidationResult.Success;
+                }
+            }
+
+            return new ValidationResult("Nie ma takiego użytkownika!");
         }
     }
 }

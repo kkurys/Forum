@@ -47,16 +47,14 @@ namespace Forum.Controllers
             UserDetailsViewModel viewModel = new UserDetailsViewModel();
             viewModel.User = db.Users.ToList().Find(x => x.UserName == userName);
 
-            viewModel.Details = new UserDetails();
+            viewModel.PostsCount = db.Posts.ToList().FindAll(x => x.UserID == viewModel.User.Id).Count();
+            viewModel.TopicsCount = db.Topics.ToList().FindAll(x => x.UserID == viewModel.User.Id).Count();
 
-            viewModel.Details.PostsCount = db.Posts.ToList().FindAll(x => x.UserID == viewModel.User.Id).Count();
-            viewModel.Details.TopicsCount = db.Topics.ToList().FindAll(x => x.UserID == viewModel.User.Id).Count();
-
-            viewModel.Details.Roles = new List<IdentityRole>();
+            viewModel.Roles = new List<IdentityRole>();
 
             foreach (IdentityUserRole role in viewModel.User.Roles)
             {
-                viewModel.Details.Roles.Add(db.Roles.ToList().Find(x => x.Id == role.RoleId));
+                viewModel.Roles.Add(db.Roles.ToList().Find(x => x.Id == role.RoleId));
             }
 
             return View(viewModel);

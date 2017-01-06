@@ -1,0 +1,69 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Microsoft.AspNet.Identity
+<div class="container">
+    <div class="row navigation-row">
+        <a href="@Url.Action("Index", "Home")" class="btn btn-link">Forum</a>
+        <b>></b>
+        <a href="#" class="btn btn-link">Profil</a>
+    </div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <b>@Model.User.UserName - Profil </b>
+            @if (User.Identity.IsAuthenticated)
+            {
+                if (User.Identity.GetUserId() == Model.User.Id || User.IsInRole("Admin"))
+                {
+                    <a href="@Url.Action("Edit", "User", new { id = Model.User.UserName })" class="btn btn-primary btn-sm panel-button">Edytuj</a>
+                }
+                if (User.Identity.GetUserId() == Model.User.Id)
+                {
+                    <a href="@Url.Action("Index", "PrivateMessage")" class="btn btn-primary btn-sm panel-button"><b>Wiadomości</b></a>
+                }
+                else
+                {
+                    <a href="#" class="btn btn-primary btn-sm panel-button"><b>Wyślij wiadomość</b></a>
+                }
+            }
+
+
+        </div>
+
+    </div>
+    <div class="col-md-3">
+        <div class="profile-avatar">
+            <img class="avatar-full" src="@Url.Content(@Model.User.AvatarFilename)" />
+        </div>
+        @if (User.Identity.IsAuthenticated)
+        {
+            if (User.Identity.GetUserId() == Model.User.Id || User.IsInRole("Admin"))
+            {
+                <div class="panel panel-primary profile-avatar-edit">
+                    <a href="@Url.Action("EditAvatar", "Manage")" class="btn btn-link">Edytuj</a>
+                </div>
+            }
+        }
+
+        <div class="row">
+            <div class="col-md-6">
+                <p><b>Grupa</b></p>
+                <p><b>Postów</b></p>
+                <p><b>Tematów</b></p>
+            </div>
+            <div class="col-md-6">
+                <p>Grupa</p>
+                <p>@Model.PostsCount</p>
+                <p>@Model.TopicsCount</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9">
+        @RenderBody()
+    </div>
+</div>
+@section scripts
+{
+    @RenderSection("scripts", required: false)
+}
+

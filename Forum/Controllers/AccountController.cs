@@ -152,6 +152,7 @@ namespace Forum.Controllers
                 var user = new User { UserName = model.Login, Email = model.Email };
                 user.PostsPerPageID = 3;
                 user.SessionTime = new TimeSpan(0, 10, 0);
+                user.AvatarFilename = "~/Content/Avatars/default.jpg";
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

@@ -49,7 +49,9 @@ textarea {
     background-color: #286da8;
     border-color: #286da8;
 }
-
+.panel-button {
+    float: right;
+}
 .carousel-inverse{
     color: #000000;
 }
@@ -129,6 +131,30 @@ img.center {
 
 .text-right{
     text-align: right;
+}
+.profile-avatar {
+    padding: 16px 16px 16px 16px;
+}
+.profile-avatar-edit {
+    font-weight: bold;
+    text-align: center;
+}
+.avatar-full{
+    width: 192px;
+    height: 192px;
+}
+.avatar-min {
+    margin: 96px 0px 0px 96px;
+    width: 96px;
+    height: 96px;
+}
+.avatar-post {
+    width: 96px;
+    height: 96px;
+}
+.avatar-size {
+    text-align: center;
+}
 }
 
 .field-validation-valid
