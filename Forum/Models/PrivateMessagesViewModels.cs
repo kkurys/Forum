@@ -33,6 +33,9 @@ namespace Forum.Models
         [DataType(DataType.MultilineText)]
         public string Content { get; set; }
 
+        public int Pages { get; set; }
+        public int CurrentPage { get; set; }
+
     }
     public class CreateThreadViewModel : UserDetailsViewModel
     {

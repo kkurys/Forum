@@ -66,13 +66,20 @@ namespace Forum.Controllers
             return View(viewModel);
         }
 
-        // GET: PrivateMessage/Details/5
-        public ActionResult ViewThread(int id)
+        public ActionResult ViewThread(int id, int? page)
         {
             PrivateThreadViewModel viewModel = new PrivateThreadViewModel();
 
+
+            int startIndex, endIndex, postsPerPage;
+
+
             var userId = User.Identity.GetUserId();
+
             viewModel.User = db.Users.ToList().Find(x => x.Id == userId);
+
+            postsPerPage = viewModel.User.PostsPerPage.Quantity;
+
             viewModel.PostsCount = db.Posts.ToList().FindAll(x => x.UserID == viewModel.User.Id).Count();
             viewModel.TopicsCount = db.Topics.ToList().FindAll(x => x.UserID == viewModel.User.Id).Count();
 
@@ -83,6 +90,30 @@ namespace Forum.Controllers
             viewModel.PrivateThread.Seen = true;
             db.SaveChanges();
 
+            viewModel.Pages = viewModel.Messages.Count() / postsPerPage + 1;
+
+            if (page == null)
+            {
+                startIndex = 0;
+                viewModel.CurrentPage = 0;
+            }
+            else
+            {
+                startIndex = (int)page * postsPerPage;
+                viewModel.CurrentPage = (int)page;
+            }
+
+            if (viewModel.Messages.Count() < startIndex + postsPerPage)
+            {
+                endIndex = viewModel.Messages.Count();
+            }
+            else
+            {
+                endIndex = startIndex + postsPerPage;
+            }
+
+
+            viewModel.Messages = viewModel.Messages.GetRange(startIndex, endIndex - startIndex);
             foreach (IdentityUserRole role in viewModel.User.Roles)
             {
                 viewModel.Roles.Add(db.Roles.ToList().Find(x => x.Id == role.RoleId));
@@ -96,6 +127,7 @@ namespace Forum.Controllers
         {
             var _newMessage = new PrivateMessage();
             var userId = User.Identity.GetUserId();
+            int startIndex, endIndex, postsPerPage;
 
             _newMessage.Content = request.Content;
 
@@ -121,8 +153,26 @@ namespace Forum.Controllers
             db.PrivateMessages.Add(_newMessage);
             db.SaveChanges();
 
-            request.Messages = db.PrivateMessages.ToList().FindAll(x => x.PrivateThreadID == id);
+            postsPerPage = request.User.PostsPerPage.Quantity;
 
+            request.Messages = db.PrivateMessages.ToList().FindAll(x => x.PrivateThreadID == id);
+            request.Pages = request.Messages.Count() / postsPerPage + 1;
+
+
+            startIndex = (request.Pages - 1) * postsPerPage;
+            request.CurrentPage = request.Pages;
+
+            if (request.Messages.Count() < startIndex + postsPerPage)
+            {
+                endIndex = request.Messages.Count();
+            }
+            else
+            {
+                endIndex = startIndex + postsPerPage;
+            }
+
+
+            request.Messages = request.Messages.GetRange(startIndex, endIndex - startIndex);
             for (int i = 0; i < Request.Files.Count; i++)
             {
                 HttpPostedFileBase file = Request.Files[i];
