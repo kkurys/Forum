@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Forum.Classes;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Forum.Models
@@ -37,6 +38,7 @@ namespace Forum.Models
     {
         [Display(Name = "Adresat")]
         [Required]
+        [UserExists]
         public string Recipient
         {
             get;

@@ -70,6 +70,7 @@ namespace Forum.Controllers
         public ActionResult ViewThread(int id)
         {
             PrivateThreadViewModel viewModel = new PrivateThreadViewModel();
+
             var userId = User.Identity.GetUserId();
             viewModel.User = db.Users.ToList().Find(x => x.Id == userId);
             viewModel.PostsCount = db.Posts.ToList().FindAll(x => x.UserID == viewModel.User.Id).Count();
@@ -189,22 +190,41 @@ namespace Forum.Controllers
                 db.PrivateMessages.Add(newMessage);
                 db.SaveChanges();
 
-                foreach (HttpPostedFileBase file in Request.Files)
+                if (Request.Files != null)
                 {
-                    file.SaveAs(HttpContext.Server.MapPath("~/Content/Attachments/")
-                             + file.FileName);
-                    MessageFile _messageFile = new MessageFile();
-                    _messageFile.Filename = "~/Content/Attachments/" + file.FileName;
-                    _messageFile.PrivateMessage = newMessage;
-                    db.MessageFiles.Add(_messageFile);
-                    db.SaveChanges();
+                    for (int i = 0; i < Request.Files.Count; i++)
+                    {
+                        HttpPostedFileBase file = Request.Files[i];
+                        if (file == null || file.FileName == "") continue;
+                        file.SaveAs(HttpContext.Server.MapPath("~/Content/Attachments/")
+                                 + file.FileName);
+                        MessageFile _messageFile = new MessageFile();
+                        _messageFile.Filename = "~/Content/Attachments/" + file.FileName;
+                        _messageFile.PrivateMessage = newMessage;
+                        db.MessageFiles.Add(_messageFile);
+                        db.SaveChanges();
+                    }
                 }
-                return RedirectToAction("Index");
+
+
+                return RedirectToAction("ViewThread", new { id = newThread.ID });
             }
             catch
             {
-                ViewBag.Error = "Nie ma takiej osoby!";
-                return RedirectToAction("Index");
+                var userId = User.Identity.GetUserId();
+
+                request.User = db.Users.ToList().Find(x => x.Id == userId);
+                request.PostsCount = db.Posts.ToList().FindAll(x => x.UserID == request.User.Id).Count();
+                request.TopicsCount = db.Topics.ToList().FindAll(x => x.UserID == request.User.Id).Count();
+
+                request.Roles = new List<IdentityRole>();
+
+                foreach (IdentityUserRole role in request.User.Roles)
+                {
+                    request.Roles.Add(db.Roles.ToList().Find(x => x.Id == role.RoleId));
+                }
+
+                return View(request);
             }
         }
 
