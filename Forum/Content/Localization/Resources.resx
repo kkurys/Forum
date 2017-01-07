@@ -120,11 +120,26 @@
   <data name="Administration" xml:space="preserve">
     <value>Administracja</value>
   </data>
+  <data name="AllWordsTogether" xml:space="preserve">
+    <value>Szukaj wszystkich słów razem</value>
+  </data>
   <data name="Announcements" xml:space="preserve">
     <value>Ogłoszenia</value>
   </data>
+  <data name="Anonymous" xml:space="preserve">
+    <value>Anonim</value>
+  </data>
+  <data name="BackToList" xml:space="preserve">
+    <value>Wróć do listy</value>
+  </data>
+  <data name="By" xml:space="preserve">
+    <value>Przez</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Anuluj</value>
+  </data>
+  <data name="CaseSensitive" xml:space="preserve">
+    <value>Odróżniaj wielkość liter</value>
   </data>
   <data name="Categories" xml:space="preserve">
     <value>Kategorie</value>
@@ -135,8 +150,17 @@
   <data name="Create" xml:space="preserve">
     <value>Stwórz</value>
   </data>
+  <data name="CreateNew" xml:space="preserve">
+    <value>Utwórz nowy</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Usuń</value>
+  </data>
   <data name="Description" xml:space="preserve">
     <value>Opis</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Szczegóły</value>
   </data>
   <data name="Dictionary" xml:space="preserve">
     <value>Słownik</value>
@@ -159,8 +183,14 @@
   <data name="HTMLMarkers" xml:space="preserve">
     <value>Znaczniki HTML</value>
   </data>
+  <data name="InverseSearchResults" xml:space="preserve">
+    <value>Odwróć wynik wyszukiwania</value>
+  </data>
   <data name="Language" xml:space="preserve">
     <value>Language</value>
+  </data>
+  <data name="LastReply" xml:space="preserve">
+    <value>Ostatnia odpowiedź</value>
   </data>
   <data name="LogIn" xml:space="preserve">
     <value>Zaloguj</value>
@@ -168,14 +198,26 @@
   <data name="LogOut" xml:space="preserve">
     <value>Wyloguj</value>
   </data>
+  <data name="Message" xml:space="preserve">
+    <value>Wiadomość</value>
+  </data>
   <data name="Messages" xml:space="preserve">
     <value>Wiadomości</value>
+  </data>
+  <data name="NEW" xml:space="preserve">
+    <value>NOWY</value>
+  </data>
+  <data name="NewMessage" xml:space="preserve">
+    <value>Nowa wiadomość</value>
   </data>
   <data name="NewTopic" xml:space="preserve">
     <value>Nowy temat</value>
   </data>
   <data name="NewTopicIn" xml:space="preserve">
     <value>Nowy temat w</value>
+  </data>
+  <data name="NoThreads" xml:space="preserve">
+    <value>Brak wątków</value>
   </data>
   <data name="NoTopics" xml:space="preserve">
     <value>Brak tematów</value>
@@ -186,17 +228,35 @@
   <data name="Posts" xml:space="preserve">
     <value>Posty</value>
   </data>
+  <data name="PrivateThreads" xml:space="preserve">
+    <value>Prywatne wątki</value>
+  </data>
+  <data name="Replies" xml:space="preserve">
+    <value>Odpowiedzi</value>
+  </data>
+  <data name="Reply" xml:space="preserve">
+    <value>Odpowiedź</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Zapisz</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Szukaj</value>
   </data>
+  <data name="Send" xml:space="preserve">
+    <value>Wyślij</value>
+  </data>
   <data name="SendMessage" xml:space="preserve">
     <value>Wyślij wiadomość</value>
   </data>
   <data name="SignUp" xml:space="preserve">
     <value>Zarejestruj się</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Tytuł</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>Do</value>
   </data>
   <data name="Topic" xml:space="preserve">
     <value>Temat</value>

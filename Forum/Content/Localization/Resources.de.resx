@@ -120,11 +120,26 @@
   <data name="Administration" xml:space="preserve">
     <value>Verwaltung</value>
   </data>
+  <data name="AllWordsTogether" xml:space="preserve">
+    <value>Suche nach allen Wörtern zusammen</value>
+  </data>
   <data name="Announcements" xml:space="preserve">
     <value>Ankündigungen</value>
   </data>
+  <data name="Anonymous" xml:space="preserve">
+    <value>Anonym</value>
+  </data>
+  <data name="BackToList" xml:space="preserve">
+    <value>Zurück zur Liste</value>
+  </data>
+  <data name="By" xml:space="preserve">
+    <value>Bei</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Abmelden</value>
+  </data>
+  <data name="CaseSensitive" xml:space="preserve">
+    <value>Unterscheidet Groß- und Kleinschreibung</value>
   </data>
   <data name="Categories" xml:space="preserve">
     <value>Kategorien</value>
@@ -135,8 +150,17 @@
   <data name="Create" xml:space="preserve">
     <value>Erstellen</value>
   </data>
+  <data name="CreateNew" xml:space="preserve">
+    <value>Erstelle neu</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Löschen</value>
+  </data>
   <data name="Description" xml:space="preserve">
     <value>Beschreibung</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Einzelheiten</value>
   </data>
   <data name="Dictionary" xml:space="preserve">
     <value>Wörterbuch</value>
@@ -159,8 +183,14 @@
   <data name="HTMLMarkers" xml:space="preserve">
     <value>HTML-Markierungen</value>
   </data>
+  <data name="InverseSearchResults" xml:space="preserve">
+    <value>Inverse Suchergebnisse</value>
+  </data>
   <data name="Language" xml:space="preserve">
     <value>Sprache</value>
+  </data>
+  <data name="LastReply" xml:space="preserve">
+    <value>Letzte Antwort</value>
   </data>
   <data name="LogIn" xml:space="preserve">
     <value>Einloggen</value>
@@ -168,14 +198,26 @@
   <data name="LogOut" xml:space="preserve">
     <value>Ausloggen</value>
   </data>
+  <data name="Message" xml:space="preserve">
+    <value>Nachricht</value>
+  </data>
   <data name="Messages" xml:space="preserve">
     <value>Nachrichten</value>
+  </data>
+  <data name="NEW" xml:space="preserve">
+    <value>NEUES</value>
+  </data>
+  <data name="NewMessage" xml:space="preserve">
+    <value>Neue Nachricht</value>
   </data>
   <data name="NewTopic" xml:space="preserve">
     <value>Neues Thema</value>
   </data>
   <data name="NewTopicIn" xml:space="preserve">
     <value>Neues Thema in</value>
+  </data>
+  <data name="NoThreads" xml:space="preserve">
+    <value>Keine Gespräche</value>
   </data>
   <data name="NoTopics" xml:space="preserve">
     <value>Keine Themen</value>
@@ -186,17 +228,35 @@
   <data name="Posts" xml:space="preserve">
     <value>Beiträge</value>
   </data>
+  <data name="PrivateThreads" xml:space="preserve">
+    <value>Private Gespräche</value>
+  </data>
+  <data name="Replies" xml:space="preserve">
+    <value>Antworten</value>
+  </data>
+  <data name="Reply" xml:space="preserve">
+    <value>Antworten</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Speichern</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Suche</value>
   </data>
+  <data name="Send" xml:space="preserve">
+    <value>Senden</value>
+  </data>
   <data name="SendMessage" xml:space="preserve">
     <value>Nachricht senden</value>
   </data>
   <data name="SignUp" xml:space="preserve">
     <value>Registrieren</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Titel</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>Nach</value>
   </data>
   <data name="Topic" xml:space="preserve">
     <value>Thema</value>

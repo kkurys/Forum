@@ -1,29 +1,29 @@
 ﻿@using Forum.Models;
+@using Forum.Content.Localization
 @{
-    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_ProfileLayout.cshtml";
 }
 
 <div class="panel panel-primary">
     <div class="panel-heading category-heading">
-        Prywatne wątki
-        <a href="@Url.Action("CreateThread", "PrivateMessage")" class="btn btn-primary btn-sm panel-button"><b>Utwórz nowy</b></a>
+        @Resources.PrivateThreads
+        <a href="@Url.Action("CreateThread", "PrivateMessage")" class="btn btn-primary btn-sm panel-button"><b>@Resources.CreateNew</b></a>
     </div>
     <table class="table table-striped">
         <thead class="thead-inverse forum-heading">
             <tr>
-                <th class="col-md-5">Temat</th>
-                <th class="col-md-1">Przez</th>
-                <th class="col-md-1">Do</th>
-                <th class="col-md-1">Odpowiedzi</th>
-                <th class="col-md-4">Ostatnia wiadomość</th>
+                <th class="col-md-5">@Resources.Topic</th>
+                <th class="col-md-1">@Resources.By</th>
+                <th class="col-md-1">@Resources.To</th>
+                <th class="col-md-1">@Resources.Replies</th>
+                <th class="col-md-4">@Resources.LastReply</th>
             </tr>
         </thead>
         <tbody>
             @if (@Model.PrivateThreadsCount == 0)
             {
                 <tr>
-                    <td class="col-md-5"><b>Brak wątków</b></td>
+                    <td class="col-md-5"><b>@Resources.NoThreads</b></td>
                     <td class="col-md-1"></td>
                     <td class="col-md-1"></td>
                     <td class="col-md-1"></td>
@@ -38,7 +38,7 @@
                         <td class="col-md-5">
                             @if (@item.LastPostAuthor() != @Model.User && item.Seen == false)
                             {
-                                <a href="@Url.Action("ViewThread", "PrivateMessage", new { id = item.ID})"><b>@item.Title - NOWY</b></a>
+                                <a href="@Url.Action("ViewThread", "PrivateMessage", new { id = item.ID})"><b>@item.Title - @Resources.NEW</b></a>
                             }
                             else
                             {

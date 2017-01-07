@@ -1,11 +1,12 @@
 ﻿@using Microsoft.AspNet.Identity;
+@using Forum.Content.Localization
 @model Forum.Models.CreateTopicViewModel
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = Resources.Create;
 }
 
-<h2>Nowy temat w @Model.Forum.Name</h2>
+<h2>@Resources.NewTopicIn @Model.Forum.Name</h2>
 
 
 @using (Html.BeginForm()) 
@@ -65,7 +66,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="@Resources.Create" class="btn btn-default" />
             </div>
         </div>
     </div>

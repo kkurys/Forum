@@ -120,11 +120,26 @@
   <data name="Administration" xml:space="preserve">
     <value>Administration</value>
   </data>
+  <data name="AllWordsTogether" xml:space="preserve">
+    <value>Search for all words combined</value>
+  </data>
   <data name="Announcements" xml:space="preserve">
     <value>Announcements</value>
   </data>
+  <data name="Anonymous" xml:space="preserve">
+    <value>Anonymous</value>
+  </data>
+  <data name="BackToList" xml:space="preserve">
+    <value>Back to list</value>
+  </data>
+  <data name="By" xml:space="preserve">
+    <value>By</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
+  </data>
+  <data name="CaseSensitive" xml:space="preserve">
+    <value>Case sensitive</value>
   </data>
   <data name="Categories" xml:space="preserve">
     <value>Categories</value>
@@ -135,8 +150,17 @@
   <data name="Create" xml:space="preserve">
     <value>Create</value>
   </data>
+  <data name="CreateNew" xml:space="preserve">
+    <value>Create new</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
   <data name="Description" xml:space="preserve">
     <value>Description</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
   </data>
   <data name="Dictionary" xml:space="preserve">
     <value>Dictionary</value>
@@ -159,8 +183,14 @@
   <data name="HTMLMarkers" xml:space="preserve">
     <value>HTML Markers</value>
   </data>
+  <data name="InverseSearchResults" xml:space="preserve">
+    <value>Inverse search results</value>
+  </data>
   <data name="Language" xml:space="preserve">
     <value>Language</value>
+  </data>
+  <data name="LastReply" xml:space="preserve">
+    <value>Last reply</value>
   </data>
   <data name="LogIn" xml:space="preserve">
     <value>Log in</value>
@@ -168,14 +198,26 @@
   <data name="LogOut" xml:space="preserve">
     <value>Log off</value>
   </data>
+  <data name="Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
   <data name="Messages" xml:space="preserve">
     <value>Messages</value>
+  </data>
+  <data name="NEW" xml:space="preserve">
+    <value>NEW</value>
+  </data>
+  <data name="NewMessage" xml:space="preserve">
+    <value>New message</value>
   </data>
   <data name="NewTopic" xml:space="preserve">
     <value>New topic</value>
   </data>
   <data name="NewTopicIn" xml:space="preserve">
     <value>New topic in</value>
+  </data>
+  <data name="NoThreads" xml:space="preserve">
+    <value>No conversations</value>
   </data>
   <data name="NoTopics" xml:space="preserve">
     <value>No topics</value>
@@ -186,17 +228,35 @@
   <data name="Posts" xml:space="preserve">
     <value>Posts</value>
   </data>
+  <data name="PrivateThreads" xml:space="preserve">
+    <value>Private conversations</value>
+  </data>
+  <data name="Replies" xml:space="preserve">
+    <value>Replies</value>
+  </data>
+  <data name="Reply" xml:space="preserve">
+    <value>Reply</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Search</value>
   </data>
+  <data name="Send" xml:space="preserve">
+    <value>Send</value>
+  </data>
   <data name="SendMessage" xml:space="preserve">
     <value>Send a message</value>
   </data>
   <data name="SignUp" xml:space="preserve">
     <value>Sign up</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>To</value>
   </data>
   <data name="Topic" xml:space="preserve">
     <value>Topic</value>

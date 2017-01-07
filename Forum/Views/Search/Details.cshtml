@@ -1,7 +1,8 @@
 ﻿@model Forum.Models.SearchResultViewModel
+@using Forum.Content.Localization
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Resources.Details;
 }
 
 <h2>Tematy</h2>
@@ -9,7 +10,7 @@
 <table class="table table-striped table-hover">
     <tr>
         <th>
-            Tytuł
+            @Resources.Title
         </th>
         <th>
 
@@ -23,7 +24,7 @@
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
-                @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "text-details" })
+                @Html.ActionLink(Resources.Details, "Details", new { id = item.ID }, new { @class = "text-details" })
             </td>
         </tr>
     }

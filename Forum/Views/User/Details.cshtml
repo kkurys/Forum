@@ -1,8 +1,9 @@
 ﻿@using Microsoft.AspNet.Identity
+@using Forum.Content.Localization
 @model Forum.Models.UserDetailsViewModel
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Resources.Details;
     Layout = "~/Views/Shared/_ProfileLayout.cshtml";
 }
 
@@ -16,7 +17,7 @@
                     <img src="http://letsplej.pl/uploads/avatars/avatar_13921.jpg" alt="" class="img-rounded img-responsive center" />
                     <div class="row">
                         <div class="col-sm-8">
-                            Postów:
+                            @Resources.Posts:
                         </div>
                         <div class="col-sm-4 text-right">
                             @Html.DisplayFor(modelItem => Model.PostsCount)
@@ -24,7 +25,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-8">
-                            Tematów:
+                            @Resources.Topics:
                         </div>
                         <div class="col-sm-4 text-right">
                             @Html.DisplayFor(modelItem => Model.TopicsCount)
@@ -49,7 +50,7 @@
                         <i class="glyphicon glyphicon-gift"></i>June 02, 1988
                     </p>
                     <!-- Split button -->
-                    <a href="#" class="btn btn-primary btn-sm">Wiadomość</a>
+                    <a href="#" class="btn btn-primary btn-sm">@Resources.Message</a>
                 </div>
             </div>
         </div>
