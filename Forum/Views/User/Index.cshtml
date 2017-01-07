@@ -1,10 +1,10 @@
 ﻿@model Forum.Models.UserIndexViewModel
-
+@using Forum.Content.Localization
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Użytkownicy</h2>
+<h2>@Resources.Users</h2>
 
 @foreach (KeyValuePair<Forum.Models.User, Forum.Models.UserDetails> pair in Model.UserPostCount)
 {
@@ -24,7 +24,7 @@
                 <div class="col-lg-10">
                     <div class="row">
                         <div class="col-sm-2">
-                            Język:
+                            @Resources.Language:
                         </div>
                         <div class="col-sm-8">
                             @Html.DisplayFor(modelItem => pair.Key.Language)
@@ -33,31 +33,31 @@
 
                     <div class="row">
                         <div class="col-sm-2">
-                            Postów:
+                            @Resources.Posts:
                         </div>
                         <div class="col-sm-1">
                             @Html.DisplayFor(modelItem => pair.Value.PostsCount)
                         </div>
                         <div class="col-sm-2">
-                            <a href="@Url.Action("Index", "Post", new { id = pair.Key.Id })" class="btn btn-default btn-xs">Posty</a>
+                            <a href="@Url.Action("Index", "Post", new { id = pair.Key.Id })" class="btn btn-default btn-xs">@Resources.Posts</a>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-sm-2">
-                            Tematów:
+                            @Resources.Topics:
                         </div>
                         <div class="col-sm-1">
                             @Html.DisplayFor(modelItem => pair.Value.TopicsCount)
                         </div>
                         <div class="col-sm-2">
-                            <a href="@Url.Action("Index", "Topic", new { id = pair.Key.Id })" class="btn btn-default btn-xs">Tematy</a>
+                            <a href="@Url.Action("Index", "Topic", new { id = pair.Key.Id })" class="btn btn-default btn-xs">@Resources.Posts</a>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-sm-2">
-                            Grupy:
+                            @Resources.Groups:
                         </div>
                         <div class="col-sm-4">
                             @foreach (var role in pair.Value.Roles)

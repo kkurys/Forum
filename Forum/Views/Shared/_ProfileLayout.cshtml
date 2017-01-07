@@ -1,4 +1,5 @@
-﻿@{
+﻿@using Forum.Content.Localization
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @using Microsoft.AspNet.Identity
@@ -15,15 +16,15 @@
             {
                 if (User.Identity.GetUserId() == Model.User.Id || User.IsInRole("Admin"))
                 {
-                    <a href="@Url.Action("Edit", "User", new { id = Model.User.UserName })" class="btn btn-primary btn-sm panel-button">Edytuj</a>
+                    <a href="@Url.Action("Edit", "User", new { id = Model.User.UserName })" class="btn btn-primary btn-sm panel-button">@Resources.Edit</a>
                 }
                 if (User.Identity.GetUserId() == Model.User.Id)
                 {
-                    <a href="@Url.Action("Index", "PrivateMessage")" class="btn btn-primary btn-sm panel-button"><b>Wiadomości</b></a>
+                    <a href="@Url.Action("Index", "PrivateMessage")" class="btn btn-primary btn-sm panel-button"><b>@Resources.Messages</b></a>
                 }
                 else
                 {
-                    <a href="#" class="btn btn-primary btn-sm panel-button"><b>Wyślij wiadomość</b></a>
+                    <a href="#" class="btn btn-primary btn-sm panel-button"><b>@Resources.SendMessage</b></a>
                 }
             }
 
@@ -40,16 +41,16 @@
             if (User.Identity.GetUserId() == Model.User.Id || User.IsInRole("Admin"))
             {
                 <div class="panel panel-primary profile-avatar-edit">
-                    <a href="@Url.Action("EditAvatar", "Manage")" class="btn btn-link">Edytuj</a>
+                    <a href="@Url.Action("EditAvatar", "Manage")" class="btn btn-link">@Resources.EditAvatar</a>
                 </div>
             }
         }
 
         <div class="row">
             <div class="col-md-6">
-                <p><b>Grupa</b></p>
-                <p><b>Postów</b></p>
-                <p><b>Tematów</b></p>
+                <p><b>@Resources.Group</b></p>
+                <p><b>@Resources.Posts</b></p>
+                <p><b>@Resources.Topics</b></p>
             </div>
             <div class="col-md-6">
                 <p>Grupa</p>

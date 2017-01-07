@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNet.Identity
+@using Forum.Content.Localization
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -9,35 +10,35 @@
             @if (User.IsInRole("Admin"))
             {
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Administracja <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">@Resources.Administration <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li>
-                            @Html.ActionLink("Kategorie", "Index", "Category", routeValues: null, htmlAttributes: new { title = "Kategorie" })
+                            @Html.ActionLink(Resources.Categories, "Index", "Category", routeValues: null, htmlAttributes: new { title = Resources.Categories })
                         </li>
                         <li>
-                            @Html.ActionLink("Fora", "Index", "Forum", routeValues: null, htmlAttributes: new { title = "Fora" })
+                            @Html.ActionLink(Resources.Forums, "Index", "Forum", routeValues: null, htmlAttributes: new { title = Resources.Forums })
                         </li>
                         <li>
-                            @Html.ActionLink("Tematy*", "Index", "Topic", routeValues: null, htmlAttributes: new { title = "Tematy" })
+                            @Html.ActionLink(Resources.Topics + "*", "Index", "Topic", routeValues: null, htmlAttributes: new { title = Resources.Topics })
                         </li>
                         <li>
-                            @Html.ActionLink("Posty*", "Index", "Post", routeValues: null, htmlAttributes: new { title = "Posty" })
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            @Html.ActionLink("Ogłoszenia", "Index", "Announcement", routeValues: null, htmlAttributes: new { title = "Ogłoszenia" })
+                            @Html.ActionLink(Resources.Posts + "*", "Index", "Post", routeValues: null, htmlAttributes: new { title = Resources.Posts })
                         </li>
                         <li class="divider"></li>
                         <li>
-                            @Html.ActionLink("Użytkownicy", "Index", "User", routeValues: null, htmlAttributes: new { title = "Użytkownicy" })
-                            @Html.ActionLink("Znaczniki HTML", "Index", "Html", routeValues: null, htmlAttributes: new { title = "Znaczniki HTML" })
-                            @Html.ActionLink("Słownik", "Index", "Dictionary", routeValues: null, htmlAttributes: new { title = "Słownik" })
+                            @Html.ActionLink(Resources.Announcements, "Index", "Announcement", routeValues: null, htmlAttributes: new { title = Resources.Announcements })
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            @Html.ActionLink(Resources.Users, "Index", "User", routeValues: null, htmlAttributes: new { title = Resources.Users })
+                            @Html.ActionLink(Resources.HTMLMarkers, "Index", "Html", routeValues: null, htmlAttributes: new { title = Resources.HTMLMarkers })
+                            @Html.ActionLink(Resources.Dictionary, "Index", "Dictionary", routeValues: null, htmlAttributes: new { title = Resources.Dictionary })
                         </li>
                     </ul>
                 </li>
             }
             <li>
-                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                @Html.ActionLink(@Resources.OwnProfile, "Index", "Manage", routeValues: null, htmlAttributes: new { title = Resources.OwnProfile })
             </li>
             <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
         </ul>
@@ -46,7 +47,7 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li>@Html.ActionLink(@Resources.SignUp, "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink(@Resources.LogIn, "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
     </ul>
 }
