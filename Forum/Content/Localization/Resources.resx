@@ -330,4 +330,7 @@
   <data name="Views" xml:space="preserve">
     <value>Wyświetleń</value>
   </data>
+  <data name="ForgotYourPassword" xml:space="preserve">
+    <value>Zapomniałeś hasła?</value>
+  </data>
 </root>
