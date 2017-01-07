@@ -1,10 +1,10 @@
 ﻿@model Forum.Models.HtmlMarker
-
+@using Forum.Content.Localization
 @{
     ViewBag.Title = "Create";
 }
 
-<h2>Dodaj</h2>
+<h2>@Resources.Add</h2>
 
 @using (Html.BeginForm()) 
 {
@@ -31,10 +31,10 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-primary btn-sm" />
+                <input type="submit" value="@Resources.Create" class="btn btn-primary btn-sm" />
             </div>
         </div>
     </div>
 }
 
-<a href="@Url.Action("Index")" class="btn btn-default btn-sm">Anuluj</a>
+<a href="@Url.Action("Index")" class="btn btn-default btn-sm">@Resources.Cancel</a>

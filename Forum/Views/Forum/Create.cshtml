@@ -1,10 +1,7 @@
 ﻿@model Forum.Models.Forum
+@using Forum.Content.Localization
 
-@{
-    ViewBag.Title = "Create";
-}
-
-<h2>Dodaj</h2>
+<h2>@Resources.Add</h2>
 
 @using (Html.BeginForm()) 
 {
@@ -14,7 +11,7 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.CategoryID, "Kategoria", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.CategoryID, Resources.Category, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("CategoryID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.CategoryID, "", new { @class = "text-danger" })
@@ -32,18 +29,18 @@
         <div class="form-group">
             @Html.LabelFor(model => model.IsPublic, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.CheckBoxFor(model => model.IsPublic, new { htmlAttributes = new { @class = "form-control" } }) Również niezalogowani użytkownicy mogą pisać w tym forum
+                @Html.CheckBoxFor(model => model.IsPublic, new { htmlAttributes = new { @class = "form-control" } }) @Resources.AllowAnonymous
                 @Html.ValidationMessageFor(model => model.IsPublic, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Dodaj" class="btn btn-primary btn-sm" />
+                <input type="submit" value="@Resources.Add" class="btn btn-primary btn-sm" />
             </div>
         </div>
     </div>
 }
 
 
-<a href="@Url.Action("Index", "Forum")" class="btn btn-default btn-sm">Anuluj</a>
+<a href="@Url.Action("Index", "Forum")" class="btn btn-default btn-sm">@Resources.Cancel</a>

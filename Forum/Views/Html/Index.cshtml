@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<Forum.Models.HtmlMarker>
-
+@using Forum.Content.Localization
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Znaczniki HTML</h2>
+<h2>@Resources.HTMLMarkers</h2>
 
 <table class="table table-striped table-hover">
     <tr>
@@ -32,12 +32,12 @@
             @Html.DisplayFor(modelItem => item.Active)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "text-delete", onclick = "return confirm('Na pewno chcesz usunąć?');" })
+            @Html.ActionLink(Resources.Edit, "Edit", new { id=item.ID }) |
+            @Html.ActionLink(Resources.Delete, "Delete", new { id = item.ID }, new { @class = "text-delete", onclick = "return confirm('" + Resources.DeleteConfirmation + "');" })
         </td>
     </tr>
 }
 
 </table>
 
-<a href="@Url.Action("Create")" class="btn btn-primary btn-sm">Dodaj</a>
+<a href="@Url.Action("Create")" class="btn btn-primary btn-sm">@Resources.Add</a>

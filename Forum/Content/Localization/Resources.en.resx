@@ -117,14 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
   <data name="Administration" xml:space="preserve">
     <value>Administration</value>
+  </data>
+  <data name="AllowAnonymous" xml:space="preserve">
+    <value>Allow anonymous users to reply in this forum</value>
   </data>
   <data name="AllWordsTogether" xml:space="preserve">
     <value>Search for all words combined</value>
   </data>
+  <data name="Announcement" xml:space="preserve">
+    <value>Announcement</value>
+  </data>
   <data name="Announcements" xml:space="preserve">
     <value>Announcements</value>
+  </data>
+  <data name="AnnouncementsPlaceholder" xml:space="preserve">
+    <value>Announcements placeholder</value>
   </data>
   <data name="Anonymous" xml:space="preserve">
     <value>Anonymous</value>
@@ -144,6 +156,12 @@
   <data name="Categories" xml:space="preserve">
     <value>Categories</value>
   </data>
+  <data name="Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="ChangeYourPassword" xml:space="preserve">
+    <value>Change password</value>
+  </data>
   <data name="Content" xml:space="preserve">
     <value>Content</value>
   </data>
@@ -155,6 +173,9 @@
   </data>
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
+  </data>
+  <data name="DeleteConfirmation" xml:space="preserve">
+    <value>Are you sure you want to delete this?</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Description</value>
@@ -173,6 +194,9 @@
   </data>
   <data name="Forums" xml:space="preserve">
     <value>Forums</value>
+  </data>
+  <data name="Glued" xml:space="preserve">
+    <value>Glued</value>
   </data>
   <data name="Group" xml:space="preserve">
     <value>Group</value>
@@ -198,6 +222,9 @@
   <data name="LogOut" xml:space="preserve">
     <value>Log off</value>
   </data>
+  <data name="ManageYourProfile" xml:space="preserve">
+    <value>Edit your profile</value>
+  </data>
   <data name="Message" xml:space="preserve">
     <value>Message</value>
   </data>
@@ -216,6 +243,9 @@
   <data name="NewTopicIn" xml:space="preserve">
     <value>New topic in</value>
   </data>
+  <data name="NoForum" xml:space="preserve">
+    <value>No forum</value>
+  </data>
   <data name="NoThreads" xml:space="preserve">
     <value>No conversations</value>
   </data>
@@ -225,17 +255,32 @@
   <data name="OwnProfile" xml:space="preserve">
     <value>Your profile</value>
   </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
   <data name="Posts" xml:space="preserve">
     <value>Posts</value>
   </data>
+  <data name="PostsPerPage" xml:space="preserve">
+    <value>Posts per page</value>
+  </data>
   <data name="PrivateThreads" xml:space="preserve">
     <value>Private conversations</value>
+  </data>
+  <data name="Public" xml:space="preserve">
+    <value>Public</value>
+  </data>
+  <data name="RegisterNew" xml:space="preserve">
+    <value>Register as a new user</value>
   </data>
   <data name="Replies" xml:space="preserve">
     <value>Replies</value>
   </data>
   <data name="Reply" xml:space="preserve">
     <value>Reply</value>
+  </data>
+  <data name="ReplyToTopic" xml:space="preserve">
+    <value>Reply to topic</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
@@ -248,6 +293,9 @@
   </data>
   <data name="SendMessage" xml:space="preserve">
     <value>Send a message</value>
+  </data>
+  <data name="SessionTime" xml:space="preserve">
+    <value>Session time</value>
   </data>
   <data name="SignUp" xml:space="preserve">
     <value>Sign up</value>
@@ -267,7 +315,16 @@
   <data name="UploadNew" xml:space="preserve">
     <value>Upload new</value>
   </data>
+  <data name="UseLocalAccount" xml:space="preserve">
+    <value>Use a local account to log in.</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>User</value>
+  </data>
   <data name="Users" xml:space="preserve">
     <value>Users</value>
+  </data>
+  <data name="Views" xml:space="preserve">
+    <value>Views</value>
   </data>
 </root>

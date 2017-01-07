@@ -1,9 +1,5 @@
 ﻿@model Forum.Models.ForumTopicsViewModel
-
-@{
-    ViewBag.Title = "Details";
-}
-
+@using Forum.Content.Localization
 <div class="container">
     <div class="row navigation-row">
         <a href="@Url.Action("Index", "Home")" class="btn btn-link">Forum</a>
@@ -45,13 +41,13 @@
         </ul>
         @if (Model.Forum.IsPublic)
         {
-            <a href="@Url.Action("Create", "Topic", new { id = Model.Forum.ID })" class="btn btn-default pull-right">Nowy temat</a>
+            <a href="@Url.Action("Create", "Topic", new { id = Model.Forum.ID })" class="btn btn-default pull-right">@Resources.NewTopic</a>
         }
         else
         {
             if (User.Identity.IsAuthenticated)
             {
-                <a href="@Url.Action("Create", "Topic", new { id = Model.Forum.ID })" class="btn btn-default pull-right">Nowy temat</a>
+                <a href="@Url.Action("Create", "Topic", new { id = Model.Forum.ID })" class="btn btn-default pull-right">@Resources.NewTopic</a>
             }
         }
     </div>
@@ -62,16 +58,16 @@
         <table class="table table-striped">
             <thead class="thead-inverse forum-heading">
                 <tr>
-                    <th class="col-md-8">Tematy</th>
-                    <th class="col-md-2">Postów</th>
-                    <th class="col-md-2">Wyświetleń</th>
+                    <th class="col-md-8">@Resources.Topics</th>
+                    <th class="col-md-2">@Resources.Posts</th>
+                    <th class="col-md-2">@Resources.Views</th>
                 </tr>
             </thead>
             <tbody>
                 @if (Model.Topics.Count == 0)
                 {
                     <tr>
-                        <td class="col-md-8"><b>Brak tematów</b></td>
+                        <td class="col-md-8"><b>@Resources.NoTopics</b></td>
                         <td class="col-md-2"></td>
                         <td class="col-md-2"></td>
                     </tr>
@@ -84,7 +80,7 @@
                             <td class="col-md-8">
                                 @if (item.IsGlued)
                                 {
-                                    <span class="label label-info">Przyklejony</span>
+                                    <span class="label label-info">@Resources.Glued</span>
                                 }
                                 <a href="@Url.Action("Details", "Topic", new { id = item.ID})">
                                     @item.Title

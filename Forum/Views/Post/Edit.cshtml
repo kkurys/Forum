@@ -1,10 +1,7 @@
 ﻿@model Forum.Models.Post
+@using Forum.Content.Localization
 
-@{
-    ViewBag.Title = "Edit";
-}
-
-<h2>Edytuj</h2>
+<h2>@Resources.Edit</h2>
 
 @using (Html.BeginForm())
 {
@@ -38,12 +35,12 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Zapisz" class="btn btn-primary btn-sm" />
+                <input type="submit" value="@Resources.Save" class="btn btn-primary btn-sm" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    <a href="@Url.Action("Index")" class="btn btn-default btn-sm">Anuluj</a>
+    <a href="@Url.Action("Index")" class="btn btn-default btn-sm">@Resources.Cancel</a>
 </div>

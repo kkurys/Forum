@@ -1,8 +1,5 @@
 ﻿@model Forum.Models.Announcement
-
-@{
-    ViewBag.Title = "Details";
-}
+@using Forum.Content.Localization
 
 <h2>@Html.DisplayFor(model => model.Title)</h2>
 
@@ -17,6 +14,6 @@
     <hr />
 </div>
 <p>
-    <a href="@Url.Action("Index", "Announcement")" class="btn btn-default btn-sm">Powrót</a>
-    <a href="@Url.Action("Edit", "Announcement", new { id = Model.ID })" class="btn btn-default btn-sm">Edytuj</a>
+    <a href="@Url.Action("Index", "Announcement")" class="btn btn-default btn-sm">@Resources.BackToList</a>
+    <a href="@Url.Action("Edit", "Announcement", new { id = Model.ID })" class="btn btn-default btn-sm">@Resources.Edit</a>
 </p>

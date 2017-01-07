@@ -117,14 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Add" xml:space="preserve">
+    <value>Dodaj</value>
+  </data>
   <data name="Administration" xml:space="preserve">
     <value>Administracja</value>
+  </data>
+  <data name="AllowAnonymous" xml:space="preserve">
+    <value>Również niezalogowani użytkownicy mogą pisać w tym forum</value>
   </data>
   <data name="AllWordsTogether" xml:space="preserve">
     <value>Szukaj wszystkich słów razem</value>
   </data>
+  <data name="Announcement" xml:space="preserve">
+    <value>Ogłoszenie</value>
+  </data>
   <data name="Announcements" xml:space="preserve">
     <value>Ogłoszenia</value>
+  </data>
+  <data name="AnnouncementsPlaceholder" xml:space="preserve">
+    <value>Miejsce na ogłoszenia</value>
   </data>
   <data name="Anonymous" xml:space="preserve">
     <value>Anonim</value>
@@ -144,6 +156,12 @@
   <data name="Categories" xml:space="preserve">
     <value>Kategorie</value>
   </data>
+  <data name="Category" xml:space="preserve">
+    <value>Kategoria</value>
+  </data>
+  <data name="ChangeYourPassword" xml:space="preserve">
+    <value>Zmień swoje hasło</value>
+  </data>
   <data name="Content" xml:space="preserve">
     <value>Treść</value>
   </data>
@@ -155,6 +173,9 @@
   </data>
   <data name="Delete" xml:space="preserve">
     <value>Usuń</value>
+  </data>
+  <data name="DeleteConfirmation" xml:space="preserve">
+    <value>Na pewno chcesz to usunąć?</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Opis</value>
@@ -173,6 +194,9 @@
   </data>
   <data name="Forums" xml:space="preserve">
     <value>Fora</value>
+  </data>
+  <data name="Glued" xml:space="preserve">
+    <value>Przyklejony</value>
   </data>
   <data name="Group" xml:space="preserve">
     <value>Grupa</value>
@@ -195,8 +219,14 @@
   <data name="LogIn" xml:space="preserve">
     <value>Zaloguj</value>
   </data>
+  <data name="LoginNow" xml:space="preserve">
+    <value>Zaloguj się</value>
+  </data>
   <data name="LogOut" xml:space="preserve">
     <value>Wyloguj</value>
+  </data>
+  <data name="ManageYourProfile" xml:space="preserve">
+    <value>Edytuj profil</value>
   </data>
   <data name="Message" xml:space="preserve">
     <value>Wiadomość</value>
@@ -216,6 +246,9 @@
   <data name="NewTopicIn" xml:space="preserve">
     <value>Nowy temat w</value>
   </data>
+  <data name="NoForum" xml:space="preserve">
+    <value>Brak forum</value>
+  </data>
   <data name="NoThreads" xml:space="preserve">
     <value>Brak wątków</value>
   </data>
@@ -225,17 +258,32 @@
   <data name="OwnProfile" xml:space="preserve">
     <value>Twój profil</value>
   </data>
+  <data name="Password" xml:space="preserve">
+    <value>Hasło</value>
+  </data>
   <data name="Posts" xml:space="preserve">
     <value>Posty</value>
   </data>
+  <data name="PostsPerPage" xml:space="preserve">
+    <value>Postów na stronę</value>
+  </data>
   <data name="PrivateThreads" xml:space="preserve">
     <value>Prywatne wątki</value>
+  </data>
+  <data name="Public" xml:space="preserve">
+    <value>Publiczne</value>
+  </data>
+  <data name="RegisterNew" xml:space="preserve">
+    <value>Zarejestruj się</value>
   </data>
   <data name="Replies" xml:space="preserve">
     <value>Odpowiedzi</value>
   </data>
   <data name="Reply" xml:space="preserve">
     <value>Odpowiedź</value>
+  </data>
+  <data name="ReplyToTopic" xml:space="preserve">
+    <value>Odpowiedź do tematu</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Zapisz</value>
@@ -248,6 +296,9 @@
   </data>
   <data name="SendMessage" xml:space="preserve">
     <value>Wyślij wiadomość</value>
+  </data>
+  <data name="SessionTime" xml:space="preserve">
+    <value>Czas sesji</value>
   </data>
   <data name="SignUp" xml:space="preserve">
     <value>Zarejestruj się</value>
@@ -267,7 +318,16 @@
   <data name="UploadNew" xml:space="preserve">
     <value>Wgraj nowy</value>
   </data>
+  <data name="UseLocalAccount" xml:space="preserve">
+    <value>Użyj swojego konta aby się zalogować.</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>Użytkownik</value>
+  </data>
   <data name="Users" xml:space="preserve">
     <value>Użytkownicy</value>
+  </data>
+  <data name="Views" xml:space="preserve">
+    <value>Wyświetleń</value>
   </data>
 </root>

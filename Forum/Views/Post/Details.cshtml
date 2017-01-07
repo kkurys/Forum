@@ -1,11 +1,8 @@
 ﻿@using Microsoft.AspNet.Identity
+@using Forum.Content.Localization
 @model Forum.Models.Post
 
-@{
-    ViewBag.Title = "Details";
-}
-
-<h2>Details</h2>
+<h2>@Resources.Details</h2>
 
 <div>
     <h4>Post</h4>
@@ -51,5 +48,5 @@
             {
         @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) <span>| </span>
     }
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink(Resources.BackToList, "Index")
 </p>

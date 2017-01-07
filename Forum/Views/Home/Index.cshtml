@@ -1,4 +1,4 @@
-﻿
+﻿@using Forum.Content.Localization
 @{
     ViewBag.Title = "Home Page";
 }
@@ -18,8 +18,8 @@
             <div class="item active">
                 <img src="http://i.imgur.com/Y6EKE8c.png" alt="img">
                 <div class="carousel-caption carousel-inverse">
-                    <h3>Ogłoszenia</h3>
-                    <p>Miejsce na ogłoszenia</p>
+                    <h3>@Resources.Announcements</h3>
+                    <p>@Resources.AnnouncementsPlaceholder</p>
                 </div>
             </div>
         </div>
@@ -93,15 +93,15 @@
                 <thead class="thead-inverse forum-heading">
                     <tr>
                         <th class="col-md-8">Forum</th>
-                        <th class="col-md-2">Tematów</th>
-                        <th class="col-md-2">Postów</th>
+                        <th class="col-md-2">@Resources.Topics</th>
+                        <th class="col-md-2">@Resources.Posts</th>
                     </tr>
                 </thead>
                 <tbody>
                     @if (pair.Value.Count == 0)
                     {
                         <tr>
-                            <td class="col-md-8"><b>Brak forum</b></td>
+                            <td class="col-md-8"><b>@Resources.NoForum</b></td>
                             <td class="col-md-2"></td>
                             <td class="col-md-2"></td>
                         </tr>
@@ -116,7 +116,7 @@
                                     {
                                         <span class="label label-success">Publiczne</span>
                                     }
-                                    <a href="@Url.Action("Details", "Forum", new { id = item.ID})">@item.Name</a>
+                                    <a href="@Url.Action(Resources.Details, "Forum", new { id = item.ID})">@item.Name</a>
                                 </td>
                                 <td class="col-md-2">@item.TopicCount</td>
                                 <td class="col-md-2">@item.PostCount</td>
@@ -130,20 +130,6 @@
 </div>
 
 <div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
     <div class="col-md-4">
         <h2>Statystyki</h2>
         <p>Zarejestrowani użytkownicy: @ViewBag.Users</p>

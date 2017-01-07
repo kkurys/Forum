@@ -1,12 +1,11 @@
-﻿
+﻿@using Forum.Content.Localization
 @{
-    ViewBag.Title = "EditAvatar";
     Layout = "~/Views/Shared/_ProfileLayout.cshtml";
 }
 
 <div class="panel panel-primary">
     <div class="panel-heading">
-        Edytuj avatar
+        @Resources.EditAvatar
     </div>
 </div>
 <div class="row">
@@ -38,7 +37,7 @@
 
             <div class="form-group">
                 <div class="control-label col-md-2">
-                    Wgraj nowy:
+                    @Resources.UploadNew:
                 </div>
                 <div class="col-md-10">
                     <input type="file" class="form-control" id="newImage" name="file" />
@@ -48,10 +47,10 @@
             
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-5">
-                    <input type="button" value="Anuluj" class="btn btn-default" />
+                    <input type="button" value="@Resources.Cancel" class="btn btn-default" />
                 </div>
                 <div class="col-md-5">
-                    <input type="submit" value="Zapisz" class="btn btn-default" />
+                    <input type="submit" value="@Resources.Save" class="btn btn-default" />
                 </div>
             </div>
         </div>

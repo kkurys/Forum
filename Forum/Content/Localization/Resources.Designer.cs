@@ -61,11 +61,29 @@ namespace Forum.Content.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dodaj.
+        /// </summary>
+        public static string Add {
+            get {
+                return ResourceManager.GetString("Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Administracja.
         /// </summary>
         public static string Administration {
             get {
                 return ResourceManager.GetString("Administration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Również niezalogowani użytkownicy mogą pisać w tym forum.
+        /// </summary>
+        public static string AllowAnonymous {
+            get {
+                return ResourceManager.GetString("AllowAnonymous", resourceCulture);
             }
         }
         
@@ -79,11 +97,29 @@ namespace Forum.Content.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ogłoszenie.
+        /// </summary>
+        public static string Announcement {
+            get {
+                return ResourceManager.GetString("Announcement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ogłoszenia.
         /// </summary>
         public static string Announcements {
             get {
                 return ResourceManager.GetString("Announcements", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Miejsce na ogłoszenia.
+        /// </summary>
+        public static string AnnouncementsPlaceholder {
+            get {
+                return ResourceManager.GetString("AnnouncementsPlaceholder", resourceCulture);
             }
         }
         
@@ -142,6 +178,24 @@ namespace Forum.Content.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Kategoria.
+        /// </summary>
+        public static string Category {
+            get {
+                return ResourceManager.GetString("Category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zmień swoje hasło.
+        /// </summary>
+        public static string ChangeYourPassword {
+            get {
+                return ResourceManager.GetString("ChangeYourPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Treść.
         /// </summary>
         public static string Content {
@@ -174,6 +228,15 @@ namespace Forum.Content.Localization {
         public static string Delete {
             get {
                 return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Na pewno chcesz to usunąć?.
+        /// </summary>
+        public static string DeleteConfirmation {
+            get {
+                return ResourceManager.GetString("DeleteConfirmation", resourceCulture);
             }
         }
         
@@ -228,6 +291,15 @@ namespace Forum.Content.Localization {
         public static string Forums {
             get {
                 return ResourceManager.GetString("Forums", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Przyklejony.
+        /// </summary>
+        public static string Glued {
+            get {
+                return ResourceManager.GetString("Glued", resourceCulture);
             }
         }
         
@@ -295,11 +367,29 @@ namespace Forum.Content.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Zaloguj się.
+        /// </summary>
+        public static string LoginNow {
+            get {
+                return ResourceManager.GetString("LoginNow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wyloguj.
         /// </summary>
         public static string LogOut {
             get {
                 return ResourceManager.GetString("LogOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edytuj profil.
+        /// </summary>
+        public static string ManageYourProfile {
+            get {
+                return ResourceManager.GetString("ManageYourProfile", resourceCulture);
             }
         }
         
@@ -358,6 +448,15 @@ namespace Forum.Content.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Brak forum.
+        /// </summary>
+        public static string NoForum {
+            get {
+                return ResourceManager.GetString("NoForum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Brak wątków.
         /// </summary>
         public static string NoThreads {
@@ -385,6 +484,15 @@ namespace Forum.Content.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hasło.
+        /// </summary>
+        public static string Password {
+            get {
+                return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Posty.
         /// </summary>
         public static string Posts {
@@ -394,11 +502,38 @@ namespace Forum.Content.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Postów na stronę.
+        /// </summary>
+        public static string PostsPerPage {
+            get {
+                return ResourceManager.GetString("PostsPerPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Prywatne wątki.
         /// </summary>
         public static string PrivateThreads {
             get {
                 return ResourceManager.GetString("PrivateThreads", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Publiczne.
+        /// </summary>
+        public static string Public {
+            get {
+                return ResourceManager.GetString("Public", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zarejestruj się.
+        /// </summary>
+        public static string RegisterNew {
+            get {
+                return ResourceManager.GetString("RegisterNew", resourceCulture);
             }
         }
         
@@ -417,6 +552,15 @@ namespace Forum.Content.Localization {
         public static string Reply {
             get {
                 return ResourceManager.GetString("Reply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Odpowiedź do tematu.
+        /// </summary>
+        public static string ReplyToTopic {
+            get {
+                return ResourceManager.GetString("ReplyToTopic", resourceCulture);
             }
         }
         
@@ -453,6 +597,15 @@ namespace Forum.Content.Localization {
         public static string SendMessage {
             get {
                 return ResourceManager.GetString("SendMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Czas sesji.
+        /// </summary>
+        public static string SessionTime {
+            get {
+                return ResourceManager.GetString("SessionTime", resourceCulture);
             }
         }
         
@@ -511,11 +664,38 @@ namespace Forum.Content.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Użyj swojego konta aby się zalogować..
+        /// </summary>
+        public static string UseLocalAccount {
+            get {
+                return ResourceManager.GetString("UseLocalAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Użytkownik.
+        /// </summary>
+        public static string User {
+            get {
+                return ResourceManager.GetString("User", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Użytkownicy.
         /// </summary>
         public static string Users {
             get {
                 return ResourceManager.GetString("Users", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wyświetleń.
+        /// </summary>
+        public static string Views {
+            get {
+                return ResourceManager.GetString("Views", resourceCulture);
             }
         }
     }

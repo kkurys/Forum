@@ -1,8 +1,5 @@
 ﻿@model Forum.Models.CategoryViewModel
-
-@{
-    ViewBag.Title = "Details";
-}
+@using Forum.Content.Localization
 
 <div class="container">
     <div class="row navigation-row">
@@ -18,15 +15,15 @@
             <thead class="thead-inverse forum-heading">
                 <tr>
                     <th class="col-md-8">Forum</th>
-                    <th class="col-md-2">Tematów</th>
-                    <th class="col-md-2">Postów</th>
+                    <th class="col-md-2">@Resources.Topics</th>
+                    <th class="col-md-2">@Resources.Posts</th>
                 </tr>
             </thead>
             <tbody>
                 @if (Model.Fora.Count == 0)
                 {
                     <tr>
-                        <td class="col-md-8"><b>Brak forum</b></td>
+                        <td class="col-md-8"><b>@Resources.NoForum</b></td>
                         <td class="col-md-2"></td>
                         <td class="col-md-2"></td>
                     </tr>
@@ -39,7 +36,7 @@
                             <td class="col-md-8">
                                 @if (item.IsPublic)
                                 {
-                                    <span class="label label-success">Publiczne</span>
+                                    <span class="label label-success">@Resources.Public</span>
                                 }
                                 <a href="@Url.Action("Details", "Forum", new { id = item.ID})">@item.Name</a>
                             </td>
