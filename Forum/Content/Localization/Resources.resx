@@ -387,4 +387,7 @@
   <data name="Word" xml:space="preserve">
     <value>Słowo</value>
   </data>
+  <data name="Keywords" xml:space="preserve">
+    <value>Słowa kluczowe</value>
+  </data>
 </root>

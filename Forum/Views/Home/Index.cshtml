@@ -116,7 +116,7 @@
                                     {
                                         <span class="label label-success">Publiczne</span>
                                     }
-                                    <a href="@Url.Action(Resources.Details, "Forum", new { id = item.ID})">@item.Name</a>
+                                    <a href="@Url.Action("Details", "Forum", new { id = item.ID})">@item.Name</a>
                                 </td>
                                 <td class="col-md-2">@item.TopicCount</td>
                                 <td class="col-md-2">@item.PostCount</td>
