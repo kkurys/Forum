@@ -102,7 +102,7 @@
                         </div>
                     </div>
                     <div class="col-sm-10">
-                        <div class="panel panel-default post">
+                        <div class="panel panel-default post" name="@item.ID">
                             <div class="panel-heading">
                                 <h3 class="panel-title">
                                     @Html.DisplayFor(modelItem => item.Date)
@@ -114,6 +114,10 @@
                                     else if (Model.CurrentUserId == item.UserID)
                                     {
                                         <a href="@Url.Action("Edit","Post", new { id = item.ID })" class="label label-default right-options">@Resources.Edit</a>
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("ReportPost","Post", new { id = item.ID, postPage = Model.CurrentPage })" class="label label-default right-options">@Resources.Report</a>
                                     }
                                 </h3>
                             </div>

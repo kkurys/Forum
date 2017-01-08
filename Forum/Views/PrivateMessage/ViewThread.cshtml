@@ -44,7 +44,7 @@
                             </h3>
                         </div>
                         <div class="panel-body">
-                            @item.Content
+                            @Html.Raw(@item.Content)
                         </div>
                         @if (@item.MessageFiles != null && @item.MessageFiles.Count > 0)
                         {

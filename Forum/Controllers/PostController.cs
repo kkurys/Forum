@@ -4,7 +4,6 @@ using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Forum.Controllers
@@ -21,7 +20,7 @@ namespace Forum.Controllers
 
             return View(postList);
         }
-        
+
         [HttpGet]
         public ActionResult Index(string id)
         {
@@ -113,6 +112,59 @@ namespace Forum.Controllers
                 return View(post);
             }
         }
+        public ActionResult ReportPost(int id, int? postPage)
+        {
+            var viewModel = new ReportPostViewModel();
+            viewModel.Post = db.Posts.ToList().Find(x => x.ID == id);
+            viewModel.PostID = viewModel.Post.ID;
+            viewModel.PostPage = postPage;
 
+            return View(viewModel);
+        }
+        [HttpPost]
+        public ActionResult ReportPost(ReportPostViewModel viewModel)
+        {
+            viewModel.Post = db.Posts.ToList().Find(x => x.ID == viewModel.PostID);
+
+            var _moderators = viewModel.Post.Topic.Forum.Moderators;
+
+            foreach (User _moderator in _moderators)
+            {
+                var _reportThread = db.PrivateThreads.ToList().Find(x => x.Title == "Zgłoszenia");
+
+                if (_reportThread == null)
+                {
+                    _reportThread = new PrivateThread();
+                    _reportThread.Recipient = _moderator;
+                    _reportThread.Title = "Zgłoszenia";
+                    _reportThread.Seen = false;
+
+                    db.PrivateThreads.Add(_reportThread);
+                }
+
+                var _reportMessage = new PrivateMessage();
+
+                _reportMessage.PrivateThread = _reportThread;
+                _reportMessage.Author = db.Users.ToList().Find(x => x.Id == User.Identity.GetUserId());
+
+                if (viewModel.PostPage.HasValue)
+                {
+                    _reportMessage.Content += "Zgłoszono post: " + "<a href=/Topic/Details/" + viewModel.Post.Topic.ID + "?page=" + viewModel.PostPage + "#" + viewModel.Post.ID + ">#" + viewModel.Post.ID + "</a><br />";
+                }
+                else
+                {
+                    _reportMessage.Content += "Zgłoszono post: " + "<a href=/Topic/Details/" + viewModel.Post.Topic.ID + "#" + viewModel.Post.ID + ">#" + viewModel.Post.ID + "</a><br />";
+                }
+
+                _reportMessage.Content += "Uzasadnienie: <br />" + viewModel.Reason;
+                _reportMessage.Date = DateTime.Now;
+
+                _reportThread.Seen = false;
+
+                db.PrivateMessages.Add(_reportMessage);
+            }
+            db.SaveChanges();
+            return View(viewModel);
+        }
     }
 }

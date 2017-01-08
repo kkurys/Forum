@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Forum.Models
 {
@@ -17,5 +14,13 @@ namespace Forum.Models
         }
         public Post Post { get; set; }
         public string ErrorMessage { get; set; }
+    }
+    public class ReportPostViewModel
+    {
+        public int PostID { get; set; }
+        public Post Post { get; set; }
+        [DataType(DataType.MultilineText)]
+        public string Reason { get; set; }
+        public int? PostPage { get; set; }
     }
 }

@@ -396,4 +396,10 @@
   <data name="ModeratorsList" xml:space="preserve">
     <value>Lista moderatorów</value>
   </data>
+  <data name="Report" xml:space="preserve">
+    <value>Zgłoś</value>
+  </data>
+  <data name="ReportAPost" xml:space="preserve">
+    <value>Zgłaszanie posta</value>
+  </data>
 </root>

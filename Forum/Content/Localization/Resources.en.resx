@@ -393,4 +393,10 @@
   <data name="ModeratorsList" xml:space="preserve">
     <value>List of moderators</value>
   </data>
+  <data name="Report" xml:space="preserve">
+    <value>Report</value>
+  </data>
+  <data name="ReportAPost" xml:space="preserve">
+    <value>Report a post</value>
+  </data>
 </root>

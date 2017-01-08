@@ -46,7 +46,14 @@
                             }
                         </td>
 
-                        <td class="col-md-1">@item.Sender.UserName</td>
+                        @if (@item.Sender == null)
+                        {
+                            <td class="col-md-1">SYSTEM</td>
+                        }
+                        else
+                        {
+                            <td class="col-md-1">@item.Sender.UserName</td>
+                        }
                         <td class="col-md-1">@item.Recipient.UserName</td>
                         <td class="col-md-1">@item.PostCount()</td>
                         <td class="col-md-4">
