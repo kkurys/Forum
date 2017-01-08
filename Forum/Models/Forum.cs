@@ -1,4 +1,5 @@
 ﻿using Forum.Content.Localization;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Forum.Models
@@ -18,5 +19,6 @@ namespace Forum.Models
         public bool IsPublic { get; set; }
 
         public virtual Category Category { get; set; }
+        public virtual ICollection<User> Moderators { get; set; }
     }
 }

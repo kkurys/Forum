@@ -538,6 +538,15 @@ namespace Forum.Content.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Lista moderatorów.
+        /// </summary>
+        public static string ModeratorsList {
+            get {
+                return ResourceManager.GetString("ModeratorsList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nazwa.
         /// </summary>
         public static string Name {

@@ -38,7 +38,8 @@ namespace Forum.Models
             return userIdentity;
         }
 
-        public ICollection<PrivateMessage> PrivateMessages;
+        public ICollection<PrivateMessage> PrivateMessages { get; set; }
+        public virtual ICollection<Forum> Forums { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<User>

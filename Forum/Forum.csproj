@@ -209,6 +209,7 @@
       <DependentUpon>Resources.en.resx</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AnnouncementController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\DictionaryController.cs" />
@@ -300,8 +301,13 @@
     <Compile Include="Migrations\201701061446539_after-merge_1.Designer.cs">
       <DependentUpon>201701061446539_after-merge_1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701082043326_added-forum-moderators.cs" />
+    <Compile Include="Migrations\201701082043326_added-forum-moderators.Designer.cs">
+      <DependentUpon>201701082043326_added-forum-moderators.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AdminViewModels.cs" />
     <Compile Include="Models\Announcement.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
@@ -309,6 +315,7 @@
     <Compile Include="Models\Dictionary.cs" />
     <Compile Include="Models\Forum.cs" />
     <Compile Include="Models\ForumHomeViewModel.cs" />
+    <Compile Include="Models\ForumModerator.cs" />
     <Compile Include="Models\ForumTopicsViewModel.cs" />
     <Compile Include="Models\HtmlMarker.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -429,6 +436,7 @@
     <Content Include="Views\PrivateMessage\ViewThread.cshtml" />
     <Content Include="Views\Shared\_ProfileLayout.cshtml" />
     <Content Include="Views\Manage\EditAvatar.cshtml" />
+    <Content Include="Views\Admin\ModeratorsList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -507,6 +515,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701061446539_after-merge_1.resx">
       <DependentUpon>201701061446539_after-merge_1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701082043326_added-forum-moderators.resx">
+      <DependentUpon>201701082043326_added-forum-moderators.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -390,4 +390,7 @@
   <data name="Default" xml:space="preserve">
     <value>Default</value>
   </data>
+  <data name="ModeratorsList" xml:space="preserve">
+    <value>List of moderators</value>
+  </data>
 </root>
