@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using Forum.Content.Localization;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -10,18 +12,23 @@ namespace Forum.Models
 {
     public enum Language
     {
-        Polish,
+        [Display(Name = "Default", ResourceType = typeof(Resources))]
+        Browser,
+        Polski,
         English,
-        Russian,
-        German
+        Deutsch
     }
 
     public class User : IdentityUser
     {
+        [Display(Name = "Language", ResourceType = typeof(Resources))]
         public Language Language { get; set; }
+        [Display(Name = "PostsPerPage", ResourceType = typeof(Resources))]
         public int? PostsPerPageID { get; set; }
         public virtual PostsPerPage PostsPerPage { get; set; }
+        [Display(Name = "SessionTime", ResourceType = typeof(Resources))]
         public TimeSpan SessionTime { get; set; }
+        [Display(Name = "Avatar")]
         public string AvatarFilename { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {

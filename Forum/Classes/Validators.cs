@@ -47,8 +47,9 @@ namespace Forum.Classes
                 }
                 else if (controller == "User")
                 {
-                    var userName = (string)rd.Values["id"];
-                    var userItemId = db.Users.ToList().Find(x => x.UserName == userName).Id;
+                    /*   var userName = (string)rd.Values["id"];
+                       var userItemId = db.Users.ToList().Find(x => x.UserName == userName).Id; */
+                    var userItemId = (string)rd.Values["id"];
                     return userItemId == userId;
                 }
                 else

@@ -16,7 +16,7 @@
             {
                 if (User.Identity.GetUserId() == Model.User.Id || User.IsInRole("Admin"))
                 {
-                    <a href="@Url.Action("Edit", "User", new { id = Model.User.UserName })" class="btn btn-primary btn-sm panel-button">@Resources.Edit</a>
+                    <a href="@Url.Action("Edit", "User", new { id = Model.User.Id })" class="btn btn-primary btn-sm panel-button">@Resources.Edit</a>
                 }
                 if (User.Identity.GetUserId() == Model.User.Id)
                 {

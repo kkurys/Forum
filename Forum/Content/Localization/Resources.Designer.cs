@@ -286,6 +286,15 @@ namespace Forum.Content.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Domyślny.
+        /// </summary>
+        public static string Default {
+            get {
+                return ResourceManager.GetString("Default", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Usuń.
         /// </summary>
         public static string Delete {
@@ -484,7 +493,7 @@ namespace Forum.Content.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wyloguj.
+        ///   Looks up a localized string similar to Wyloguj się.
         /// </summary>
         public static string LogOut {
             get {

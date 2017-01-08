@@ -16,6 +16,8 @@ namespace Forum.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         public AccountController()
         {
         }
@@ -447,6 +449,8 @@ namespace Forum.Controllers
 
         private ActionResult RedirectToLocal(string returnUrl)
         {
+
+
             if (Url.IsLocalUrl(returnUrl))
             {
                 return Redirect(returnUrl);

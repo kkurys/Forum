@@ -223,7 +223,7 @@
     <value>Zaloguj się</value>
   </data>
   <data name="LogOut" xml:space="preserve">
-    <value>Wyloguj</value>
+    <value>Wyloguj się</value>
   </data>
   <data name="ManageYourProfile" xml:space="preserve">
     <value>Edytuj profil</value>
@@ -389,5 +389,8 @@
   </data>
   <data name="Keywords" xml:space="preserve">
     <value>Słowa kluczowe</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>Domyślny</value>
   </data>
 </root>
