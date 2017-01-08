@@ -330,7 +330,55 @@
   <data name="Views" xml:space="preserve">
     <value>Wyświetleń</value>
   </data>
+  <data name="Active" xml:space="preserve">
+    <value>Aktywny</value>
+  </data>
+  <data name="AllTogether" xml:space="preserve">
+    <value>Wszystkie razem</value>
+  </data>
+  <data name="Attachments" xml:space="preserve">
+    <value>Załączniki</value>
+  </data>
+  <data name="ConfirmPw" xml:space="preserve">
+    <value>Potwierdź hasło</value>
+  </data>
+  <data name="ConfirmPwError" xml:space="preserve">
+    <value>Hasło i potwierdzenie się nie zgadzają</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>Aktualne hasło</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="Forbidden" xml:space="preserve">
+    <value>Zakazane</value>
+  </data>
   <data name="ForgotYourPassword" xml:space="preserve">
     <value>Zapomniałeś hasła?</value>
+  </data>
+  <data name="LengthError" xml:space="preserve">
+    <value>{0} musi mieć przynajmniej {2} znaków.</value>
+  </data>
+  <data name="Marker" xml:space="preserve">
+    <value>Znacznik</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nazwa</value>
+  </data>
+  <data name="Negation" xml:space="preserve">
+    <value>Negacja</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>Nowe hasło</value>
+  </data>
+  <data name="Recipient" xml:space="preserve">
+    <value>Adresat</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Zapamiętać mnie?</value>
+  </data>
+  <data name="Word" xml:space="preserve">
+    <value>Słowo</value>
   </data>
 </root>

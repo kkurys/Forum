@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using Forum.Content.Localization;
+using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -36,14 +37,14 @@ namespace Forum.Models
     public class SetPasswordViewModel
     {
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessageResourceName = "LengthError", ErrorMessageResourceType = typeof(Resources), MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "New password")]
+        [Display(Name = "NewPassword", ResourceType = typeof(Resources))]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm new password")]
-        [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+        [Display(Name = "ConfirmPw", ResourceType = typeof(Resources))]
+        [Compare("Password", ErrorMessageResourceName = "ConfirmPw", ErrorMessageResourceType = typeof(Resources))]
         public string ConfirmPassword { get; set; }
     }
 
@@ -51,18 +52,18 @@ namespace Forum.Models
     {
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Current password")]
+        [Display(Name = "CurrentPassword", ResourceType = typeof(Resources))]
         public string OldPassword { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessageResourceName = "LengthError", ErrorMessageResourceType = typeof(Resources), MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "New password")]
+        [Display(Name = "NewPassword", ResourceType = typeof(Resources))]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm new password")]
-        [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+        [Display(Name = "ConfirmPw", ResourceType = typeof(Resources))]
+        [Compare("Password", ErrorMessageResourceName = "ConfirmPw", ErrorMessageResourceType = typeof(Resources))]
         public string ConfirmPassword { get; set; }
     }
 

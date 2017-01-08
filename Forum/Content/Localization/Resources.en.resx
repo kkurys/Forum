@@ -327,7 +327,55 @@
   <data name="Views" xml:space="preserve">
     <value>Views</value>
   </data>
+  <data name="Active" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="AllTogether" xml:space="preserve">
+    <value>All together</value>
+  </data>
+  <data name="Attachments" xml:space="preserve">
+    <value>Attachments</value>
+  </data>
+  <data name="ConfirmPw" xml:space="preserve">
+    <value>Confirm password</value>
+  </data>
+  <data name="ConfirmPwError" xml:space="preserve">
+    <value>The password and confirmation password do not match.</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>Current password</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Forbidden" xml:space="preserve">
+    <value>Forbidden</value>
+  </data>
   <data name="ForgotYourPassword" xml:space="preserve">
     <value>Forgot your password?</value>
+  </data>
+  <data name="LengthError" xml:space="preserve">
+    <value>The {0} must be at least {2} characters long.</value>
+  </data>
+  <data name="Marker" xml:space="preserve">
+    <value>Marker</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Negation" xml:space="preserve">
+    <value>Negation</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>New password</value>
+  </data>
+  <data name="Recipient" xml:space="preserve">
+    <value>Recipient</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Remember me?</value>
+  </data>
+  <data name="Word" xml:space="preserve">
+    <value>Word</value>
   </data>
 </root>

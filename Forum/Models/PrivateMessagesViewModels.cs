@@ -1,4 +1,5 @@
 ﻿using Forum.Classes;
+using Forum.Content.Localization;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -29,7 +30,7 @@ namespace Forum.Models
     {
         public PrivateThread PrivateThread { get; set; }
         public List<PrivateMessage> Messages { get; set; }
-        [Display(Name = "Treść")]
+        [Display(Name = "Content", ResourceType = typeof(Resources))]
         [DataType(DataType.MultilineText)]
         public string Content { get; set; }
 
@@ -39,7 +40,7 @@ namespace Forum.Models
     }
     public class CreateThreadViewModel : UserDetailsViewModel
     {
-        [Display(Name = "Adresat")]
+        [Display(Name = "Recipient", ResourceType = typeof(Resources))]
         [Required]
         [UserExists]
         public string Recipient
@@ -47,20 +48,20 @@ namespace Forum.Models
             get;
             set;
         }
-        [Display(Name = "Temat")]
+        [Display(Name = "Topic", ResourceType = typeof(Resources))]
         public string Title
         {
             get;
             set;
         }
-        [Display(Name = "Treść")]
+        [Display(Name = "Content", ResourceType = typeof(Resources))]
         [DataType(DataType.MultilineText)]
         public string Content
         {
             get;
             set;
         }
-        [Display(Name = "Załączniki")]
+        [Display(Name = "Attachments", ResourceType = typeof(Resources))]
         public List<MessageFile> MessageFiles
         {
             get;

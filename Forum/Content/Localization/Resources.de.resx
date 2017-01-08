@@ -256,7 +256,7 @@
     <value>Dein Profil</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>Kennwort</value>
+    <value>Passwort</value>
   </data>
   <data name="Posts" xml:space="preserve">
     <value>Beiträge</value>
@@ -327,7 +327,55 @@
   <data name="Views" xml:space="preserve">
     <value>Ansichten</value>
   </data>
+  <data name="Active" xml:space="preserve">
+    <value>Aktiv</value>
+  </data>
+  <data name="AllTogether" xml:space="preserve">
+    <value>Alle zusammen</value>
+  </data>
+  <data name="Attachments" xml:space="preserve">
+    <value>Anhänge</value>
+  </data>
+  <data name="ConfirmPw" xml:space="preserve">
+    <value>Bestätige das Passwort</value>
+  </data>
+  <data name="ConfirmPwError" xml:space="preserve">
+    <value>Bestätigung und Passwort stimmen nicht überein</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>Aktuelles Passwort</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Datum</value>
+  </data>
+  <data name="Forbidden" xml:space="preserve">
+    <value>Verboten</value>
+  </data>
   <data name="ForgotYourPassword" xml:space="preserve">
     <value>Haben Sie Ihr Passwort vergessen?</value>
+  </data>
+  <data name="LengthError" xml:space="preserve">
+    <value>Muss das {0} mindestens {2} Zeichen lang sein</value>
+  </data>
+  <data name="Marker" xml:space="preserve">
+    <value>Marker</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Negation" xml:space="preserve">
+    <value>Negation</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>Neues Passwort</value>
+  </data>
+  <data name="Recipient" xml:space="preserve">
+    <value>Empfänger</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Erinnere dich an mich?</value>
+  </data>
+  <data name="Word" xml:space="preserve">
+    <value>Wort</value>
   </data>
 </root>

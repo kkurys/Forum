@@ -1,4 +1,5 @@
 ﻿using Forum.Classes;
+using Forum.Content.Localization;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -14,11 +15,11 @@ namespace Forum.Models
 
         [IsAllowed]
         [AllowHtml]
-        [Display(Name = "Treść")]
+        [Display(Name = "Content", ResourceType = typeof(Resources))]
         [DataType(DataType.MultilineText)]
         public string Content { get; set; }
 
-        [Display(Name = "Data")]
+        [Display(Name = "Date", ResourceType = typeof(Resources))]
         [DisplayFormat(DataFormatString = "{0:dd MMMM yyyy, dddd HH:mm:ss}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
 

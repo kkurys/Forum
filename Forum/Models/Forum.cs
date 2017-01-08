@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Forum.Content.Localization;
 using System.ComponentModel.DataAnnotations;
 
 namespace Forum.Models
@@ -9,12 +9,12 @@ namespace Forum.Models
         public int CategoryID { get; set; }
         [Display(Name = "Forum")]
         public string Name { get; set; }
-        [Display(Name = "Tematów")]
+        [Display(Name = "Topics", ResourceType = typeof(Resources))]
         public int TopicCount { get; set; }
-        [Display(Name = "Postów")]
+        [Display(Name = "Posts", ResourceType = typeof(Resources))]
         public int PostCount { get; set; }
 
-        [Display(Name = "Publiczne")]
+        [Display(Name = "Public", ResourceType = typeof(Resources))]
         public bool IsPublic { get; set; }
 
         public virtual Category Category { get; set; }

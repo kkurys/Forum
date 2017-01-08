@@ -1,8 +1,6 @@
-﻿using System;
+﻿using Forum.Content.Localization;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace Forum.Models
 {
@@ -10,9 +8,9 @@ namespace Forum.Models
     {
         public string Keywords { get; set; }
         //public string Authors { get; set; }
-        [Display(Name = "Wszystkie razem")]
+        [Display(Name = "AllTogether", ResourceType = typeof(Resources))]
         public bool KeywordsAll { get; set; }
-        [Display(Name = "Negacja")]
+        [Display(Name = "Negation", ResourceType = typeof(Resources))]
         public bool Negation { get; set; }
         public bool SizeDoesMatter { get; set; }
 

@@ -1,9 +1,6 @@
 ﻿using Forum.Classes;
-using System;
-using System.Collections.Generic;
+using Forum.Content.Localization;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Forum.Models
@@ -11,13 +8,13 @@ namespace Forum.Models
     public class HtmlMarker
     {
         public int ID { get; set; }
-        [Display(Name = "Nazwa")]
+        [Display(Name = "Name", ResourceType = typeof(Resources))]
         public string Name { get; set; }
         [AllowHtml]
         [HtmlMarkerValidation]
-        [Display(Name = "Znacznik")]
+        [Display(Name = "Marker", ResourceType = typeof(Resources))]
         public string Code { get; set; }
-        [Display(Name = "Aktywny")]
+        [Display(Name = "Active", ResourceType = typeof(Resources))]
         public bool Active { get; set; }
     }
 }

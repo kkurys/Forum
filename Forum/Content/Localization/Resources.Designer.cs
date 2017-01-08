@@ -61,6 +61,15 @@ namespace Forum.Content.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Aktywny.
+        /// </summary>
+        public static string Active {
+            get {
+                return ResourceManager.GetString("Active", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dodaj.
         /// </summary>
         public static string Add {
@@ -84,6 +93,15 @@ namespace Forum.Content.Localization {
         public static string AllowAnonymous {
             get {
                 return ResourceManager.GetString("AllowAnonymous", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wszystkie razem.
+        /// </summary>
+        public static string AllTogether {
+            get {
+                return ResourceManager.GetString("AllTogether", resourceCulture);
             }
         }
         
@@ -129,6 +147,15 @@ namespace Forum.Content.Localization {
         public static string Anonymous {
             get {
                 return ResourceManager.GetString("Anonymous", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Załączniki.
+        /// </summary>
+        public static string Attachments {
+            get {
+                return ResourceManager.GetString("Attachments", resourceCulture);
             }
         }
         
@@ -196,6 +223,24 @@ namespace Forum.Content.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Potwierdź hasło.
+        /// </summary>
+        public static string ConfirmPw {
+            get {
+                return ResourceManager.GetString("ConfirmPw", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hasło i potwierdzenie się nie zgadzają.
+        /// </summary>
+        public static string ConfirmPwError {
+            get {
+                return ResourceManager.GetString("ConfirmPwError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Treść.
         /// </summary>
         public static string Content {
@@ -219,6 +264,24 @@ namespace Forum.Content.Localization {
         public static string CreateNew {
             get {
                 return ResourceManager.GetString("CreateNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aktualne hasło.
+        /// </summary>
+        public static string CurrentPassword {
+            get {
+                return ResourceManager.GetString("CurrentPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data.
+        /// </summary>
+        public static string Date {
+            get {
+                return ResourceManager.GetString("Date", resourceCulture);
             }
         }
         
@@ -282,6 +345,15 @@ namespace Forum.Content.Localization {
         public static string EditAvatar {
             get {
                 return ResourceManager.GetString("EditAvatar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zakazane.
+        /// </summary>
+        public static string Forbidden {
+            get {
+                return ResourceManager.GetString("Forbidden", resourceCulture);
             }
         }
         
@@ -367,6 +439,15 @@ namespace Forum.Content.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} musi mieć przynajmniej {2} znaków..
+        /// </summary>
+        public static string LengthError {
+            get {
+                return ResourceManager.GetString("LengthError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Zaloguj.
         /// </summary>
         public static string LogIn {
@@ -403,6 +484,15 @@ namespace Forum.Content.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Znacznik.
+        /// </summary>
+        public static string Marker {
+            get {
+                return ResourceManager.GetString("Marker", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wiadomość.
         /// </summary>
         public static string Message {
@@ -421,6 +511,24 @@ namespace Forum.Content.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nazwa.
+        /// </summary>
+        public static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Negacja.
+        /// </summary>
+        public static string Negation {
+            get {
+                return ResourceManager.GetString("Negation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to NOWY.
         /// </summary>
         public static string NEW {
@@ -435,6 +543,15 @@ namespace Forum.Content.Localization {
         public static string NewMessage {
             get {
                 return ResourceManager.GetString("NewMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nowe hasło.
+        /// </summary>
+        public static string NewPassword {
+            get {
+                return ResourceManager.GetString("NewPassword", resourceCulture);
             }
         }
         
@@ -538,11 +655,29 @@ namespace Forum.Content.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Adresat.
+        /// </summary>
+        public static string Recipient {
+            get {
+                return ResourceManager.GetString("Recipient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Zarejestruj się.
         /// </summary>
         public static string RegisterNew {
             get {
                 return ResourceManager.GetString("RegisterNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zapamiętać mnie?.
+        /// </summary>
+        public static string RememberMe {
+            get {
+                return ResourceManager.GetString("RememberMe", resourceCulture);
             }
         }
         
@@ -705,6 +840,15 @@ namespace Forum.Content.Localization {
         public static string Views {
             get {
                 return ResourceManager.GetString("Views", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Słowo.
+        /// </summary>
+        public static string Word {
+            get {
+                return ResourceManager.GetString("Word", resourceCulture);
             }
         }
     }
