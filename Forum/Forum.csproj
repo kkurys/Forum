@@ -196,6 +196,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Classes\Html.cs" />
+    <Compile Include="Classes\CustomAuthorization.cs" />
     <Compile Include="Classes\Search.cs" />
     <Compile Include="Classes\Validators.cs" />
     <Compile Include="Content\Localization\Resources.Designer.cs">

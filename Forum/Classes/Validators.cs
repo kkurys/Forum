@@ -8,59 +8,6 @@ using System.Web.Mvc;
 
 namespace Forum.Classes
 {
-    public class OwnerAuthorize : AuthorizeAttribute
-    {
-        protected override bool AuthorizeCore(HttpContextBase httpContext)
-        {
-            if (httpContext.User.IsInRole("Admin"))
-            {
-                return true;
-            }
-            else
-            {
-                ApplicationDbContext db = new ApplicationDbContext();
-
-                var authorized = base.AuthorizeCore(httpContext);
-                if (!authorized)
-                {
-                    return false;
-                }
-
-                var rd = httpContext.Request.RequestContext.RouteData;
-
-                string controller = rd.Values["controller"].ToString();
-                var userId = httpContext.User.Identity.GetUserId();
-
-                if (controller == "Post")
-                {
-                    var tmpId = rd.Values["id"];
-                    int id = Int32.Parse(tmpId.ToString());
-                    var userItemId = db.Posts.Find(id).UserID;
-                    return userItemId == userId;
-                }
-                else if (controller == "Topic")
-                {
-                    var tmpId = rd.Values["id"];
-                    int id = Int32.Parse(tmpId.ToString());
-                    var userItemId = db.Topics.Find(id).UserID;
-                    return userItemId == userId;
-                }
-                else if (controller == "User")
-                {
-                    /*   var userName = (string)rd.Values["id"];
-                       var userItemId = db.Users.ToList().Find(x => x.UserName == userName).Id; */
-                    var userItemId = (string)rd.Values["id"];
-                    return userItemId == userId;
-                }
-                else
-                {
-                    return false;
-                }
-
-            }
-        }
-    }
-
     public class HtmlMarkerValidation : ValidationAttribute
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)

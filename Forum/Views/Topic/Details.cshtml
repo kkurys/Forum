@@ -1,4 +1,5 @@
 ﻿@model Forum.Models.TopicViewModel
+@using System.Linq
 @using Forum.Content.Localization
 @{
     ViewBag.Title = Resources.Details;
@@ -62,11 +63,12 @@
         <div class="panel-heading">
             <h3 class="panel-title">
                 @Model.Topic.Title <span class="text-muted topic-description">@Model.Topic.Description</span>
-                @if (Model.Admin)
+                @if (Model.Admin || Model.Topic.Forum.Moderators.Any(x => x.Id == Model.CurrentUserId))
                 {
                     <a href="@Url.Action("Delete","Topic", new { id = Model.Topic.ID })" class="label label-default right-options">@Resources.Delete</a>
+                    <a href="@Url.Action("Edit","Topic", new { id = Model.Topic.ID })" class="label label-default right-options">@Resources.Edit</a>
                 }
-                @if (Model.CurrentUserId == Model.Topic.UserID)
+                else if (Model.CurrentUserId == Model.Topic.UserID)
                 {
                     <a href="@Url.Action("Edit","Topic", new { id = Model.Topic.ID })" class="label label-default right-options">@Resources.Edit</a>
                 }
@@ -104,7 +106,7 @@
                             <div class="panel-heading">
                                 <h3 class="panel-title">
                                     @Html.DisplayFor(modelItem => item.Date)
-                                    @if (Model.Admin)
+                                    @if (Model.Admin || Model.Topic.Forum.Moderators.Any(x => x.Id == Model.CurrentUserId))
                                     {
                                         <a href="@Url.Action("Delete","Post", new { id = item.ID })" class="label label-default right-options">@Resources.Delete</a>
                                         <a href="@Url.Action("Edit","Post", new { id = item.ID })" class="label label-default right-options">@Resources.Edit</a>
