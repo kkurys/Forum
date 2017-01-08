@@ -25,6 +25,7 @@ namespace Forum.Models
         public Language Language { get; set; }
         [Display(Name = "PostsPerPage", ResourceType = typeof(Resources))]
         public int? PostsPerPageID { get; set; }
+        [Display(Name = "PostsPerPage", ResourceType = typeof(Resources))]
         public virtual PostsPerPage PostsPerPage { get; set; }
         [Display(Name = "SessionTime", ResourceType = typeof(Resources))]
         public TimeSpan SessionTime { get; set; }

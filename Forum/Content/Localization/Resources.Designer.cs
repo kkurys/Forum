@@ -448,7 +448,7 @@ namespace Forum.Content.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Language.
+        ///   Looks up a localized string similar to Język.
         /// </summary>
         public static string Language {
             get {
