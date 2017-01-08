@@ -36,7 +36,7 @@ namespace Forum.Models
 
     public class SetPasswordViewModel
     {
-        [Required]
+        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Resources))]
         [StringLength(100, ErrorMessageResourceName = "LengthError", ErrorMessageResourceType = typeof(Resources), MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "NewPassword", ResourceType = typeof(Resources))]
@@ -50,12 +50,12 @@ namespace Forum.Models
 
     public class ChangePasswordViewModel
     {
-        [Required]
+        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Resources))]
         [DataType(DataType.Password)]
         [Display(Name = "CurrentPassword", ResourceType = typeof(Resources))]
         public string OldPassword { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Resources))]
         [StringLength(100, ErrorMessageResourceName = "LengthError", ErrorMessageResourceType = typeof(Resources), MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "NewPassword", ResourceType = typeof(Resources))]
@@ -69,7 +69,7 @@ namespace Forum.Models
 
     public class AddPhoneNumberViewModel
     {
-        [Required]
+        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Resources))]
         [Phone]
         [Display(Name = "Phone Number")]
         public string Number { get; set; }
@@ -77,11 +77,11 @@ namespace Forum.Models
 
     public class VerifyPhoneNumberViewModel
     {
-        [Required]
+        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Resources))]
         [Display(Name = "Code")]
         public string Code { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Resources))]
         [Phone]
         [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }

@@ -348,6 +348,9 @@
   <data name="Date" xml:space="preserve">
     <value>Datum</value>
   </data>
+  <data name="FieldRequired" xml:space="preserve">
+    <value>Feld {0} wird benötigt</value>
+  </data>
   <data name="Forbidden" xml:space="preserve">
     <value>Verboten</value>
   </data>

@@ -5,7 +5,7 @@ namespace Forum.Models
 {
     public class ExternalLoginConfirmationViewModel
     {
-        [Required]
+        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Resources))]
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
@@ -25,10 +25,10 @@ namespace Forum.Models
 
     public class VerifyCodeViewModel
     {
-        [Required]
+        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Resources))]
         public string Provider { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Resources))]
         [Display(Name = "Code")]
         public string Code { get; set; }
         public string ReturnUrl { get; set; }
@@ -41,19 +41,19 @@ namespace Forum.Models
 
     public class ForgotViewModel
     {
-        [Required]
+        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Resources))]
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
 
     public class LoginViewModel
     {
-        [Required]
+        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Resources))]
         [Display(Name = "Login")]
         //[EmailAddress]
         public string Login { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Resources))]
         [DataType(DataType.Password)]
         [Display(Name = "Password", ResourceType = typeof(Resources))]
         public string Password { get; set; }
@@ -64,16 +64,16 @@ namespace Forum.Models
 
     public class RegisterViewModel
     {
-        [Required]
+        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Resources))]
         [Display(Name = "Login")]
         public string Login { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Resources))]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Resources))]
         [StringLength(100, ErrorMessageResourceName = "LengthError", ErrorMessageResourceType = typeof(Resources), MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password", ResourceType = typeof(Resources))]
@@ -87,12 +87,12 @@ namespace Forum.Models
 
     public class ResetPasswordViewModel
     {
-        [Required]
+        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Resources))]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Resources))]
         [StringLength(100, ErrorMessageResourceName = "LengthError", ErrorMessageResourceType = typeof(Resources), MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password", ResourceType = typeof(Resources))]
@@ -108,7 +108,7 @@ namespace Forum.Models
 
     public class ForgotPasswordViewModel
     {
-        [Required]
+        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Resources))]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }

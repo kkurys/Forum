@@ -41,7 +41,7 @@ namespace Forum.Models
     public class CreateThreadViewModel : UserDetailsViewModel
     {
         [Display(Name = "Recipient", ResourceType = typeof(Resources))]
-        [Required]
+        [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Resources))]
         [UserExists]
         public string Recipient
         {
