@@ -369,6 +369,9 @@
   <data name="Negation" xml:space="preserve">
     <value>Negation</value>
   </data>
+  <data name="NewAccount" xml:space="preserve">
+    <value>Ein neues Konto erstellen.</value>
+  </data>
   <data name="NewPassword" xml:space="preserve">
     <value>Neues Passwort</value>
   </data>

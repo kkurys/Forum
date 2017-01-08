@@ -547,6 +547,15 @@ namespace Forum.Content.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Załóż konto..
+        /// </summary>
+        public static string NewAccount {
+            get {
+                return ResourceManager.GetString("NewAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nowa wiadomość.
         /// </summary>
         public static string NewMessage {
