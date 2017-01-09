@@ -1,6 +1,7 @@
 ﻿using Forum.Classes;
 using Forum.Models;
 using Microsoft.AspNet.Identity;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,12 +44,11 @@ namespace Forum.Controllers
         // GET: Topic/Details/5
         public ActionResult Details(int id, int? page)
         {
-            int startIndex, endIndex, postsPerPage;
+            int postsPerPage;
+            var user = db.Users.Find(User.Identity.GetUserId());
             TopicViewModel viewModel = new TopicViewModel();
-            viewModel.Admin = false;
-            viewModel.CurrentUserId = User.Identity.GetUserId();
-
-            var user = db.Users.Find(viewModel.CurrentUserId);
+            viewModel.CurrentUserId = user.Id;
+            
             if (User.Identity.IsAuthenticated)
             {
                 postsPerPage = user.PostsPerPage.Quantity;
@@ -59,34 +59,14 @@ namespace Forum.Controllers
             }
             viewModel.Topic = db.Topics.Find(id);
             var tmpList = db.Posts.ToList().FindAll(f => f.TopicID == viewModel.Topic.ID);
-            viewModel.Pages = tmpList.Count() / postsPerPage + 1;
-
-            if (page == null)
-            {
-                startIndex = 0;
-                viewModel.CurrentPage = 0;
-            }
-            else
-            {
-                startIndex = (int)page * postsPerPage;
-                viewModel.CurrentPage = (int)page;
-            }
-
-            if (tmpList.Count() < startIndex + postsPerPage)
-            {
-                endIndex = tmpList.Count();
-            }
-            else
-            {
-                endIndex = startIndex + postsPerPage;
-            }
             
             if (User.IsInRole("Admin"))
             {
                 viewModel.Admin = true;
             }
 
-            viewModel.Posts = tmpList.GetRange(startIndex, endIndex - startIndex);
+            int currPage = page.HasValue ? page.Value : 1;
+            viewModel.Posts = tmpList.ToPagedList(currPage, postsPerPage);
 
             return View(viewModel);
         }

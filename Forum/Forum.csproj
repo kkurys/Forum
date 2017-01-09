@@ -77,6 +77,14 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -300,6 +308,10 @@
     <Compile Include="Migrations\201701061446539_after-merge_1.Designer.cs">
       <DependentUpon>201701061446539_after-merge_1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701081611370_fixes.cs" />
+    <Compile Include="Migrations\201701081611370_fixes.Designer.cs">
+      <DependentUpon>201701081611370_fixes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Announcement.cs" />
@@ -337,6 +349,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\flat-ui.css" />
     <Content Include="Content\flat-ui.min.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -507,6 +520,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701061446539_after-merge_1.resx">
       <DependentUpon>201701061446539_after-merge_1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701081611370_fixes.resx">
+      <DependentUpon>201701081611370_fixes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

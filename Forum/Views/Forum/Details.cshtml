@@ -1,5 +1,7 @@
 ﻿@model Forum.Models.ForumTopicsViewModel
 @using Forum.Content.Localization
+@using PagedList.Mvc;
+
 <div class="container">
     <div class="row navigation-row">
         <a href="@Url.Action("Index", "Home")" class="btn btn-link">Forum</a>
@@ -10,35 +12,10 @@
     </div>
 
     <div class="row navigation-row">
-        <ul class="pagination pagination-sm">
-            @if (Model.CurrentPage == 0)
-            {
-                <li class="disabled"><a href="#">&laquo;</a></li>
-            }
-            else
-            {
-                <li><a href="@Url.Action("Details", "Forum", new { id = Model.Forum.ID, page = Model.CurrentPage - 1 })">&laquo;</a></li>
-            }
-            @for (int i = 0; i < Model.Pages; i++)
-            {
-                if (i == Model.CurrentPage)
-                {
-                    <li class="active"><a href="@Url.Action("Details", "Forum", new { id = Model.Forum.ID, page = i })">@(i + 1)</a></li>
-                }
-                else
-                {
-                    <li><a href="@Url.Action("Details", "Forum", new { id = Model.Forum.ID, page = i })">@(i + 1)</a></li>
-                }
-            }
-            @if (Model.CurrentPage == Model.Pages - 1)
-            {
-                <li class="disabled"><a href="#">&raquo;</a></li>
-            }
-            else
-            {
-                <li><a href="@Url.Action("Details", "Forum", new { id = Model.Forum.ID, page = Model.CurrentPage + 1 })">&raquo;</a></li>
-            }
-        </ul>
+        <div class="pager pull-left">
+            @Html.PagedListPager(Model.Topics, page => Url.Action("Details", new { id = Model.Forum.ID, page }))
+        </div>
+
         @if (Model.Forum.IsPublic)
         {
             <a href="@Url.Action("Create", "Topic", new { id = Model.Forum.ID })" class="btn btn-default pull-right">@Resources.NewTopic</a>

@@ -1,5 +1,6 @@
 ﻿using Forum.Classes;
 using Forum.Content.Localization;
+using PagedList;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -10,7 +11,7 @@ namespace Forum.Models
     }
     public class PrivateThreadsListViewModel : UserDetailsViewModel
     {
-        public List<PrivateThread> Threads
+        public IPagedList<PrivateThread> Threads
         {
             get;
             set;
@@ -29,7 +30,7 @@ namespace Forum.Models
     public class PrivateThreadViewModel : UserDetailsViewModel
     {
         public PrivateThread PrivateThread { get; set; }
-        public List<PrivateMessage> Messages { get; set; }
+        public IPagedList<PrivateMessage> Messages { get; set; }
         [Display(Name = "Content", ResourceType = typeof(Resources))]
         [DataType(DataType.MultilineText)]
         public string Content { get; set; }
