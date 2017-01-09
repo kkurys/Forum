@@ -411,4 +411,10 @@
   <data name="BackToTopic" xml:space="preserve">
     <value>Powrót do tematu</value>
   </data>
+  <data name="NoModerators" xml:space="preserve">
+    <value>Brak moderatorów</value>
+  </data>
+  <data name="ModeratorsIn" xml:space="preserve">
+    <value>Moderatorzy w</value>
+  </data>
 </root>

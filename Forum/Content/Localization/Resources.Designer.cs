@@ -547,6 +547,15 @@ namespace Forum.Content.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Moderatorzy w.
+        /// </summary>
+        public static string ModeratorsIn {
+            get {
+                return ResourceManager.GetString("ModeratorsIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Lista moderatorów.
         /// </summary>
         public static string ModeratorsList {
@@ -633,6 +642,15 @@ namespace Forum.Content.Localization {
         public static string NoForum {
             get {
                 return ResourceManager.GetString("NoForum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Brak moderatorów.
+        /// </summary>
+        public static string NoModerators {
+            get {
+                return ResourceManager.GetString("NoModerators", resourceCulture);
             }
         }
         

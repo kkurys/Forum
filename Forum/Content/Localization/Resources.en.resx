@@ -408,4 +408,10 @@
   <data name="BackToTopic" xml:space="preserve">
     <value>Back to topic</value>
   </data>
+  <data name="NoModerators" xml:space="preserve">
+    <value>No moderators</value>
+  </data>
+  <data name="ModeratorsIn" xml:space="preserve">
+    <value>Moderators in</value>
+  </data>
 </root>

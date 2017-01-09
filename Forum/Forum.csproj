@@ -440,6 +440,7 @@
     <Content Include="Views\Admin\ModeratorsList.cshtml" />
     <Content Include="Views\Post\ReportPost.cshtml" />
     <Content Include="Views\Post\PostReported.cshtml" />
+    <Content Include="Views\Admin\ModeratorsListPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

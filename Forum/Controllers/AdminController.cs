@@ -11,26 +11,64 @@ namespace Forum.Controllers
         {
             return View();
         }
-        public ActionResult ModeratorsList(int? activeForum)
+        public ActionResult ModeratorsList(int? activeCategory, bool? error, int? activeForum)
         {
             var viewModel = new ModeratorsListViewModel();
 
-            viewModel.Forums = db.Fora.ToList();
+
+            viewModel.Categories = db.Categories.ToList();
+            viewModel.ActiveCategory = activeCategory;
             viewModel.ActiveForum = activeForum;
 
+            if (error.HasValue && error == true)
+            {
+                viewModel.AdditionError = true;
+            }
             return View(viewModel);
         }
-        public ActionResult AddModerator(ModeratorsListViewModel viewModel)
+        public ActionResult GetForumModerators(int ForumID)
+        {
+            var viewModel = new PartialModeratorsListViewModel();
+            var forum = db.Fora.ToList().Find(x => x.ID == ForumID);
+            viewModel.ForumID = ForumID;
+            viewModel.Forum = forum;
+            viewModel.Moderators = forum.Moderators;
+
+            return PartialView("ModeratorsListPartial", viewModel);
+        }
+        public ActionResult AddModerator(PartialModeratorsListViewModel viewModel)
         {
             var _user = db.Users.ToList().Find(x => x.UserName == viewModel.Username);
             var _forum = db.Fora.ToList().Find(x => x.ID == viewModel.ForumID);
             if (_user != null && _forum != null)
             {
-                _user.Forums.Add(_forum);
-                _forum.Moderators.Add(_user);
+                if (_user.Forums.Contains(_forum) && _forum.Moderators.Contains(_user))
+                {
+                    viewModel.AdditionError = true;
+                }
+                else
+                {
+                    _user.Forums.Add(_forum);
+                    _forum.Moderators.Add(_user);
+                    db.SaveChanges();
+                }
+            }
+            return RedirectToAction("ModeratorsList", new { activeCategory = _forum.CategoryID, activeForum = viewModel.ForumID, error = viewModel.AdditionError });
+        }
+        public ActionResult DeleteModerator(PartialModeratorsListViewModel viewModel)
+        {
+            var moderatorToRemove = db.Users.ToList().Find(x => x.Id == viewModel.UserID);
+            var modifiedForum = db.Fora.ToList().Find(x => x.ID == viewModel.ForumID);
+
+            if (moderatorToRemove != null && modifiedForum != null)
+            {
+                modifiedForum.Moderators.Remove(moderatorToRemove);
+                moderatorToRemove.Forums.Remove(modifiedForum);
+
                 db.SaveChanges();
             }
-            return RedirectToAction("ModeratorsList", new { activeForum = viewModel.ForumID });
+
+            return RedirectToAction("ModeratorsList", new { activeCategory = modifiedForum.CategoryID, activeForum = viewModel.ForumID });
         }
     }
 }

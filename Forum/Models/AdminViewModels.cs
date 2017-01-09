@@ -7,13 +7,22 @@ namespace Forum.Models
 {
     public class ModeratorsListViewModel
     {
-        public List<Forum> Forums { get; set; }
+        public List<Category> Categories { get; set; }
         [Display(Name = "User", ResourceType = typeof(Resources))]
         [Required(ErrorMessageResourceName = "FieldRequired", ErrorMessageResourceType = typeof(Resources))]
         [UserExists]
         public string Username { get; set; }
-        public int ForumID { get; set; }
+        public int? ActiveCategory { get; set; }
         public int? ActiveForum { get; set; }
+        public bool AdditionError { get; set; }
     }
-
+    public class PartialModeratorsListViewModel
+    {
+        public int ForumID { get; set; }
+        public Forum Forum { get; set; }
+        public ICollection<User> Moderators { get; set; }
+        public string Username { get; set; }
+        public string UserID { get; set; }
+        public bool AdditionError { get; set; }
+    }
 }
