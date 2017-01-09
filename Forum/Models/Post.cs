@@ -7,13 +7,13 @@ using System.Web.Mvc;
 
 namespace Forum.Models
 {
+    [IsAllowed]
     public class Post
     {
         public int ID { get; set; }
         public int TopicID { get; set; }
         public string UserID { get; set; }
 
-        [IsAllowed]
         [AllowHtml]
         [Display(Name = "Content", ResourceType = typeof(Resources))]
         [DataType(DataType.MultilineText)]

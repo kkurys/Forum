@@ -66,13 +66,13 @@ namespace Forum.Classes
         {
             var model = (HtmlMarker)validationContext.ObjectInstance;
 
-            if (Html.MarkerValidate(model.Code))
+            if (model.Code.All(Char.IsLetter))
             {
                 return ValidationResult.Success;
             }
             else
             {
-                return new ValidationResult("Znacznik musi się zaczynać znakiem \"<\" oraz kończyć \">\", a pomiędzy nimi mogą zawierać się tylko litery i cyfry");
+                return new ValidationResult("Proszę wpisać tylko nazwę znacznika, bez nawiasów oraz atrybutów!");
             }
         }
     }
