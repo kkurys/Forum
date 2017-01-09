@@ -439,6 +439,7 @@
     <Content Include="Views\Manage\EditAvatar.cshtml" />
     <Content Include="Views\Admin\ModeratorsList.cshtml" />
     <Content Include="Views\Post\ReportPost.cshtml" />
+    <Content Include="Views\Post\PostReported.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

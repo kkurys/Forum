@@ -89,7 +89,52 @@ namespace Forum.Controllers
 
             return View(viewModel);
         }
+        public ActionResult ViewPost(int id, int postId)
+        {
+            int startIndex = 0, endIndex = 0, postsPerPage;
+            TopicViewModel viewModel = new TopicViewModel();
+            viewModel.Admin = false;
+            viewModel.CurrentUserId = User.Identity.GetUserId();
 
+            var user = db.Users.Find(viewModel.CurrentUserId);
+            if (User.Identity.IsAuthenticated)
+            {
+                postsPerPage = user.PostsPerPage.Quantity;
+            }
+            else
+            {
+                postsPerPage = 25;
+            }
+            viewModel.Topic = db.Topics.Find(id);
+            var tmpList = db.Posts.ToList().FindAll(f => f.TopicID == viewModel.Topic.ID);
+            viewModel.Pages = tmpList.Count() / postsPerPage + 1;
+
+            int postIndex = tmpList.FindIndex(x => x.ID == postId);
+            int currentPage = 0;
+            for (currentPage = 0; currentPage < viewModel.Pages; currentPage++)
+            {
+                startIndex = currentPage * postsPerPage;
+                endIndex = startIndex + postsPerPage;
+                if (postIndex >= startIndex && postIndex < endIndex)
+                {
+                    break;
+                }
+            }
+
+            if (endIndex > tmpList.Count)
+            {
+                endIndex = tmpList.Count;
+            }
+
+            if (User.IsInRole("Admin"))
+            {
+                viewModel.Admin = true;
+            }
+
+            viewModel.Posts = tmpList.GetRange(startIndex, endIndex - startIndex);
+            ViewData["postId"] = postId;
+            return View("Details", viewModel);
+        }
         // GET: Topic/Create
         [HttpGet]
         public ActionResult Create(int id)

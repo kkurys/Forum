@@ -402,4 +402,13 @@
   <data name="ReportAPost" xml:space="preserve">
     <value>Zgłaszanie posta</value>
   </data>
+  <data name="PostNotFound" xml:space="preserve">
+    <value>Post którego szukasz nie istnieje.</value>
+  </data>
+  <data name="PostReported" xml:space="preserve">
+    <value>Post został pomyślnie zgłoszony do moderacji.</value>
+  </data>
+  <data name="BackToTopic" xml:space="preserve">
+    <value>Powrót do tematu</value>
+  </data>
 </root>

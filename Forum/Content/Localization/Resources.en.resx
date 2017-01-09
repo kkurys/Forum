@@ -399,4 +399,13 @@
   <data name="ReportAPost" xml:space="preserve">
     <value>Report a post</value>
   </data>
+  <data name="PostNotFound" xml:space="preserve">
+    <value>Post you were looking for doesn't exist.</value>
+  </data>
+  <data name="PostReported" xml:space="preserve">
+    <value>Post was successfully reported</value>
+  </data>
+  <data name="BackToTopic" xml:space="preserve">
+    <value>Back to topic</value>
+  </data>
 </root>

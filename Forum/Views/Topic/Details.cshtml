@@ -15,6 +15,10 @@
         <b>></b>
         <a href="@Url.Action("Details", "Topic", new { id = Model.Topic.ID })" class="btn btn-link">@Model.Topic.Title</a>
     </div>
+    <div class="alert alert-danger" role="alert" id="postAlert" style="display: none;">
+        <a class="close" data-dismiss="alert">×</a>
+        <p>@Resources.PostNotFound</p>
+    </div>
 
     <div class="row navigation-row">
         <ul class="pagination pagination-sm">
@@ -102,7 +106,7 @@
                         </div>
                     </div>
                     <div class="col-sm-10">
-                        <div class="panel panel-default post" name="@item.ID">
+                        <div class="panel panel-default post" name="@item.ID" id="@item.ID">
                             <div class="panel-heading">
                                 <h3 class="panel-title">
                                     @Html.DisplayFor(modelItem => item.Date)
@@ -117,7 +121,7 @@
                                     }
                                     else
                                     {
-                                        <a href="@Url.Action("ReportPost","Post", new { id = item.ID, postPage = Model.CurrentPage })" class="label label-default right-options">@Resources.Report</a>
+                                        <a href="@Url.Action("ReportPost","Post", new { id = item.ID, page = Model.CurrentPage })" class="label label-default right-options">@Resources.Report</a>
                                     }
                                 </h3>
                             </div>
@@ -131,3 +135,28 @@
         </div>
     </div>
 </div>
+@section scripts
+{
+    <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet" />
+    <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+    @if(ViewData["postID"] != null)
+    {
+        <text>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var post = $('#@ViewData["postID"]');
+                var postAlert = $('#postAlert');
+                try
+                {
+                    $('html,body').animate({scrollTop: post.offset().top});
+                    post.css('border-color', 'red');
+                }
+                catch (err)
+                {
+                    postAlert.show();
+                }
+            });
+        </script>
+        </text>
+    }
+}

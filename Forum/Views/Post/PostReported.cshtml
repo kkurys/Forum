@@ -1,0 +1,8 @@
+﻿@using Forum.Content.Localization
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.PostReported</h2>
+
+<a href="@Url.Action("Details", "Topic", new { id = Model.Post.Topic.ID, page = Model.PostPage})" class="btn btn-default btn-sm">@Resources.BackToTopic</a>

@@ -169,6 +169,15 @@ namespace Forum.Content.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Powrót do tematu.
+        /// </summary>
+        public static string BackToTopic {
+            get {
+                return ResourceManager.GetString("BackToTopic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Przez.
         /// </summary>
         public static string By {
@@ -660,6 +669,24 @@ namespace Forum.Content.Localization {
         public static string Password {
             get {
                 return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Post którego szukasz nie istnieje..
+        /// </summary>
+        public static string PostNotFound {
+            get {
+                return ResourceManager.GetString("PostNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Post został pomyślnie zgłoszony do moderacji..
+        /// </summary>
+        public static string PostReported {
+            get {
+                return ResourceManager.GetString("PostReported", resourceCulture);
             }
         }
         

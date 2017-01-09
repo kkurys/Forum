@@ -399,4 +399,13 @@
   <data name="ReportAPost" xml:space="preserve">
     <value>Nachricht berichten</value>
   </data>
+  <data name="PostNotFound" xml:space="preserve">
+    <value>Der Beitrag Sie suchen existiert nicht</value>
+  </data>
+  <data name="PostReported" xml:space="preserve">
+    <value>Beitrag wurde erfolgreich gemeldet</value>
+  </data>
+  <data name="BackToTopic" xml:space="preserve">
+    <value>Zurück zum Thema</value>
+  </data>
 </root>

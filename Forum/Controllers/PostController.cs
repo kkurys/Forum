@@ -112,13 +112,12 @@ namespace Forum.Controllers
                 return View(post);
             }
         }
-        public ActionResult ReportPost(int id, int? postPage)
+        public ActionResult ReportPost(int id, int? page)
         {
             var viewModel = new ReportPostViewModel();
             viewModel.Post = db.Posts.ToList().Find(x => x.ID == id);
             viewModel.PostID = viewModel.Post.ID;
-            viewModel.PostPage = postPage;
-
+            viewModel.PostPage = page;
             return View(viewModel);
         }
         [HttpPost]
@@ -147,14 +146,9 @@ namespace Forum.Controllers
                 _reportMessage.PrivateThread = _reportThread;
                 _reportMessage.Author = db.Users.ToList().Find(x => x.Id == User.Identity.GetUserId());
 
-                if (viewModel.PostPage.HasValue)
-                {
-                    _reportMessage.Content += "Zgłoszono post: " + "<a href=/Topic/Details/" + viewModel.Post.Topic.ID + "?page=" + viewModel.PostPage + "#" + viewModel.Post.ID + ">#" + viewModel.Post.ID + "</a><br />";
-                }
-                else
-                {
-                    _reportMessage.Content += "Zgłoszono post: " + "<a href=/Topic/Details/" + viewModel.Post.Topic.ID + "#" + viewModel.Post.ID + ">#" + viewModel.Post.ID + "</a><br />";
-                }
+
+                _reportMessage.Content += "Zgłoszono post: " + "<a href=\"/Topic/ViewPost/" + viewModel.Post.Topic.ID.ToString() + "?postId=" + viewModel.Post.ID + "\">#" + viewModel.Post.ID + "</a><br />";
+
 
                 _reportMessage.Content += "Uzasadnienie: <br />" + viewModel.Reason;
                 _reportMessage.Date = DateTime.Now;
@@ -164,7 +158,8 @@ namespace Forum.Controllers
                 db.PrivateMessages.Add(_reportMessage);
             }
             db.SaveChanges();
-            return View(viewModel);
+
+            return View("PostReported", viewModel);
         }
     }
 }
