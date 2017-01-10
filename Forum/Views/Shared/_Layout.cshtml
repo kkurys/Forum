@@ -5,7 +5,21 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MOKK</title>
-    @Styles.Render("~/Content/css")
+    @if (User.Identity.IsAuthenticated)
+    {
+        if (User.IsInRole("Admin"))
+        {
+            @Styles.Render("~/Content/css-united")
+        }
+        else
+        {
+            @Styles.Render("~/Content/css")
+        }
+    }
+    else
+    {
+        @Styles.Render("~/Content/css-darkly")
+    }
     @Scripts.Render("~/bundles/modernizr")
 
     <script src="~/Scripts/tinymce/tinymce.min.js"></script>
@@ -43,14 +57,14 @@
                 <ul class="nav navbar-nav">
                     @*<li>@Html.ActionLink("Home", "Index", "Home")</li>*@
                     @*<li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
                     <li>@Html.ActionLink(@Resources.Users, "Index", "User")</li>
                     <li>@Html.ActionLink(@Resources.Search, "Create", "Search")</li>
                     @*<li>@Html.ActionLink("Kategorie", "Index", "Category")</li>
-                    <li>@Html.ActionLink("Fora", "Index", "Forum")</li>
-                    <li>@Html.ActionLink("Tematy", "Index", "Topic")</li>
-                    <li>@Html.ActionLink("Posty", "Index", "Post")</li>
-                    <li>@Html.ActionLink("Ogłoszenia", "Index", "Announcement")</li>*@
+                        <li>@Html.ActionLink("Fora", "Index", "Forum")</li>
+                        <li>@Html.ActionLink("Tematy", "Index", "Topic")</li>
+                        <li>@Html.ActionLink("Posty", "Index", "Post")</li>
+                        <li>@Html.ActionLink("Ogłoszenia", "Index", "Announcement")</li>*@
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

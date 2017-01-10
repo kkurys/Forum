@@ -349,6 +349,9 @@
     <Content Include="Content\Attachments\15782027_1317582524958700_834785599_n.jpg" />
     <Content Include="Content\Avatars\15781789_220285065088186_6123242587625217632_n.jpg" />
     <Content Include="Content\Avatars\default.jpg" />
+    <Content Include="Content\bootstrap-darkly.css" />
+    <Content Include="Content\bootstrap-united.css" />
+    <Content Include="Content\bootstrap-united.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\flat-ui.css" />
@@ -363,6 +366,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\bootstrap-darkly.min.css" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

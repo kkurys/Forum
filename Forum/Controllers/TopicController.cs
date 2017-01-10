@@ -47,7 +47,14 @@ namespace Forum.Controllers
             int postsPerPage;
             var user = db.Users.Find(User.Identity.GetUserId());
             TopicViewModel viewModel = new TopicViewModel();
-            viewModel.CurrentUserId = user.Id;
+            if (User.Identity.IsAuthenticated)
+            {
+                viewModel.CurrentUserId = user.Id;
+            }
+            else
+            {
+                viewModel.CurrentUserId = "";
+            }
             
             if (User.Identity.IsAuthenticated)
             {

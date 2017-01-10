@@ -26,6 +26,14 @@ namespace Forum
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/css-darkly").Include(
+                      "~/Content/bootstrap-darkly.css",
+                      "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/css-united").Include(
+                      "~/Content/bootstrap-united.css",
+                      "~/Content/site.css"));
         }
     }
 }
