@@ -1,11 +1,8 @@
 ﻿using Forum.Classes;
 using Forum.Models;
-using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Forum.Controllers
@@ -18,7 +15,7 @@ namespace Forum.Controllers
         public ActionResult Index()
         {
             var viewModel = new UserIndexViewModel();
-            
+
             viewModel.UserPostCount = new Dictionary<User, UserDetails>();
 
             foreach (User user in db.Users.ToList())
@@ -30,7 +27,7 @@ namespace Forum.Controllers
 
                 tmp.Roles = new List<IdentityRole>();
 
-                foreach(IdentityUserRole role in user.Roles)
+                foreach (IdentityUserRole role in user.Roles)
                 {
                     tmp.Roles.Add(db.Roles.ToList().Find(x => x.Id == role.RoleId));
                 }
@@ -89,7 +86,7 @@ namespace Forum.Controllers
         {
             ViewBag.PostsPerPageID = new SelectList(db.PostsPerPage, "ID", "Quantity");
 
-            User user = db.Users.ToList().Find(x => x.UserName == id);
+            User user = db.Users.ToList().Find(x => x.Id == id);
             return View(user);
         }
 
@@ -98,15 +95,18 @@ namespace Forum.Controllers
         [OwnerAuthorize]
         public ActionResult Edit(User user)
         {
+            ViewBag.PostsPerPageID = new SelectList(db.PostsPerPage, "ID", "Quantity");
+            db.Entry(user).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+
             try
             {
-                db.Entry(user).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
 
                 return RedirectToAction("Details", new { userName = user.UserName });
             }
             catch
             {
+
                 return View();
             }
         }

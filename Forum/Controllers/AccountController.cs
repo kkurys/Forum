@@ -16,6 +16,8 @@ namespace Forum.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         public AccountController()
         {
         }
@@ -397,6 +399,11 @@ namespace Forum.Controllers
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Index", "Home");
         }
+        public ActionResult LogOffLame()
+        {
+            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            return RedirectToAction("Index", "Home");
+        }
 
         //
         // GET: /Account/ExternalLoginFailure
@@ -448,6 +455,8 @@ namespace Forum.Controllers
 
         private ActionResult RedirectToLocal(string returnUrl)
         {
+
+
             if (Url.IsLocalUrl(returnUrl))
             {
                 return Redirect(returnUrl);

@@ -40,7 +40,7 @@
             <li>
                 @Html.ActionLink(@Resources.OwnProfile, "Index", "Manage", routeValues: null, htmlAttributes: new { title = Resources.OwnProfile })
             </li>
-            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">@Resources.LogOut</a></li>
         </ul>
     }
 }

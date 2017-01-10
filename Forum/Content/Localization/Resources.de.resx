@@ -387,4 +387,7 @@
   <data name="Keywords" xml:space="preserve">
     <value>Schlüsselwörter</value>
   </data>
+  <data name="Default" xml:space="preserve">
+    <value>Default</value>
+  </data>
 </root>
