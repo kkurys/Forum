@@ -1,10 +1,14 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 using System.Security.Claims;
+using System.Security.Principal;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace Forum.Models
 {
@@ -16,9 +20,17 @@ namespace Forum.Models
         German
     }
 
+    public enum Theme
+    {
+        Default,
+        Darkly,
+        United
+    }
+
     public class User : IdentityUser
     {
         public Language Language { get; set; }
+        public Theme Theme { get; set; }
         public int? PostsPerPageID { get; set; }
         public virtual PostsPerPage PostsPerPage { get; set; }
         public TimeSpan SessionTime { get; set; }
@@ -27,10 +39,50 @@ namespace Forum.Models
         {
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
 
+            userIdentity.AddClaims(new[]
+            {
+                new Claim("Theme",this.Theme.ToString())
+            });
+
             return userIdentity;
         }
 
         public ICollection<PrivateMessage> PrivateMessages;
+    }
+
+    
+
+    public static class UserExtensionMethods
+    {
+        public static string GetTheme(this IIdentity identity)
+        {
+            var claim = ((ClaimsIdentity)identity).FindFirst("Theme");
+            // Test for null to avoid issues during local testing
+            return (claim != null) ? claim.Value : "Default";
+        }
+
+        public static void AddUpdateClaim(this IIdentity identity, string value)
+        {
+            if (identity == null)
+                return;
+
+            // check for existing claim and remove it
+            var claim = ((ClaimsIdentity)identity).FindFirst("Theme");
+            if (claim != null)
+                ((ClaimsIdentity)identity).RemoveClaim(claim);
+
+            // add new claim
+            ((ClaimsIdentity)identity).AddClaim(new Claim("Theme", value));
+
+            var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
+            authenticationManager.AuthenticationResponseGrant = new AuthenticationResponseGrant(new ClaimsPrincipal(identity), new AuthenticationProperties() { IsPersistent = true });
+        }
+
+
+        //public static string GetTheme(this User user)
+        //{
+        //    return user.Theme.ToString();
+        //}
     }
 
     public class ApplicationDbContext : IdentityDbContext<User>

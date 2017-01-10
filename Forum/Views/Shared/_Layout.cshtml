@@ -1,4 +1,6 @@
 ﻿@using Forum.Content.Localization
+@using Forum.Models
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,18 +9,12 @@
     <title>MOKK</title>
     @if (User.Identity.IsAuthenticated)
     {
-        if (User.IsInRole("Admin"))
-        {
-            @Styles.Render("~/Content/css-united")
-        }
-        else
-        {
-            @Styles.Render("~/Content/css")
-        }
+
+        @Styles.Render("~/Content/css-" + User.Identity.GetTheme())
     }
     else
     {
-        @Styles.Render("~/Content/css-darkly")
+        @Styles.Render("~/Content/css-Default")
     }
     @Scripts.Render("~/bundles/modernizr")
 

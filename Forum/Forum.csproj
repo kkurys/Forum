@@ -316,9 +316,14 @@
     <Compile Include="Migrations\201701081611370_fixes.Designer.cs">
       <DependentUpon>201701081611370_fixes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701100021243_added-theme-field.cs" />
+    <Compile Include="Migrations\201701100021243_added-theme-field.Designer.cs">
+      <DependentUpon>201701100021243_added-theme-field.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Announcement.cs" />
+    <Compile Include="Models\BaseViewModel.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\CreateTopicViewModel.cs" />
@@ -700,6 +705,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701081611370_fixes.resx">
       <DependentUpon>201701081611370_fixes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701100021243_added-theme-field.resx">
+      <DependentUpon>201701100021243_added-theme-field.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
