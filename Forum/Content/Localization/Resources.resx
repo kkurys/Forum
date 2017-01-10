@@ -417,4 +417,7 @@
   <data name="ModeratorsIn" xml:space="preserve">
     <value>Moderatorzy w</value>
   </data>
+  <data name="ModeratorExists" xml:space="preserve">
+    <value>Ten użytkownik jest już moderatorem w tym forum.</value>
+  </data>
 </root>

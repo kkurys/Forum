@@ -14,7 +14,7 @@ namespace Forum.Models
         public string Username { get; set; }
         public int? ActiveCategory { get; set; }
         public int? ActiveForum { get; set; }
-        public bool AdditionError { get; set; }
+        public int? AdditionError { get; set; }
     }
     public class PartialModeratorsListViewModel
     {
@@ -23,6 +23,6 @@ namespace Forum.Models
         public ICollection<User> Moderators { get; set; }
         public string Username { get; set; }
         public string UserID { get; set; }
-        public bool AdditionError { get; set; }
+        public int? AdditionError { get; set; }
     }
 }

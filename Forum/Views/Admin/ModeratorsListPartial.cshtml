@@ -27,11 +27,10 @@
     });
 </script>
 <script>
-    @if (Model.AdditionError)
+    @if (Model.AdditionError.HasValue && Model.AdditionError == 1)
     {
-        string id = "additionAlert" + Model.ForumID;
         <text>
-        $('#@id').show();
+        $('#additionAlert').show();
         </text>
     }
 
@@ -84,6 +83,15 @@
                     <input type="submit" form="@formId" class="btn btn-success" value="@Resources.Add">
                 </td>
             }
+            </tr>
+            <tr>
+                <td class="col-md-12" colspan="2">
+                    <div class="alert alert-danger" role="alert" id="additionAlert" style="display: none;">
+                        <a class="close" data-dismiss="alert">×</a>
+                        <p>@Resources.ModeratorExists</p>
+                    </div>
+                </td>
+
             </tr>
     </tbody>
 

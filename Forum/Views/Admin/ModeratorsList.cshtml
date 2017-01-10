@@ -6,21 +6,21 @@
 
 <h2>@Resources.ModeratorsList</h2>
 <div class="row">
-    <div id="accordion" class="col-md-6">
+    <div id="accordion" class="col-md-5">
         @foreach (Forum.Models.Category _category in Model.Categories)
         {
             <h2> @_category.Name</h2>
-            <ul>
+            <ul class="list-group">
                 @foreach (Forum.Models.Forum _forum in _category.Fora)
                 {
-                    <li><button onclick="showMods(@_forum.ID)">@_forum.Name</button> </li>
+                    <li><a href="#" class="list-group-item list-group-item-text" onclick="showMods(@_forum.ID)">@_forum.Name </a></li>
                 }
             </ul>
 
 
         }
     </div>
-    <div class="col-md-6" id="moderatorsList">
+    <div class="col-md-7" id="moderatorsList">
     </div>
 </div>
 
@@ -31,33 +31,48 @@
     <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
     <script type="text/javascript">
         var url = '@Url.Action("GetForumModerators", "Admin")';
-        function showMods(forumId) {
-            $('#moderatorsList').load(url, { ForumID: forumId });
+        function showMods(forumId, additionError) {
+            $('#moderatorsList').load(url, { ForumID: forumId, AdditionError: additionError });
         };
         $(document).ready(function () {
-            @if (Model.ActiveCategory.HasValue)
-            {
-               <text>
-                 $("#accordion").accordion({
-                     active: @Model.ActiveCategory - 1
-                  });
-                </text>
-            }
-            else
-            {
-                <text>
-                 $("#accordion").accordion();
-                </text>
-            }
+
+            $("#accordion").accordion({
+                heightStyle: "content",
+                autoHeight: false,
+                @if (Model.ActiveCategory.HasValue)
+                    {
+                        <text>
+                        active: @Model.ActiveCategory - 1
+                        </text>
+                   }
+            });
+
 
             @if (Model.ActiveForum.HasValue)
             {
-                <text>
-                console.log(@Model.ActiveForum);
-                showMods(@Model.ActiveForum);
-                </text>
+                if (Model.AdditionError.HasValue)
+                {
+                    <text>
+                     showMods(@Model.ActiveForum, @Model.AdditionError);
+                    </text>
+                }
+                else
+                {
+                    <text>
+                     showMods(@Model.ActiveForum, false);
+                    </text>
+                }
             }
+            $(function(){
+                $('.list-group a').click(function(e) {
+                    e.preventDefault()
 
+                    $that = $(this);
+
+                    $that.parents().find('li').find('a').removeClass('active');
+                    $that.addClass('active');
+                });
+            })
         });
 
     </script>

@@ -11,7 +11,7 @@ namespace Forum.Controllers
         {
             return View();
         }
-        public ActionResult ModeratorsList(int? activeCategory, bool? error, int? activeForum)
+        public ActionResult ModeratorsList(int? activeCategory, int? error, int? activeForum)
         {
             var viewModel = new ModeratorsListViewModel();
 
@@ -20,18 +20,19 @@ namespace Forum.Controllers
             viewModel.ActiveCategory = activeCategory;
             viewModel.ActiveForum = activeForum;
 
-            if (error.HasValue && error == true)
+            if (error.HasValue && error == 1)
             {
-                viewModel.AdditionError = true;
+                viewModel.AdditionError = 1;
             }
             return View(viewModel);
         }
-        public ActionResult GetForumModerators(int ForumID)
+        public ActionResult GetForumModerators(int ForumID, int? AdditionError)
         {
             var viewModel = new PartialModeratorsListViewModel();
             var forum = db.Fora.ToList().Find(x => x.ID == ForumID);
             viewModel.ForumID = ForumID;
             viewModel.Forum = forum;
+            viewModel.AdditionError = AdditionError;
             viewModel.Moderators = forum.Moderators;
 
             return PartialView("ModeratorsListPartial", viewModel);
@@ -44,7 +45,7 @@ namespace Forum.Controllers
             {
                 if (_user.Forums.Contains(_forum) && _forum.Moderators.Contains(_user))
                 {
-                    viewModel.AdditionError = true;
+                    viewModel.AdditionError = 1;
                 }
                 else
                 {

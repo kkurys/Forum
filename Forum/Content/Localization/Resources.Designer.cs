@@ -547,6 +547,15 @@ namespace Forum.Content.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ten użytkownik jest już moderatorem w tym forum..
+        /// </summary>
+        public static string ModeratorExists {
+            get {
+                return ResourceManager.GetString("ModeratorExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Moderatorzy w.
         /// </summary>
         public static string ModeratorsIn {

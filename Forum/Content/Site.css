@@ -155,11 +155,19 @@ img.center {
 .avatar-size {
     text-align: center;
 }
-}
+
 
 .field-validation-valid
 {
   padding: 0 !important;
   margin: 0 !important;
   display: none !important;
+}
+
+#accordion li{
+    border: 1px solid black;
+}
+#accordion li::selection {
+    color: red;
+    font-size: 14px;
 }
