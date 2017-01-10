@@ -163,11 +163,3 @@ img.center {
   margin: 0 !important;
   display: none !important;
 }
-
-#accordion li{
-    border: 1px solid black;
-}
-#accordion li::selection {
-    color: red;
-    font-size: 14px;
-}
