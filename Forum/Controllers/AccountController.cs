@@ -1,4 +1,5 @@
-﻿using Forum.Models;
+﻿using Forum.Content.Localization;
+using Forum.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -159,7 +160,7 @@ namespace Forum.Controllers
                 if (result.Succeeded)
                 {
                     UserManager.AddToRole(user.Id, "User");
-           //         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    //         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
@@ -213,7 +214,7 @@ namespace Forum.Controllers
 
                 string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
                 var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                await UserManager.SendEmailAsync(user.Id, "Reset Password", Resources.ResetPw + " <a href=\"" + callbackUrl + "\">" + Resources.Here + "</a>");
                 return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 

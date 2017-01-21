@@ -426,4 +426,25 @@
   <data name="In" xml:space="preserve">
     <value>W</value>
   </data>
+  <data name="CheckEmail" xml:space="preserve">
+    <value>Sprawdź maila aby zresetować hasło.</value>
+  </data>
+  <data name="ClickHere" xml:space="preserve">
+    <value>Kliknij tutaj, aby się zalogować.</value>
+  </data>
+  <data name="EmailConfirmed" xml:space="preserve">
+    <value>Email potwierdzony.</value>
+  </data>
+  <data name="EnterEmail" xml:space="preserve">
+    <value>Podaj email</value>
+  </data>
+  <data name="Here" xml:space="preserve">
+    <value>tutaj</value>
+  </data>
+  <data name="LoggedIn" xml:space="preserve">
+    <value>Twoje hasło zostało potwierdzone.</value>
+  </data>
+  <data name="ResetPw" xml:space="preserve">
+    <value>Zresetuj hasło klikając</value>
+  </data>
 </root>

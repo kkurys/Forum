@@ -426,4 +426,25 @@
   <data name="LoginNow" xml:space="preserve">
     <value>Log in now</value>
   </data>
+  <data name="CheckEmail" xml:space="preserve">
+    <value>Please check your email to reset your password.</value>
+  </data>
+  <data name="ClickHere" xml:space="preserve">
+    <value>Click here to Log in</value>
+  </data>
+  <data name="EmailConfirmed" xml:space="preserve">
+    <value>Email confirmed.</value>
+  </data>
+  <data name="EnterEmail" xml:space="preserve">
+    <value>Enter email</value>
+  </data>
+  <data name="Here" xml:space="preserve">
+    <value>here</value>
+  </data>
+  <data name="LoggedIn" xml:space="preserve">
+    <value>Thank you for confirming your email.</value>
+  </data>
+  <data name="ResetPw" xml:space="preserve">
+    <value>Reset your password by clicking</value>
+  </data>
 </root>

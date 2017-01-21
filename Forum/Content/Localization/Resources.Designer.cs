@@ -232,6 +232,24 @@ namespace Forum.Content.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sprawdź maila aby zresetować hasło..
+        /// </summary>
+        public static string CheckEmail {
+            get {
+                return ResourceManager.GetString("CheckEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kliknij tutaj, aby się zalogować..
+        /// </summary>
+        public static string ClickHere {
+            get {
+                return ResourceManager.GetString("ClickHere", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Potwierdź hasło.
         /// </summary>
         public static string ConfirmPw {
@@ -367,6 +385,24 @@ namespace Forum.Content.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email potwierdzony..
+        /// </summary>
+        public static string EmailConfirmed {
+            get {
+                return ResourceManager.GetString("EmailConfirmed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Podaj email.
+        /// </summary>
+        public static string EnterEmail {
+            get {
+                return ResourceManager.GetString("EnterEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pole {0} jest wymagane..
         /// </summary>
         public static string FieldRequired {
@@ -426,6 +462,15 @@ namespace Forum.Content.Localization {
         public static string Groups {
             get {
                 return ResourceManager.GetString("Groups", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to tutaj.
+        /// </summary>
+        public static string Here {
+            get {
+                return ResourceManager.GetString("Here", resourceCulture);
             }
         }
         
@@ -498,6 +543,15 @@ namespace Forum.Content.Localization {
         public static string LengthError {
             get {
                 return ResourceManager.GetString("LengthError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Twoje hasło zostało potwierdzone..
+        /// </summary>
+        public static string LoggedIn {
+            get {
+                return ResourceManager.GetString("LoggedIn", resourceCulture);
             }
         }
         
@@ -840,6 +894,15 @@ namespace Forum.Content.Localization {
         public static string ReportAPost {
             get {
                 return ResourceManager.GetString("ReportAPost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zresetuj hasło klikając.
+        /// </summary>
+        public static string ResetPw {
+            get {
+                return ResourceManager.GetString("ResetPw", resourceCulture);
             }
         }
         

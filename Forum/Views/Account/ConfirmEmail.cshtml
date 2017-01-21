@@ -1,10 +1,7 @@
-﻿@{
-    ViewBag.Title = "Confirm Email";
-}
-
-<h2>@ViewBag.Title.</h2>
+﻿@using Forum.Content.Localization
+<h2>@Resources.EmailConfirmed</h2>
 <div>
     <p>
-        Thank you for confirming your email. Please @Html.ActionLink("Click here to Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+        @Resources.LoggedIn @Html.ActionLink(Resources.ClickHere, "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
     </p>
 </div>

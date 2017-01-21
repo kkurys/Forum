@@ -426,4 +426,25 @@
   <data name="LoginNow" xml:space="preserve">
     <value>Jetzt einloggen</value>
   </data>
+  <data name="CheckEmail" xml:space="preserve">
+    <value>Bitte überprüfen Sie Ihre E-Mail, um Ihr Passwort zurückzusetzen.</value>
+  </data>
+  <data name="ClickHere" xml:space="preserve">
+    <value>Klicken Sie hier, um sich einzuloggen</value>
+  </data>
+  <data name="EmailConfirmed" xml:space="preserve">
+    <value>Email bestätigt</value>
+  </data>
+  <data name="EnterEmail" xml:space="preserve">
+    <value>Email engeben</value>
+  </data>
+  <data name="Here" xml:space="preserve">
+    <value>hier</value>
+  </data>
+  <data name="LoggedIn" xml:space="preserve">
+    <value>Vielen Dank für die Bestätigung Ihrer E-Mail.</value>
+  </data>
+  <data name="ResetPw" xml:space="preserve">
+    <value>Passwort zurücksetzen, indem Sie klicken</value>
+  </data>
 </root>
