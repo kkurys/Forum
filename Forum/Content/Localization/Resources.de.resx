@@ -423,4 +423,7 @@
   <data name="In" xml:space="preserve">
     <value>In</value>
   </data>
+  <data name="LoginNow" xml:space="preserve">
+    <value>Jetzt einloggen</value>
+  </data>
 </root>
