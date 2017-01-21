@@ -68,6 +68,7 @@ namespace Forum.Controllers
 
             viewModel.Topics = isGluedSort.GetRange(startIndex, endIndex - startIndex);
 
+
             return View(viewModel);
         }
 

@@ -42,10 +42,21 @@ namespace Forum.Controllers
         // GET: Topic/Details/5
         public ActionResult Details(int id, int? page)
         {
+            var viewedTopicsIDs = Session["ViewedTopicsIDs"] as List<int>;
             int startIndex, endIndex, postsPerPage;
             TopicViewModel viewModel = new TopicViewModel();
+
             viewModel.Admin = false;
             viewModel.CurrentUserId = User.Identity.GetUserId();
+            viewModel.Topic = db.Topics.Find(id);
+
+            if (!viewedTopicsIDs.Contains(id))
+            {
+                viewedTopicsIDs.Add(id);
+                viewModel.Topic.ViewsCount++;
+                db.SaveChanges();
+            }
+
 
             var user = db.Users.Find(viewModel.CurrentUserId);
             if (User.Identity.IsAuthenticated)
@@ -56,7 +67,6 @@ namespace Forum.Controllers
             {
                 postsPerPage = 25;
             }
-            viewModel.Topic = db.Topics.Find(id);
             var tmpList = db.Posts.ToList().FindAll(f => f.TopicID == viewModel.Topic.ID);
             viewModel.Pages = tmpList.Count() / postsPerPage + 1;
 
@@ -91,10 +101,21 @@ namespace Forum.Controllers
         }
         public ActionResult ViewPost(int id, int postId)
         {
+            var viewedTopicsIDs = Session["ViewedTopicsIDs"] as List<int>;
+
             int startIndex = 0, endIndex = 0, postsPerPage;
             TopicViewModel viewModel = new TopicViewModel();
+
+            viewModel.Topic = db.Topics.Find(id);
             viewModel.Admin = false;
             viewModel.CurrentUserId = User.Identity.GetUserId();
+
+            if (!viewedTopicsIDs.Contains(id))
+            {
+                viewedTopicsIDs.Add(id);
+                viewModel.Topic.ViewsCount++;
+                db.SaveChanges();
+            }
 
             var user = db.Users.Find(viewModel.CurrentUserId);
             if (User.Identity.IsAuthenticated)
@@ -105,7 +126,7 @@ namespace Forum.Controllers
             {
                 postsPerPage = 25;
             }
-            viewModel.Topic = db.Topics.Find(id);
+
             var tmpList = db.Posts.ToList().FindAll(f => f.TopicID == viewModel.Topic.ID);
             viewModel.Pages = tmpList.Count() / postsPerPage + 1;
 

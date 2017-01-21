@@ -44,7 +44,13 @@ namespace Forum
                         }
 
                         signInContext.Properties.ExpiresUtc = DateTime.UtcNow.Add(expireTimeSpan);
+                    },
+                    OnResponseSignedIn = signInContext =>
+                    {
+                        var usr = db.Users.ToList().Find(x => x.Id == signInContext.Identity.GetUserId());
+                        signInContext.Properties.ExpiresUtc = DateTime.UtcNow.Add(usr.SessionTime);
                     }
+
 
                 },
             });

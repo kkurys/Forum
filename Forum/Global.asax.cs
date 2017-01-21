@@ -1,13 +1,12 @@
 ﻿using Forum.Models;
 using Microsoft.AspNet.Identity;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using System.Web.Security;
 
 namespace Forum
 {
@@ -47,6 +46,19 @@ namespace Forum
                 Thread.CurrentThread.CurrentCulture = ci;
                 Thread.CurrentThread.CurrentUICulture = ci;
             }
+        }
+        protected void Session_Start()
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+
+            var user = db.Users.Find(User.Identity.GetUserId());
+
+            Session["ViewedTopicsIDs"] = new List<int>();
+            if (user != null)
+            {
+                Session.Timeout = user.SessionTime.Minutes;
+            }
+
         }
     }
 }
