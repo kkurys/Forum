@@ -1,38 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using System.Web;
+﻿using Forum.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using Forum.Models;
-
+using SendGrid;
+using SendGrid.Helpers.Mail;
+using System;
+using System.Security.Claims;
+using System.Threading.Tasks;
 namespace Forum
 {
     public class EmailService : IIdentityMessageService
     {
         public Task SendAsync(IdentityMessage message)
         {
-            // Plug in your email service here to send an email.
-            return Task.FromResult(0);
+            return configSendGridasync(message);
         }
-    }
 
-    public class SmsService : IIdentityMessageService
-    {
-        public Task SendAsync(IdentityMessage message)
+        private async Task configSendGridasync(IdentityMessage message)
         {
-            // Plug in your SMS service here to send a text message.
-            return Task.FromResult(0);
+            dynamic sg = new SendGridAPIClient(Environment.GetEnvironmentVariable("SENDGRID", EnvironmentVariableTarget.User));
+            Email to = new Email(message.Destination);
+            //    Email to = new Email("test@example.com");
+            Email from = new Email("admin@mokk.com");
+            //       Email from = new Email("test@example.com");
+            SendGrid.Helpers.Mail.Content content = new SendGrid.Helpers.Mail.Content("text/html", message.Body);
+            Mail mail = new Mail(from, message.Subject, to, content);
+
+            dynamic response = await sg.client.mail.send.post(requestBody: mail.Get());
         }
     }
 
-    // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
+
     public class ApplicationUserManager : UserManager<User>
     {
         public ApplicationUserManager(IUserStore<User> store)
@@ -40,7 +40,7 @@ namespace Forum
         {
         }
 
-        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
+        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
         {
             var manager = new ApplicationUserManager(new UserStore<User>(context.Get<ApplicationDbContext>()));
             // Configure validation logic for usernames
@@ -77,11 +77,10 @@ namespace Forum
                 BodyFormat = "Your security code is {0}"
             });
             manager.EmailService = new EmailService();
-            manager.SmsService = new SmsService();
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {
-                manager.UserTokenProvider = 
+                manager.UserTokenProvider =
                     new DataProtectorTokenProvider<User>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
             return manager;
