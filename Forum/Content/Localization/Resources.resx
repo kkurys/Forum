@@ -420,4 +420,10 @@
   <data name="ModeratorExists" xml:space="preserve">
     <value>Ten użytkownik jest już moderatorem w tym forum.</value>
   </data>
+  <data name="LastPost" xml:space="preserve">
+    <value>Ostatni post</value>
+  </data>
+  <data name="In" xml:space="preserve">
+    <value>W</value>
+  </data>
 </root>

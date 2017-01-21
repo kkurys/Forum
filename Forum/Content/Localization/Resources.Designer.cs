@@ -439,6 +439,15 @@ namespace Forum.Content.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to W.
+        /// </summary>
+        public static string In {
+            get {
+                return ResourceManager.GetString("In", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Odwróć wynik wyszukiwania.
         /// </summary>
         public static string InverseSearchResults {
@@ -462,6 +471,15 @@ namespace Forum.Content.Localization {
         public static string Language {
             get {
                 return ResourceManager.GetString("Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ostatni post.
+        /// </summary>
+        public static string LastPost {
+            get {
+                return ResourceManager.GetString("LastPost", resourceCulture);
             }
         }
         

@@ -95,7 +95,7 @@
                                 @{
                                     var post = @item.Posts.ToList()[@item.PostCount - 1];
                                 }
-                                <div class="text-muted">@post.Date.ToString("dd MMMM yyyy HH:mm")</div>
+                                <div class="text-muted"><span class="glyphicon glyphicon-arrow-right"></span><a href="@Url.Action("ViewPost", "Topic", new { id = @item.ID, postId = @post.ID })">@post.Date.ToString("dd MMMM yyyy HH:mm") </a>  </div>
                                 <b>@Resources.By:</b> <a href="@Url.Action("Details", "User", new { userName = @post.User.UserName })">@post.User.UserName</a>
 
                             </td>

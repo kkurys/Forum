@@ -92,16 +92,18 @@
             <table class="table table-striped">
                 <thead class="thead-inverse forum-heading">
                     <tr>
-                        <th class="col-md-8">Forum</th>
+                        <th class="col-md-6">Forum</th>
                         <th class="col-md-2">@Resources.Topics</th>
                         <th class="col-md-2">@Resources.Posts</th>
+                        <th class="col-md-2">@Resources.LastPost</th>
                     </tr>
                 </thead>
                 <tbody>
                     @if (pair.Value.Count == 0)
                     {
                         <tr>
-                            <td class="col-md-8"><b>@Resources.NoForum</b></td>
+                            <td class="col-md-6"><b>@Resources.NoForum</b></td>
+                            <td class="col-md-2"></td>
                             <td class="col-md-2"></td>
                             <td class="col-md-2"></td>
                         </tr>
@@ -111,7 +113,7 @@
                         foreach (var item in pair.Value)
                         {
                             <tr>
-                                <td class="col-md-8">
+                                <td class="col-md-6">
                                     @if (item.IsPublic)
                                     {
                                         <span class="label label-success">Publiczne</span>
@@ -120,6 +122,16 @@
                                 </td>
                                 <td class="col-md-2">@item.TopicCount</td>
                                 <td class="col-md-2">@item.PostCount</td>
+                                <td class="col-md-2">
+                                    @if (item.LastTopic != null)
+                                    {
+                                        <div class="text-muted"><span class="glyphicon glyphicon-arrow-right"></span><a href="@Url.Action("ViewPost", "Topic", new { id = @item.LastTopic.ID, postId = @item.LastTopic.LastPost.ID })"> @item.LastTopic.LastPostDate.ToString("dd MMMM yyyy HH:mm") </a>  </div>
+                                        <b>@Resources.In:</b><a href="@Url.Action("ViewPost", "Topic", new { id = @item.LastTopic.ID, postId = @item.LastTopic.LastPost.ID })"> @item.LastTopic.Title </a> <br />
+                                        <b>@Resources.By:</b> <a href="@Url.Action("Details", "User", new { userName = @item.LastTopic.LastPost.User.UserName })">@item.LastTopic.LastPost.User.UserName</a>
+
+                                    }
+                                </td>
+
                             </tr>
                         }
                     }

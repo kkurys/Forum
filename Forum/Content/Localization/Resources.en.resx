@@ -417,4 +417,10 @@
   <data name="ModeratorExists" xml:space="preserve">
     <value>This user is already a moderator in this forum.</value>
   </data>
+  <data name="LastPost" xml:space="preserve">
+    <value>Last post</value>
+  </data>
+  <data name="In" xml:space="preserve">
+    <value>In</value>
+  </data>
 </root>

@@ -15,6 +15,5 @@ namespace Forum.Models
             get;
             set;
         }
-
     }
 }

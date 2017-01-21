@@ -1,6 +1,7 @@
 ﻿using Forum.Content.Localization;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace Forum.Models
 {
@@ -17,8 +18,24 @@ namespace Forum.Models
 
         [Display(Name = "Public", ResourceType = typeof(Resources))]
         public bool IsPublic { get; set; }
+        public virtual ICollection<Topic> Topics { get; set; }
 
         public virtual Category Category { get; set; }
         public virtual ICollection<User> Moderators { get; set; }
+        public Topic LastTopic
+        {
+            get
+            {
+
+                var topics = Topics.ToList();
+
+                if (topics.Count == 0)
+                {
+                    return null;
+                }
+                topics.OrderByDescending(x => x.LastPostDate);
+                return topics[0];
+            }
+        }
     }
 }

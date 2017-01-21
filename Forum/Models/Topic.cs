@@ -3,6 +3,7 @@ using Forum.Content.Localization;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace Forum.Models
 {
@@ -26,7 +27,16 @@ namespace Forum.Models
         public virtual User User { get; set; }
         public virtual Forum Forum { get; set; }
         public virtual ICollection<Post> Posts { get; set; }
-
+        public Post LastPost
+        {
+            get
+            {
+                var posts = Posts.ToList();
+                if (posts.Count == 0) return null;
+                posts.OrderByDescending(x => x.Date);
+                return posts[0];
+            }
+        }
         public int CompareTo(Topic other)
         {
             return other.LastPostDate.CompareTo(this.LastPostDate);
