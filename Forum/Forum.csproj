@@ -348,6 +348,10 @@
     <Compile Include="Migrations\201701222151576_user-rank.Designer.cs">
       <DependentUpon>201701222151576_user-rank.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701222206101_own-rank-field.cs" />
+    <Compile Include="Migrations\201701222206101_own-rank-field.Designer.cs">
+      <DependentUpon>201701222206101_own-rank-field.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminViewModels.cs" />
@@ -752,6 +756,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701222151576_user-rank.resx">
       <DependentUpon>201701222151576_user-rank.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701222206101_own-rank-field.resx">
+      <DependentUpon>201701222206101_own-rank-field.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -192,7 +192,10 @@ namespace Forum.Controllers
                     var user = db.Users.Find(User.Identity.GetUserId());
                     newTopic.Topic.UserID = user.Id;
                     db.Users.Find(User.Identity.GetUserId()).PostsCount++;
-                    db.Users.Find(User.Identity.GetUserId()).Rank = UserManagement.GetRank(user.PostsCount);
+                    if (!user.OwnRank)
+                    {
+                        db.Users.Find(User.Identity.GetUserId()).Rank = UserManagement.GetRank(user.PostsCount);
+                    }
                 }
                 else
                 {

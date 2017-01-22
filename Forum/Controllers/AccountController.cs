@@ -1,4 +1,5 @@
-﻿using Forum.Content.Localization;
+﻿using Forum.Classes;
+using Forum.Content.Localization;
 using Forum.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -157,6 +158,7 @@ namespace Forum.Controllers
                 user.SessionTime = new TimeSpan(0, 10, 0);
                 user.AvatarFilename = "~/Content/Avatars/default.jpg";
                 user.Theme = Theme.Default;
+                user.Rank = UserManagement.GetRank(user.PostsCount);
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
