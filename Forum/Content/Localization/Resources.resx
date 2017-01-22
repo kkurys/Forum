@@ -393,4 +393,10 @@
   <data name="Default" xml:space="preserve">
     <value>Domyślny</value>
   </data>
+  <data name="Theme" xml:space="preserve">
+    <value>Motyw</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Ustawienia</value>
+  </data>
 </root>

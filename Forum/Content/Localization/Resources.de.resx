@@ -390,4 +390,10 @@
   <data name="Default" xml:space="preserve">
     <value>Default</value>
   </data>
+  <data name="Theme" xml:space="preserve">
+    <value>Thema</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Einstellungen</value>
+  </data>
 </root>

@@ -7,10 +7,12 @@
     Layout = "~/Views/Shared/_ProfileLayout.cshtml";
 }
 
+<h3>@Resources.Messages</h3>
+<hr />
 <div class="panel panel-primary">
     <div class="panel-heading category-heading">
         @Resources.PrivateThreads
-        <a href="@Url.Action("CreateThread", "PrivateMessage")" class="btn btn-primary btn-sm panel-button"><b>@Resources.CreateNew</b></a>
+        <a href="@Url.Action("CreateThread", "PrivateMessage")" class="btn btn-primary btn-xs pull-right"><b>@Resources.CreateNew</b></a>
     </div>
     <table class="table table-striped">
         <thead class="thead-inverse forum-heading">
