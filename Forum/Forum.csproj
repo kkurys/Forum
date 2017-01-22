@@ -223,6 +223,7 @@
     <Compile Include="Classes\Html.cs" />
     <Compile Include="Classes\CustomAuthorization.cs" />
     <Compile Include="Classes\Search.cs" />
+    <Compile Include="Classes\UserManagement.cs" />
     <Compile Include="Classes\Validators.cs" />
     <Compile Include="Content\Localization\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -342,6 +343,10 @@
     <Compile Include="Migrations\201701222000194_merge.cs" />
     <Compile Include="Migrations\201701222000194_merge.Designer.cs">
       <DependentUpon>201701222000194_merge.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701222151576_user-rank.cs" />
+    <Compile Include="Migrations\201701222151576_user-rank.Designer.cs">
+      <DependentUpon>201701222151576_user-rank.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -744,6 +749,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701222000194_merge.resx">
       <DependentUpon>201701222000194_merge.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701222151576_user-rank.resx">
+      <DependentUpon>201701222151576_user-rank.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

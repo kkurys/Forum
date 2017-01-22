@@ -43,6 +43,10 @@ namespace Forum.Models
         public TimeSpan SessionTime { get; set; }
         [Display(Name = "Avatar")]
         public string AvatarFilename { get; set; }
+        [Display(Name = "Rank", ResourceType = typeof(Resources))]
+        public string Rank { get; set; }
+        [Display(Name = "Posts", ResourceType = typeof(Resources))]
+        public int PostsCount { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);

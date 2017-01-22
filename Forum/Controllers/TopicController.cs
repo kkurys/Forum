@@ -189,7 +189,10 @@ namespace Forum.Controllers
                 newTopic.Topic.UserID = User.Identity.GetUserId();
                 if (User.Identity.IsAuthenticated)
                 {
-                    newTopic.Topic.UserID = User.Identity.GetUserId();
+                    var user = db.Users.Find(User.Identity.GetUserId());
+                    newTopic.Topic.UserID = user.Id;
+                    db.Users.Find(User.Identity.GetUserId()).PostsCount++;
+                    db.Users.Find(User.Identity.GetUserId()).Rank = UserManagement.GetRank(user.PostsCount);
                 }
                 else
                 {

@@ -63,7 +63,10 @@ namespace Forum.Controllers
                 post.Date = DateTime.Now;
                 if (User.Identity.IsAuthenticated)
                 {
-                    post.UserID = User.Identity.GetUserId();
+                    var user = db.Users.Find(User.Identity.GetUserId());
+                    post.UserID = user.Id;
+                    db.Users.Find(User.Identity.GetUserId()).PostsCount++;
+                    db.Users.Find(User.Identity.GetUserId()).Rank = UserManagement.GetRank(user.PostsCount);
                 }
                 else
                 {
@@ -76,6 +79,7 @@ namespace Forum.Controllers
                 db.Topics.Find(post.TopicID).PostCount++;
                 db.Fora.Find(db.Topics.Find(post.TopicID).ForumID).PostCount++;
                 db.Topics.Find(post.TopicID).LastPostDate = post.Date;
+
 
                 db.SaveChanges();
 
