@@ -117,7 +117,6 @@ namespace Forum.Controllers
             var viewModel = new ReportPostViewModel();
             viewModel.Post = db.Posts.ToList().Find(x => x.ID == id);
             viewModel.PostID = viewModel.Post.ID;
-            viewModel.PostPage = page;
             return View(viewModel);
         }
         [HttpPost]
@@ -147,7 +146,7 @@ namespace Forum.Controllers
                 _reportMessage.Author = db.Users.ToList().Find(x => x.Id == User.Identity.GetUserId());
 
 
-                _reportMessage.Content += "Zgłoszono post: " + "<a href=\"/Topic/ViewPost/" + viewModel.Post.Topic.ID.ToString() + "?postId=" + viewModel.Post.ID + "\">#" + viewModel.Post.ID + "</a><br />";
+                _reportMessage.Content += "Zgłoszono post: " + "<a href=\"/Topic/Details/" + viewModel.Post.Topic.ID.ToString() + "?postId=" + viewModel.Post.ID + "\">#" + viewModel.Post.ID + "</a><br />";
 
 
                 _reportMessage.Content += "Uzasadnienie: <br />" + viewModel.Reason;

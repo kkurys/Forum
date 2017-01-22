@@ -41,11 +41,10 @@ namespace Forum.Controllers
         }
 
         // GET: Topic/Details/5
-        public ActionResult Details(int id, int? page)
+        public ActionResult Details(int id, int? page, int? postId)
         {
             var viewedTopicsIDs = Session["ViewedTopicsIDs"] as List<int>;
-            int startIndex, endIndex, postsPerPage;
-            int postsPerPage;
+            int postsPerPage, currPage = 1, postNumber = 0;
             var user = db.Users.Find(User.Identity.GetUserId());
             TopicViewModel viewModel = new TopicViewModel();
 
@@ -59,9 +58,7 @@ namespace Forum.Controllers
                 viewModel.Topic.ViewsCount++;
                 db.SaveChanges();
             }
-
-
-            var user = db.Users.Find(viewModel.CurrentUserId);
+            
             if (User.Identity.IsAuthenticated)
             {
                 viewModel.CurrentUserId = user.Id;
@@ -81,73 +78,94 @@ namespace Forum.Controllers
             }
             viewModel.Topic = db.Topics.Find(id);
             var tmpList = db.Posts.ToList().FindAll(f => f.TopicID == viewModel.Topic.ID);
+
+            if (postId != null)
+            {
+                foreach (Post post in tmpList)
+                {
+                    if (post.ID == postId)
+                    {
+                        break;
+                    }
+                    postNumber++;
+                }
+                while (currPage * postsPerPage < postNumber)
+                {
+                    currPage++;
+                }
+                ViewData["postId"] = postId;
+            }
+            else
+            {
+                currPage = page.HasValue ? page.Value : 1;
+            }
             
             if (User.IsInRole("Admin"))
             {
                 viewModel.Admin = true;
             }
 
-            int currPage = page.HasValue ? page.Value : 1;
             viewModel.Posts = tmpList.ToPagedList(currPage, postsPerPage);
 
             return View(viewModel);
         }
         public ActionResult ViewPost(int id, int postId)
         {
-            var viewedTopicsIDs = Session["ViewedTopicsIDs"] as List<int>;
+            //var viewedTopicsIDs = Session["ViewedTopicsIDs"] as List<int>;
 
-            int startIndex = 0, endIndex = 0, postsPerPage;
-            TopicViewModel viewModel = new TopicViewModel();
+            //int startIndex = 0, endIndex = 0, postsPerPage;
+            //TopicViewModel viewModel = new TopicViewModel();
 
-            viewModel.Topic = db.Topics.Find(id);
-            viewModel.Admin = false;
-            viewModel.CurrentUserId = User.Identity.GetUserId();
+            //viewModel.Topic = db.Topics.Find(id);
+            //viewModel.Admin = false;
+            //viewModel.CurrentUserId = User.Identity.GetUserId();
 
-            if (!viewedTopicsIDs.Contains(id))
-            {
-                viewedTopicsIDs.Add(id);
-                viewModel.Topic.ViewsCount++;
-                db.SaveChanges();
-            }
+            //if (!viewedTopicsIDs.Contains(id))
+            //{
+            //    viewedTopicsIDs.Add(id);
+            //    viewModel.Topic.ViewsCount++;
+            //    db.SaveChanges();
+            //}
 
-            var user = db.Users.Find(viewModel.CurrentUserId);
-            if (User.Identity.IsAuthenticated)
-            {
-                postsPerPage = user.PostsPerPage.Quantity;
-            }
-            else
-            {
-                postsPerPage = 25;
-            }
+            //var user = db.Users.Find(viewModel.CurrentUserId);
+            //if (User.Identity.IsAuthenticated)
+            //{
+            //    postsPerPage = user.PostsPerPage.Quantity;
+            //}
+            //else
+            //{
+            //    postsPerPage = 25;
+            //}
 
-            var tmpList = db.Posts.ToList().FindAll(f => f.TopicID == viewModel.Topic.ID);
-            viewModel.Pages = tmpList.Count() / postsPerPage + 1;
+            //var tmpList = db.Posts.ToList().FindAll(f => f.TopicID == viewModel.Topic.ID);
+            //viewModel.Pages = tmpList.Count() / postsPerPage + 1;
 
-            int postIndex = tmpList.FindIndex(x => x.ID == postId);
-            int currentPage = 0;
-            for (currentPage = 0; currentPage < viewModel.Pages; currentPage++)
-            {
-                startIndex = currentPage * postsPerPage;
-                endIndex = startIndex + postsPerPage;
-                if (postIndex >= startIndex && postIndex < endIndex)
-                {
-                    break;
-                }
-            }
+            //int postIndex = tmpList.FindIndex(x => x.ID == postId);
+            //int currentPage = 0;
+            //for (currentPage = 0; currentPage < viewModel.Pages; currentPage++)
+            //{
+            //    startIndex = currentPage * postsPerPage;
+            //    endIndex = startIndex + postsPerPage;
+            //    if (postIndex >= startIndex && postIndex < endIndex)
+            //    {
+            //        break;
+            //    }
+            //}
 
-            if (endIndex > tmpList.Count)
-            {
-                endIndex = tmpList.Count;
-            }
+            //if (endIndex > tmpList.Count)
+            //{
+            //    endIndex = tmpList.Count;
+            //}
 
-            if (User.IsInRole("Admin"))
-            {
-                viewModel.Admin = true;
-            }
+            //if (User.IsInRole("Admin"))
+            //{
+            //    viewModel.Admin = true;
+            //}
 
-            viewModel.Posts = tmpList.GetRange(startIndex, endIndex - startIndex);
-            ViewData["postId"] = postId;
-            return View("Details", viewModel);
+            //viewModel.Posts = tmpList.GetRange(startIndex, endIndex - startIndex);
+            //ViewData["postId"] = postId;
+            //return View("Details", viewModel);
+            return View();
         }
         // GET: Topic/Create
         [HttpGet]
