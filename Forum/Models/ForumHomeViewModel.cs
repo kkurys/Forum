@@ -2,7 +2,7 @@
 
 namespace Forum.Models
 {
-    public class ForumHomeViewModel
+    public class ForumHomeViewModel : BaseViewModel
     {
         public List<Announcement> Announcements
         {

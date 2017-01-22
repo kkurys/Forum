@@ -1,12 +1,41 @@
 ﻿@using Forum.Content.Localization
+@using Forum.Models
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MOKK</title>
-    @Styles.Render("~/Content/css")
+    @if (User.Identity.IsAuthenticated)
+    {
+
+        @Styles.Render("~/Content/css-" + User.Identity.GetTheme())
+    }
+    else
+    {
+        @Styles.Render("~/Content/css-Default")
+    }
     @Scripts.Render("~/bundles/modernizr")
+
+    <script src="~/Scripts/tinymce/tinymce.min.js"></script>
+    <!-- Script to wire up your TinyMCE editor -->
+    <script type="text/javascript">
+        // Initialize your tinyMCE Editor with your preferred options
+        tinyMCE.init({
+            // General options
+            mode: "textareas",
+            theme: "modern",
+            menubar: false,
+            plugins: [
+              'advlist autolink lists link image charmap print preview anchor textcolor emoticons',
+              'searchreplace visualblocks code fullscreen',
+              'insertdatetime media table contextmenu paste code'
+            ],
+            toolbar: 'undo redo | bold italic underline forecolor emoticons | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+            // Theme options
+        });
+    </script>
 
 </head>
 <body>
@@ -24,14 +53,14 @@
                 <ul class="nav navbar-nav">
                     @*<li>@Html.ActionLink("Home", "Index", "Home")</li>*@
                     @*<li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
                     <li>@Html.ActionLink(@Resources.Users, "Index", "User")</li>
                     <li>@Html.ActionLink(@Resources.Search, "Create", "Search")</li>
                     @*<li>@Html.ActionLink("Kategorie", "Index", "Category")</li>
-                    <li>@Html.ActionLink("Fora", "Index", "Forum")</li>
-                    <li>@Html.ActionLink("Tematy", "Index", "Topic")</li>
-                    <li>@Html.ActionLink("Posty", "Index", "Post")</li>
-                    <li>@Html.ActionLink("Ogłoszenia", "Index", "Announcement")</li>*@
+                        <li>@Html.ActionLink("Fora", "Index", "Forum")</li>
+                        <li>@Html.ActionLink("Tematy", "Index", "Topic")</li>
+                        <li>@Html.ActionLink("Posty", "Index", "Post")</li>
+                        <li>@Html.ActionLink("Ogłoszenia", "Index", "Announcement")</li>*@
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

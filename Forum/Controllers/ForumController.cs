@@ -1,5 +1,6 @@
 ﻿using Forum.Models;
 using Microsoft.AspNet.Identity;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,12 +25,12 @@ namespace Forum.Controllers
         // GET: Forum/Details/5
         public ActionResult Details(int id, int? page)
         {
-            int startIndex, endIndex, postsPerPage;
+            int postsPerPage;
+            var user = db.Users.Find(User.Identity.GetUserId());
 
             ForumTopicsViewModel viewModel = new ForumTopicsViewModel();
 
 
-            var user = db.Users.Find(User.Identity.GetUserId());
             if (User.Identity.IsAuthenticated)
             {
                 postsPerPage = user.PostsPerPage.Quantity;
@@ -43,30 +44,9 @@ namespace Forum.Controllers
             var allList = db.Topics.ToList().FindAll(f => f.ForumID == viewModel.Forum.ID);
             var dateSort = allList.OrderByDescending(x => x.LastPostDate).ToList();
             var isGluedSort = dateSort.OrderByDescending(x => x.IsGlued).ToList();
-            viewModel.Pages = allList.Count() / postsPerPage + 1;
 
-            if (page == null)
-            {
-                startIndex = 0;
-                viewModel.CurrentPage = 0;
-            }
-            else
-            {
-                startIndex = (int)page * postsPerPage;
-                viewModel.CurrentPage = (int)page;
-            }
-
-            if (allList.Count() < startIndex + postsPerPage)
-            {
-                endIndex = allList.Count();
-            }
-            else
-            {
-                endIndex = startIndex + postsPerPage;
-            }
-
-
-            viewModel.Topics = isGluedSort.GetRange(startIndex, endIndex - startIndex);
+            int currPage = page.HasValue ? page.Value : 1;
+            viewModel.Topics = isGluedSort.ToPagedList(currPage, postsPerPage);
 
 
             return View(viewModel);

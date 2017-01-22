@@ -23,8 +23,16 @@ namespace Forum
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
+            bundles.Add(new StyleBundle("~/Content/css-Default").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/css-Darkly").Include(
+                      "~/Content/bootstrap-darkly.css",
+                      "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/css-United").Include(
+                      "~/Content/bootstrap-united.css",
                       "~/Content/site.css"));
         }
     }

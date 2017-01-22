@@ -1,6 +1,7 @@
 ﻿@model Forum.Models.TopicViewModel
 @using System.Linq
 @using Forum.Content.Localization
+@using PagedList.Mvc;
 @{
     ViewBag.Title = Resources.Details;
 }
@@ -21,35 +22,9 @@
     </div>
 
     <div class="row navigation-row">
-        <ul class="pagination pagination-sm">
-            @if (Model.CurrentPage == 0)
-            {
-                <li class="disabled"><a href="#">&laquo;</a></li>
-            }
-            else
-            {
-                <li><a href="@Url.Action("Details", "Topic", new { id = Model.Topic.ID, page = Model.CurrentPage - 1 })">&laquo;</a></li>
-            }
-            @for (int i = 0; i < Model.Pages; i++)
-            {
-                if (i == Model.CurrentPage)
-                {
-                    <li class="active"><a href="@Url.Action("Details", "Topic", new { id = Model.Topic.ID, page = i })">@(i + 1)</a></li>
-                }
-                else
-                {
-                    <li><a href="@Url.Action("Details", "Topic", new { id = Model.Topic.ID, page = i })">@(i + 1)</a></li>
-                }
-            }
-            @if (Model.CurrentPage == Model.Pages - 1)
-            {
-                <li class="disabled"><a href="#">&raquo;</a></li>
-            }
-            else
-            {
-                <li><a href="@Url.Action("Details", "Topic", new { id = Model.Topic.ID, page = Model.CurrentPage + 1 })">&raquo;</a></li>
-            }
-        </ul>
+        <div class="pager pull-left">
+            @Html.PagedListPager(Model.Posts, page => Url.Action("Details", new { id = Model.Topic.ID, page }))
+        </div>
 
         @if (Model.Topic.Forum.IsPublic)
         {
@@ -133,6 +108,10 @@
                 </div>
             }
         </div>
+    </div>
+
+    <div class="pager pull-left">
+        @Html.PagedListPager(Model.Posts, page => Url.Action("Details", new { id = Model.Topic.ID, page }))
     </div>
 </div>
 @section scripts

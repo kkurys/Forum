@@ -10,6 +10,7 @@
 
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div>
+    <h3>@Resources.Settings</h3>
     <hr />
     <dl class="dl-horizontal">
         <dt>@Resources.Password:</dt>
@@ -25,16 +26,15 @@
             }
             ]
         </dd>
-     
-
-        <dt>@Resources.PostsPerPage: </dt>
-        <dd>
-            @Model.User.PostsPerPage.Quantity
-        </dd>
 
         <dt>@Resources.Language: </dt>
         <dd>
             @Model.User.Language
+        </dd>
+
+        <dt>@Resources.Theme: </dt>
+        <dd>
+            @Model.User.Theme
         </dd>
 
 
@@ -43,11 +43,9 @@
             @Model.User.SessionTime
         </dd>
 
-        <dt>@Resources.Posts: </dt>
+        <dt>@Resources.PostsPerPage: </dt>
         <dd>
-            @Model.PostsCount
+            @Model.User.PostsPerPage.Quantity
         </dd>
     </dl>
-
-    @Html.ActionLink(Resources.ManageYourProfile + ": " + Model.User.UserName, "EditProfile", new { userName = Model.User.UserName })
 </div>

@@ -447,4 +447,10 @@
   <data name="ResetPw" xml:space="preserve">
     <value>Passwort zurücksetzen, indem Sie klicken</value>
   </data>
+  <data name="Theme" xml:space="preserve">
+    <value>Thema</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Einstellungen</value>
+  </data>
 </root>

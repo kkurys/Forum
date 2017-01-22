@@ -51,6 +51,9 @@ textarea {
 }
 .panel-button {
     float: right;
+    margin: -7px 5px;
+    padding: 7px 10px;
+
 }
 .carousel-inverse{
     color: #000000;
@@ -162,4 +165,12 @@ img.center {
   padding: 0 !important;
   margin: 0 !important;
   display: none !important;
+}
+
+.inverse-link{
+    color: white!important;
+}
+
+.inverse-link:hover{
+    color: white;
 }

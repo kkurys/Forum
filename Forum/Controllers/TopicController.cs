@@ -1,6 +1,7 @@
 ﻿using Forum.Classes;
 using Forum.Models;
 using Microsoft.AspNet.Identity;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,6 +45,8 @@ namespace Forum.Controllers
         {
             var viewedTopicsIDs = Session["ViewedTopicsIDs"] as List<int>;
             int startIndex, endIndex, postsPerPage;
+            int postsPerPage;
+            var user = db.Users.Find(User.Identity.GetUserId());
             TopicViewModel viewModel = new TopicViewModel();
 
             viewModel.Admin = false;
@@ -61,41 +64,31 @@ namespace Forum.Controllers
             var user = db.Users.Find(viewModel.CurrentUserId);
             if (User.Identity.IsAuthenticated)
             {
+                viewModel.CurrentUserId = user.Id;
+            }
+            else
+            {
+                viewModel.CurrentUserId = "";
+            }
+            
+            if (User.Identity.IsAuthenticated)
+            {
                 postsPerPage = user.PostsPerPage.Quantity;
             }
             else
             {
                 postsPerPage = 25;
             }
+            viewModel.Topic = db.Topics.Find(id);
             var tmpList = db.Posts.ToList().FindAll(f => f.TopicID == viewModel.Topic.ID);
-            viewModel.Pages = tmpList.Count() / postsPerPage + 1;
-
-            if (page == null)
-            {
-                startIndex = 0;
-                viewModel.CurrentPage = 0;
-            }
-            else
-            {
-                startIndex = (int)page * postsPerPage;
-                viewModel.CurrentPage = (int)page;
-            }
-
-            if (tmpList.Count() < startIndex + postsPerPage)
-            {
-                endIndex = tmpList.Count();
-            }
-            else
-            {
-                endIndex = startIndex + postsPerPage;
-            }
-
+            
             if (User.IsInRole("Admin"))
             {
                 viewModel.Admin = true;
             }
 
-            viewModel.Posts = tmpList.GetRange(startIndex, endIndex - startIndex);
+            int currPage = page.HasValue ? page.Value : 1;
+            viewModel.Posts = tmpList.ToPagedList(currPage, postsPerPage);
 
             return View(viewModel);
         }

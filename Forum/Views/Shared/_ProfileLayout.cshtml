@@ -7,11 +7,11 @@
     <div class="row navigation-row">
         <a href="@Url.Action("Index", "Home")" class="btn btn-link">Forum</a>
         <b>></b>
-        <a href="#" class="btn btn-link">Profil</a>
+        <a href="@Url.Action("Details", "User", new { userName = Model.User.UserName })" class="btn btn-link">Profil</a>
     </div>
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <b>@Model.User.UserName - Profil </b>
+            <a href="@Url.Action("Details", "User", new { userName = Model.User.UserName })" class="inverse-link">@Model.User.UserName</a>
             @if (User.Identity.IsAuthenticated)
             {
                 if (User.Identity.GetUserId() == Model.User.Id || User.IsInRole("Admin"))

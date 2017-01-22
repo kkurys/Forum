@@ -1,4 +1,5 @@
 ﻿using Forum.Models;
+using HtmlAgilityPack;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,32 +24,13 @@ namespace Forum.Classes
             return result;
         }
 
-        static private string MakeEndMarker(string startMarker)
-        {
-            string endMarker = startMarker.Insert(1, "/");
-            return endMarker;
-        }
-
-        static private bool IsAllowed(string marker)
+        static private bool IsAllowed(HtmlNode node, List<HtmlMarker> allowedMarkers)
         {
             bool result = false;
             
-            ApplicationDbContext db = new ApplicationDbContext();
-            var tmpList = db.HtmlMarkers.ToList();
-            List<string> allMarkersList = new List<string>();
-
-            foreach (var item in tmpList)
+            foreach (var pattern in allowedMarkers)
             {
-                if (item.Active)
-                {
-                    allMarkersList.Add(item.Code);
-                    allMarkersList.Add(MakeEndMarker(item.Code));
-                }
-            }
-
-            foreach (var pattern in allMarkersList)
-            {
-                if (marker == pattern)
+                if (node.Name == "#text" || (node.Name == pattern.Code && pattern.Active == true))
                 {
                     result = true;
                 }
@@ -59,30 +41,28 @@ namespace Forum.Classes
 
         static public string EditMarkers(string toEdit)
         {
-            //toEdit.Replace(Environment.NewLine, "<br>");
-            //toEdit = Regex.Replace(toEdit, @"\r\n?|\n", "<br>");
-            //var wordList = toEdit.Split();
-            var wordList = Regex.Split(toEdit, @"(<[/]?[a-zA-Z0-9]+>)");
-            //var wordList = Regex.Split(toEdit, @"(<[^>]*>)");
-            List<string> finalWordList = new List<string>();
+            ApplicationDbContext db = new ApplicationDbContext();
+            var allowedMarkers = db.HtmlMarkers.ToList();
 
-            foreach (var word in wordList)
+            HtmlDocument doc = new HtmlDocument();
+            doc.LoadHtml(toEdit);
+
+            List<HtmlNode> nodesToDelete = new List<HtmlNode>();
+
+            foreach (HtmlNode node in doc.DocumentNode.Descendants())
             {
-                if (MarkerValidate(word))
+                if (!IsAllowed(node, allowedMarkers))
                 {
-                    if (IsAllowed(word))
-                    {
-                        finalWordList.Add(word);
-                    }
-                }
-                else
-                {
-                    finalWordList.Add(word);
+                    nodesToDelete.Add(node);
                 }
             }
-            string finalString = string.Join("", finalWordList.ToArray());
+            nodesToDelete.Reverse();
+            foreach (HtmlNode node in nodesToDelete)
+            {
+                node.ParentNode.RemoveChild(node, true);
+            }
 
-            return finalString;
+            return doc.DocumentNode.OuterHtml;
         }
     }
 }

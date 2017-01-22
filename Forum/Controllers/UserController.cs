@@ -41,18 +41,12 @@ namespace Forum.Controllers
         // GET: User/Details/5
         public ActionResult Details(string userName)
         {
-            UserDetailsViewModel viewModel = new UserDetailsViewModel();
+            IndexViewModel viewModel = new IndexViewModel();
+            //UserDetailsViewModel viewModel = new UserDetailsViewModel();
             viewModel.User = db.Users.ToList().Find(x => x.UserName == userName);
 
             viewModel.PostsCount = db.Posts.ToList().FindAll(x => x.UserID == viewModel.User.Id).Count();
             viewModel.TopicsCount = db.Topics.ToList().FindAll(x => x.UserID == viewModel.User.Id).Count();
-
-            viewModel.Roles = new List<IdentityRole>();
-
-            foreach (IdentityUserRole role in viewModel.User.Roles)
-            {
-                viewModel.Roles.Add(db.Roles.ToList().Find(x => x.Id == role.RoleId));
-            }
 
             return View(viewModel);
         }
@@ -84,9 +78,10 @@ namespace Forum.Controllers
         [OwnerAuthorize]
         public ActionResult Edit(string id)
         {
-            ViewBag.PostsPerPageID = new SelectList(db.PostsPerPage, "ID", "Quantity");
-
             User user = db.Users.ToList().Find(x => x.Id == id);
+
+            ViewBag.PostsPerPageID = new SelectList(db.PostsPerPage, "ID", "Quantity", user.PostsPerPage);
+
             return View(user);
         }
 
@@ -95,9 +90,11 @@ namespace Forum.Controllers
         [OwnerAuthorize]
         public ActionResult Edit(User user)
         {
-            ViewBag.PostsPerPageID = new SelectList(db.PostsPerPage, "ID", "Quantity");
+            ViewBag.PostsPerPageID = new SelectList(db.PostsPerPage, "ID", "Quantity", user.PostsPerPage);
+
             db.Entry(user).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
+            User.Identity.AddUpdateClaim(user.Theme.ToString());
 
             try
             {

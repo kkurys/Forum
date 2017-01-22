@@ -1,13 +1,18 @@
-﻿@using Forum.Models;
+﻿
 @using Forum.Content.Localization
+@using PagedList.Mvc;
+@using Forum.Models
+
 @{
     Layout = "~/Views/Shared/_ProfileLayout.cshtml";
 }
 
+<h3>@Resources.Messages</h3>
+<hr />
 <div class="panel panel-primary">
     <div class="panel-heading category-heading">
         @Resources.PrivateThreads
-        <a href="@Url.Action("CreateThread", "PrivateMessage")" class="btn btn-primary btn-sm panel-button"><b>@Resources.CreateNew</b></a>
+        <a href="@Url.Action("CreateThread", "PrivateMessage")" class="btn btn-primary btn-xs pull-right"><b>@Resources.CreateNew</b></a>
     </div>
     <table class="table table-striped">
         <thead class="thead-inverse forum-heading">
@@ -68,35 +73,9 @@
     </table>
 </div>
 <div class="row navigation-row">
-    <ul class="pagination pagination-sm">
-        @if (Model.CurrentPage == 0)
-        {
-            <li class="disabled"><a href="#">&laquo;</a></li>
-        }
-        else
-        {
-            <li><a href="@Url.Action("Index", "PrivateMessage", new { page = Model.CurrentPage - 1 })">&laquo;</a></li>
-        }
-        @for (int i = 0; i < Model.Pages; i++)
-        {
-            if (i == Model.CurrentPage)
-            {
-                <li class="active"><a href="@Url.Action("Index", "PrivateMessage", new { page = i })">@(i + 1)</a></li>
-            }
-            else
-            {
-                <li><a href="@Url.Action("Index", "PrivateMessage", new { page = i })">@(i + 1)</a></li>
-            }
-        }
-        @if (Model.CurrentPage == Model.Pages - 1)
-        {
-            <li class="disabled"><a href="#">&raquo;</a></li>
-        }
-        else
-        {
-            <li><a href="@Url.Action("Index", "PrivateMessage", new { page = Model.CurrentPage + 1 })">&raquo;</a></li>
-        }
-    </ul>
+    <div class="pager">
+        @Html.PagedListPager((PagedList.IPagedList)Model.Threads, page => Url.Action("Index", new { page }))
+    </div>
 </div>
 
 

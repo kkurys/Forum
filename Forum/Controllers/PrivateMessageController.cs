@@ -1,6 +1,7 @@
 ﻿using Forum.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,19 +15,23 @@ namespace Forum.Controllers
         ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Index(int? page)
         {
-            PrivateThreadsListViewModel viewModel = new PrivateThreadsListViewModel();
-            int startIndex, endIndex, postsPerPage;
-
+            int postsPerPage;
             var user = db.Users.Find(User.Identity.GetUserId());
-            postsPerPage = user.PostsPerPage.Quantity;
+
+            PrivateThreadsListViewModel viewModel = new PrivateThreadsListViewModel();
+            
+            if (User.Identity.IsAuthenticated)
+            {
+                postsPerPage = user.PostsPerPage.Quantity;
+            }
+            else
+            {
+                postsPerPage = 25;
+            }
 
 
-            var userId = User.Identity.GetUserId();
-
-            viewModel.User = db.Users.ToList().Find(x => x.Id == userId);
-            viewModel.Threads = db.PrivateThreads.ToList().FindAll(x => x.RecipientID == userId || x.SenderID == userId);
-
-            viewModel.Threads = viewModel.Threads.OrderByDescending(x => x.LastPostDate()).ToList();
+            viewModel.User = user;
+            var tmpThreads = db.PrivateThreads.ToList().FindAll(x => x.RecipientID == user.Id || x.SenderID == user.Id);
 
             viewModel.PostsCount = db.Posts.ToList().FindAll(x => x.UserID == viewModel.User.Id).Count();
             viewModel.TopicsCount = db.Topics.ToList().FindAll(x => x.UserID == viewModel.User.Id).Count();
@@ -38,82 +43,45 @@ namespace Forum.Controllers
                 viewModel.Roles.Add(db.Roles.ToList().Find(x => x.Id == role.RoleId));
             }
 
-            viewModel.Pages = viewModel.Threads.Count() / postsPerPage + 1;
+            int currPage = page.HasValue ? page.Value : 1;
 
-            if (page == null)
-            {
-                startIndex = 0;
-                viewModel.CurrentPage = 0;
-            }
-            else
-            {
-                startIndex = (int)page * postsPerPage;
-                viewModel.CurrentPage = (int)page;
-            }
-
-            if (viewModel.Threads.Count() < startIndex + postsPerPage)
-            {
-                endIndex = viewModel.Threads.Count();
-            }
-            else
-            {
-                endIndex = startIndex + postsPerPage;
-            }
-
-
-            viewModel.Threads = viewModel.Threads.GetRange(startIndex, endIndex - startIndex);
+            viewModel.Threads = tmpThreads.ToPagedList(currPage, postsPerPage);
+            viewModel.Threads.OrderByDescending(x => x.LastPostDate()).ToList();
 
             return View(viewModel);
         }
 
         public ActionResult ViewThread(int id, int? page)
         {
+            int postsPerPage;
+            var user = db.Users.Find(User.Identity.GetUserId());
+
             PrivateThreadViewModel viewModel = new PrivateThreadViewModel();
 
+            viewModel.User = db.Users.ToList().Find(x => x.Id == user.Id);
 
-            int startIndex, endIndex, postsPerPage;
-
-
-            var userId = User.Identity.GetUserId();
-
-            viewModel.User = db.Users.ToList().Find(x => x.Id == userId);
-
-            postsPerPage = viewModel.User.PostsPerPage.Quantity;
+            if (User.Identity.IsAuthenticated)
+            {
+                postsPerPage = user.PostsPerPage.Quantity;
+            }
+            else
+            {
+                postsPerPage = 25;
+            }
 
             viewModel.PostsCount = db.Posts.ToList().FindAll(x => x.UserID == viewModel.User.Id).Count();
             viewModel.TopicsCount = db.Topics.ToList().FindAll(x => x.UserID == viewModel.User.Id).Count();
 
             viewModel.Roles = new List<IdentityRole>();
 
-            viewModel.Messages = db.PrivateMessages.ToList().FindAll(x => x.PrivateThreadID == id);
+            var tmpMessages = db.PrivateMessages.ToList().FindAll(x => x.PrivateThreadID == id);
             viewModel.PrivateThread = db.PrivateThreads.ToList().Find(x => x.ID == id);
             viewModel.PrivateThread.Seen = true;
             db.SaveChanges();
 
-            viewModel.Pages = viewModel.Messages.Count() / postsPerPage + 1;
+            int currPage = page.HasValue ? page.Value : 1;
+            viewModel.Messages = tmpMessages.ToPagedList(currPage, postsPerPage);
 
-            if (page == null)
-            {
-                startIndex = 0;
-                viewModel.CurrentPage = 0;
-            }
-            else
-            {
-                startIndex = (int)page * postsPerPage;
-                viewModel.CurrentPage = (int)page;
-            }
-
-            if (viewModel.Messages.Count() < startIndex + postsPerPage)
-            {
-                endIndex = viewModel.Messages.Count();
-            }
-            else
-            {
-                endIndex = startIndex + postsPerPage;
-            }
-
-
-            viewModel.Messages = viewModel.Messages.GetRange(startIndex, endIndex - startIndex);
             foreach (IdentityUserRole role in viewModel.User.Roles)
             {
                 viewModel.Roles.Add(db.Roles.ToList().Find(x => x.Id == role.RoleId));
@@ -126,7 +94,7 @@ namespace Forum.Controllers
         public ActionResult CreateReply(PrivateThreadViewModel request, int id)
         {
             var _newMessage = new PrivateMessage();
-            var userId = User.Identity.GetUserId();
+            var user = db.Users.Find(User.Identity.GetUserId());
             int startIndex, endIndex, postsPerPage;
 
             _newMessage.Content = request.Content;
@@ -134,7 +102,7 @@ namespace Forum.Controllers
             request = new PrivateThreadViewModel();
 
             _newMessage.Date = DateTime.Now;
-            _newMessage.Author = db.Users.ToList().Find(x => x.Id == userId);
+            _newMessage.Author = db.Users.ToList().Find(x => x.Id == user.Id);
 
             request.User = _newMessage.Author;
 
@@ -153,26 +121,17 @@ namespace Forum.Controllers
             db.PrivateMessages.Add(_newMessage);
             db.SaveChanges();
 
-            postsPerPage = request.User.PostsPerPage.Quantity;
-
-            request.Messages = db.PrivateMessages.ToList().FindAll(x => x.PrivateThreadID == id);
-            request.Pages = request.Messages.Count() / postsPerPage + 1;
-
-
-            startIndex = (request.Pages - 1) * postsPerPage;
-            request.CurrentPage = request.Pages;
-
-            if (request.Messages.Count() < startIndex + postsPerPage)
+            if (User.Identity.IsAuthenticated)
             {
-                endIndex = request.Messages.Count();
+                postsPerPage = user.PostsPerPage.Quantity;
             }
             else
             {
-                endIndex = startIndex + postsPerPage;
+                postsPerPage = 25;
             }
+            
+            request.Messages = db.PrivateMessages.ToList().FindAll(x => x.PrivateThreadID == id).ToPagedList(1, postsPerPage);
 
-
-            request.Messages = request.Messages.GetRange(startIndex, endIndex - startIndex);
             for (int i = 0; i < Request.Files.Count; i++)
             {
                 HttpPostedFileBase file = Request.Files[i];
