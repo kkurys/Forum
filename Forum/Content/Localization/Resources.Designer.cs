@@ -826,6 +826,15 @@ namespace Forum.Content.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ranga.
+        /// </summary>
+        public static string Rank {
+            get {
+                return ResourceManager.GetString("Rank", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Adresat.
         /// </summary>
         public static string Recipient {

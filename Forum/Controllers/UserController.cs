@@ -1,6 +1,7 @@
 ﻿using Forum.Classes;
 using Forum.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -45,8 +46,16 @@ namespace Forum.Controllers
             //UserDetailsViewModel viewModel = new UserDetailsViewModel();
             viewModel.User = db.Users.ToList().Find(x => x.UserName == userName);
 
-            viewModel.PostsCount = db.Posts.ToList().FindAll(x => x.UserID == viewModel.User.Id).Count();
-            viewModel.TopicsCount = db.Topics.ToList().FindAll(x => x.UserID == viewModel.User.Id).Count();
+            viewModel.Posts = db.Posts.ToList().FindAll(x => x.UserID == viewModel.User.Id);
+            viewModel.Topics = db.Topics.ToList().FindAll(x => x.UserID == viewModel.User.Id);
+
+            viewModel.PostsCount = viewModel.Posts.Count();
+            viewModel.TopicsCount = viewModel.Topics.Count();
+            
+            viewModel.Posts.Sort((x, y) => DateTime.Compare(y.Date, x.Date));
+            viewModel.Topics.Sort((x, y) => DateTime.Compare(y.Posts.First().Date, x.Posts.First().Date));
+            if (viewModel.Posts.Count > 5) viewModel.Posts.RemoveRange(5, viewModel.Posts.Count - 5);
+            if (viewModel.Topics.Count > 5) viewModel.Topics.RemoveRange(5, viewModel.Topics.Count - 5);
 
             return View(viewModel);
         }

@@ -55,6 +55,31 @@
             </div>
         </div>
 
+        @if (User.IsInRole("Admin"))
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.Rank, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Rank, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Rank, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.OwnRank, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.CheckBoxFor(model => model.OwnRank, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.OwnRank, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        }
+        else
+        {
+            @Html.HiddenFor(model => model.Rank)
+            @Html.HiddenFor(model => model.OwnRank)
+        }
+
+        @Html.HiddenFor(model => model.PostsCount)
         @Html.HiddenFor(model => model.AvatarFilename)
         @Html.HiddenFor(model => model.EmailConfirmed)
         @Html.HiddenFor(model => model.PasswordHash)

@@ -172,5 +172,20 @@ img.center {
 }
 
 .inverse-link:hover{
-    color: white;
+    color: white!important;
+}
+
+.fixed-heigh{
+  height: 300px;
+
+}
+
+.scrollbar{  
+   height: 259px;
+   overflow:auto;
+
+}
+
+.title-link{
+    font-weight: bold;
 }

@@ -453,4 +453,7 @@
   <data name="Settings" xml:space="preserve">
     <value>Ustawienia</value>
   </data>
+  <data name="Rank" xml:space="preserve">
+    <value>Ranga</value>
+  </data>
 </root>
