@@ -67,8 +67,8 @@ namespace Forum.Classes
                             {
                                 if (pattern.Value != null && pattern.Value != "")
                                 {
-                                    string patternValue = pattern.Attribute + ": " + pattern.Value + ";";
-                                    if (styleValue == patternValue)
+                                    string patternValue = pattern.Attribute + ": " + pattern.Value;
+                                    if (styleValue.Contains(patternValue))
                                     {
                                         result = true;
                                         break;
@@ -80,7 +80,15 @@ namespace Forum.Classes
                                 }
                                 else
                                 {
-                                    result = false;
+                                    if (styleValue.Contains(pattern.Attribute))
+                                    {
+                                        result = true;
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        result = false;
+                                    }
                                 }
                             }
                             else
@@ -110,7 +118,7 @@ namespace Forum.Classes
                 foreach (HtmlNode newChild in oldChild.ChildNodes)
                 {
                     parent.InsertAfter(newChild, previousSibling);
-                    previousSibling = newChild;  // Missing line in HtmlAgilityPack
+                    previousSibling = newChild;
                 }
             }
             parent.RemoveChild(oldChild);
