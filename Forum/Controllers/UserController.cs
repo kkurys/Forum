@@ -1,10 +1,12 @@
 ﻿using Forum.Classes;
 using Forum.Models;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace Forum.Controllers
 {
@@ -52,6 +54,9 @@ namespace Forum.Controllers
             viewModel.PostsCount = viewModel.Posts.Count();
             viewModel.TopicsCount = viewModel.Topics.Count();
             
+            var lastRole = viewModel.User.Roles.Last();
+            viewModel.UserRole = db.Roles.Find(lastRole.RoleId).Name;
+
             viewModel.Posts.Sort((x, y) => DateTime.Compare(y.Date, x.Date));
             viewModel.Topics.Sort((x, y) => DateTime.Compare(y.Posts.First().Date, x.Posts.First().Date));
             if (viewModel.Posts.Count > 5) viewModel.Posts.RemoveRange(5, viewModel.Posts.Count - 5);

@@ -14,6 +14,7 @@ namespace Forum.Models
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
         public User User { get; set; }
+        public string UserRole { get; set; }
         public List<Topic> Topics { get; set; }
         public List<Post> Posts { get; set; }
         public int PostsCount { get; set; }
