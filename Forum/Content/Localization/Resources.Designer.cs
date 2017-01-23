@@ -88,6 +88,15 @@ namespace Forum.Content.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Admini.
+        /// </summary>
+        public static string Admins {
+            get {
+                return ResourceManager.GetString("Admins", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Również niezalogowani użytkownicy mogą pisać w tym forum.
         /// </summary>
         public static string AllowAnonymous {

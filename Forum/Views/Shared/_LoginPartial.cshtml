@@ -31,6 +31,7 @@
                         <li class="divider"></li>
                         <li>
                             @Html.ActionLink(Resources.Users, "Index", "User", routeValues: null, htmlAttributes: new { title = Resources.Users })
+                            @Html.ActionLink(Resources.Admins, "ModeratorsList", "Admin", routeValues: null, htmlAttributes: new { title = Resources.Admins })
                             @Html.ActionLink(Resources.HTMLMarkers, "Index", "Html", routeValues: null, htmlAttributes: new { title = Resources.HTMLMarkers })
                             @Html.ActionLink(Resources.Dictionary, "Index", "Dictionary", routeValues: null, htmlAttributes: new { title = Resources.Dictionary })
                         </li>
@@ -38,7 +39,7 @@
                 </li>
             }
             <li>
-                @Html.ActionLink(@Resources.OwnProfile, "Index", "Manage", routeValues: null, htmlAttributes: new { title = Resources.OwnProfile })
+                @Html.ActionLink(@Resources.OwnProfile, "Details", "User", new { userName = User.Identity.GetUserName() }, htmlAttributes: new { title = Resources.OwnProfile })
             </li>
             <li><a href="javascript:document.getElementById('logoutForm').submit()">@Resources.LogOut</a></li>
         </ul>

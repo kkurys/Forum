@@ -456,4 +456,7 @@
   <data name="Rank" xml:space="preserve">
     <value>Ranga</value>
   </data>
+  <data name="Admins" xml:space="preserve">
+    <value>Admini</value>
+  </data>
 </root>
