@@ -151,11 +151,29 @@ namespace Forum.Content.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Możesz załączyć maksymalnie 3 pliki!.
+        /// </summary>
+        public static string AttachmentCount {
+            get {
+                return ResourceManager.GetString("AttachmentCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Załączniki.
         /// </summary>
         public static string Attachments {
             get {
                 return ResourceManager.GetString("Attachments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maksymalny rozmiar załącznika to 512 kB!.
+        /// </summary>
+        public static string AttachmentSize {
+            get {
+                return ResourceManager.GetString("AttachmentSize", resourceCulture);
             }
         }
         

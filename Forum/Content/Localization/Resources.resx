@@ -468,4 +468,10 @@
   <data name="UserDoesntExist" xml:space="preserve">
     <value>Użytkownik nie istnieje.</value>
   </data>
+  <data name="AttachmentCount" xml:space="preserve">
+    <value>Możesz załączyć maksymalnie 3 pliki!</value>
+  </data>
+  <data name="AttachmentSize" xml:space="preserve">
+    <value>Maksymalny rozmiar załącznika to 512 kB!</value>
+  </data>
 </root>

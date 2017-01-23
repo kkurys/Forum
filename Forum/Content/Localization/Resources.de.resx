@@ -456,6 +456,12 @@
   <data name="UploadAvatarError" xml:space="preserve">
     <value>Maximale Größe ist 192x192px und 128 kB</value>
   </data>
+  <data name="AttachmentCount" xml:space="preserve">
+    <value>Sie können nur drei Anlagen hochladen!</value>
+  </data>
+  <data name="AttachmentSize" xml:space="preserve">
+    <value>Maximale Anlagengröße beträgt ist 512 kB!</value>
+  </data>
   <data name="HtmlMarkersError" xml:space="preserve">
     <value>Geben Sie nur die Markierung ohne Klammern und Attributen  ein</value>
   </data>

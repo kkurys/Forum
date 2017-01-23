@@ -468,4 +468,10 @@
   <data name="UserDoesntExist" xml:space="preserve">
     <value>User doesn't exist.</value>
   </data>
+  <data name="AttachmentCount" xml:space="preserve">
+    <value>You can attach maximum of 3 files!</value>
+  </data>
+  <data name="AttachmentSize" xml:space="preserve">
+    <value>Maximum attachment size is 512 kB!</value>
+  </data>
 </root>

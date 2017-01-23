@@ -103,6 +103,5 @@ namespace Forum.Classes
             }
             return new ValidationResult(Resources.UploadedAvatarError);
         }
-
     }
 }
