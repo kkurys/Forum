@@ -459,7 +459,7 @@
   <data name="Admins" xml:space="preserve">
     <value>Admini</value>
   </data>
-  <data name="Moderator" xml:space="preserve">
-    <value>Moderator</value>
+  <data name="Moderators" xml:space="preserve">
+    <value>Moderatorzy</value>
   </data>
 </root>

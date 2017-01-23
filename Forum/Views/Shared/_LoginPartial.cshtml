@@ -18,20 +18,19 @@
                         <li>
                             @Html.ActionLink(Resources.Forums, "Index", "Forum", routeValues: null, htmlAttributes: new { title = Resources.Forums })
                         </li>
-                        <li>
+                        @*<li>
                             @Html.ActionLink(Resources.Topics + "*", "Index", "Topic", routeValues: null, htmlAttributes: new { title = Resources.Topics })
                         </li>
                         <li>
                             @Html.ActionLink(Resources.Posts + "*", "Index", "Post", routeValues: null, htmlAttributes: new { title = Resources.Posts })
-                        </li>
-                        <li class="divider"></li>
+                        </li>*@
                         <li>
                             @Html.ActionLink(Resources.Announcements, "Index", "Announcement", routeValues: null, htmlAttributes: new { title = Resources.Announcements })
                         </li>
                         <li class="divider"></li>
                         <li>
                             @Html.ActionLink(Resources.Users, "Index", "User", routeValues: null, htmlAttributes: new { title = Resources.Users })
-                            @Html.ActionLink(Resources.Moderator, "ModeratorsList", "Admin", routeValues: null, htmlAttributes: new { title = Resources.Moderator })
+                            @Html.ActionLink(Resources.Moderators, "ModeratorsList", "Admin", routeValues: null, htmlAttributes: new { title = Resources.Moderators })
                             @Html.ActionLink(Resources.HTMLMarkers, "Index", "Html", routeValues: null, htmlAttributes: new { title = Resources.HTMLMarkers })
                             @Html.ActionLink(Resources.Dictionary, "Index", "Dictionary", routeValues: null, htmlAttributes: new { title = Resources.Dictionary })
                         </li>
