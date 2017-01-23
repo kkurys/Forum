@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace Forum.Models
 {
@@ -8,6 +9,7 @@ namespace Forum.Models
         public int ID { get; set; }
         public int PrivateThreadID { get; set; }
         public string AuthorID { get; set; }
+        [AllowHtml]
         public string Content { get; set; }
         public DateTime Date { get; set; }
         public User Author { get; set; }

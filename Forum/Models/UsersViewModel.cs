@@ -20,6 +20,7 @@ namespace Forum.Models
     public class UserDetailsViewModel
     {
         public User User { get; set; }
+        public string UserRole { get; set; }
         public List<IdentityRole> Roles { get; set; }
         public int PostsCount { get; set; }
         public int TopicsCount { get; set; }

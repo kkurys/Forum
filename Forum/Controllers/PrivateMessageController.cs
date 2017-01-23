@@ -47,6 +47,9 @@ namespace Forum.Controllers
 
             viewModel.Threads = tmpThreads.ToPagedList(currPage, postsPerPage);
             viewModel.Threads.OrderByDescending(x => x.LastPostDate()).ToList();
+            
+            var lastRole = viewModel.User.Roles.Last();
+            viewModel.UserRole = db.Roles.Find(lastRole.RoleId).Name;
 
             return View(viewModel);
         }
@@ -91,6 +94,7 @@ namespace Forum.Controllers
             return View(viewModel);
         }
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult CreateReply(PrivateThreadViewModel request, int id)
         {
             var _newMessage = new PrivateMessage();
@@ -169,11 +173,15 @@ namespace Forum.Controllers
                 viewModel.Roles.Add(db.Roles.ToList().Find(x => x.Id == role.RoleId));
             }
 
+            var lastRole = viewModel.User.Roles.Last();
+            viewModel.UserRole = db.Roles.Find(lastRole.RoleId).Name;
+
             return View(viewModel);
         }
 
         // POST: PrivateMessage/Create
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult CreateThread(CreateThreadViewModel request)
         {
             try
