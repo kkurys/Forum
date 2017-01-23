@@ -19,7 +19,7 @@ namespace Forum.Controllers
             var user = db.Users.Find(User.Identity.GetUserId());
 
             PrivateThreadsListViewModel viewModel = new PrivateThreadsListViewModel();
-            
+
             if (User.Identity.IsAuthenticated)
             {
                 postsPerPage = user.PostsPerPage.Quantity;
@@ -95,7 +95,7 @@ namespace Forum.Controllers
         {
             var _newMessage = new PrivateMessage();
             var user = db.Users.Find(User.Identity.GetUserId());
-            int startIndex, endIndex, postsPerPage;
+            int postsPerPage;
 
             _newMessage.Content = request.Content;
 
@@ -129,7 +129,7 @@ namespace Forum.Controllers
             {
                 postsPerPage = 25;
             }
-            
+
             request.Messages = db.PrivateMessages.ToList().FindAll(x => x.PrivateThreadID == id).ToPagedList(1, postsPerPage);
 
             for (int i = 0; i < Request.Files.Count; i++)

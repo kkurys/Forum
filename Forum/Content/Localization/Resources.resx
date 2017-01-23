@@ -453,4 +453,19 @@
   <data name="Settings" xml:space="preserve">
     <value>Ustawienia</value>
   </data>
+  <data name="HtmlMarkerError" xml:space="preserve">
+    <value>Proszę wpisać tylko nazwę znacznika, bez nawiasów oraz atrybutów!</value>
+  </data>
+  <data name="OnlyWordError" xml:space="preserve">
+    <value>Słowo może być tylko jedno i ma się składać z samych liter</value>
+  </data>
+  <data name="UnallowedContent" xml:space="preserve">
+    <value>Treść zawiera niedozwolone słowa!</value>
+  </data>
+  <data name="UploadedAvatarError" xml:space="preserve">
+    <value>Maksymalny awatar to 192x192px i 128kB</value>
+  </data>
+  <data name="UserDoesntExist" xml:space="preserve">
+    <value>Użytkownik nie istnieje.</value>
+  </data>
 </root>

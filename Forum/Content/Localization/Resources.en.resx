@@ -453,4 +453,19 @@
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="HtmlMarkerError" xml:space="preserve">
+    <value>Please type in only a marker, without parenthesis and attributes!</value>
+  </data>
+  <data name="OnlyWordError" xml:space="preserve">
+    <value>Word must be only one and must contain only letters.</value>
+  </data>
+  <data name="UnallowedContent" xml:space="preserve">
+    <value>Message contains unallowed words!</value>
+  </data>
+  <data name="UploadAvatarError" xml:space="preserve">
+    <value>Maximum allowed size is 192x192 px and 128 kB </value>
+  </data>
+  <data name="UserDoesntExist" xml:space="preserve">
+    <value>User doesn't exist.</value>
+  </data>
 </root>

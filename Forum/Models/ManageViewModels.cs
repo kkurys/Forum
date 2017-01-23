@@ -1,8 +1,10 @@
-﻿using Forum.Content.Localization;
+﻿using Forum.Classes;
+using Forum.Content.Localization;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web;
 
 namespace Forum.Models
 {
@@ -22,6 +24,8 @@ namespace Forum.Models
         public User User { get; set; }
         public int PostsCount { get; set; }
         public int TopicsCount { get; set; }
+        [ValidAvatar]
+        public HttpPostedFileBase File { get; set; }
     }
     public class ManageLoginsViewModel
     {

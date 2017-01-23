@@ -453,4 +453,19 @@
   <data name="Settings" xml:space="preserve">
     <value>Einstellungen</value>
   </data>
+  <data name="UploadAvatarError" xml:space="preserve">
+    <value>Maximale Größe ist 192x192px und 128 kB</value>
+  </data>
+  <data name="HtmlMarkersError" xml:space="preserve">
+    <value>Geben Sie nur die Markierung ohne Klammern und Attributen  ein</value>
+  </data>
+  <data name="OnlyWordError" xml:space="preserve">
+    <value>Der Wort musst nur Eins sein und nur Buschstaben enthalten.</value>
+  </data>
+  <data name="UnallowedContent" xml:space="preserve">
+    <value>Nachricht enthält unzulässige Wörter!</value>
+  </data>
+  <data name="UserDoesntExist" xml:space="preserve">
+    <value>Benutzer existiert nicht</value>
+  </data>
 </root>

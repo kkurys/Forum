@@ -2,6 +2,7 @@
 @{
     Layout = "~/Views/Shared/_ProfileLayout.cshtml";
 }
+@model Forum.Models.EditAvatarViewModel
 
 <div class="panel panel-primary">
     <div class="panel-heading">
@@ -10,10 +11,10 @@
 </div>
 <div class="row">
     <div id="avatar-min" class="col-md-offset-1 col-md-3">
-        <img  src="@Url.Content(@Model.User.AvatarFilename)" class="avatar-min" />
+        <img  src="@Url.Content(Model.User.AvatarFilename)" class="avatar-min" />
     </div>
     <div id="avatar-full" class="col-md-offset-1 col-md-5">
-        <img  src="@Url.Content(@Model.User.AvatarFilename)" class="avatar-full" />
+        <img  src="@Url.Content(Model.User.AvatarFilename)" class="avatar-full" />
     </div>
 </div>
 <div class="row">
@@ -40,7 +41,8 @@
                     @Resources.UploadNew:
                 </div>
                 <div class="col-md-10">
-                    <input type="file" class="form-control" id="newImage" name="file" />
+                    @Html.TextBoxFor(model => model.File, null, new { type = "file", @class = "input-file form-control", @id = "newImage" })
+                    @Html.ValidationMessageFor(model => model.File, "", new { @class = "text-danger" })
                 </div>
             </div>
 

@@ -475,6 +475,15 @@ namespace Forum.Content.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Proszę wpisać tylko nazwę znacznika, bez nawiasów oraz atrybutów!.
+        /// </summary>
+        public static string HtmlMarkerError {
+            get {
+                return ResourceManager.GetString("HtmlMarkerError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Znaczniki HTML.
         /// </summary>
         public static string HTMLMarkers {
@@ -754,6 +763,15 @@ namespace Forum.Content.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Słowo może być tylko jedno i ma się składać z samych liter.
+        /// </summary>
+        public static string OnlyWordError {
+            get {
+                return ResourceManager.GetString("OnlyWordError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Twój profil.
         /// </summary>
         public static string OwnProfile {
@@ -1015,6 +1033,24 @@ namespace Forum.Content.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Treść zawiera niedozwolone słowa!.
+        /// </summary>
+        public static string UnallowedContent {
+            get {
+                return ResourceManager.GetString("UnallowedContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maksymalny awatar to 192x192px i 128kB.
+        /// </summary>
+        public static string UploadedAvatarError {
+            get {
+                return ResourceManager.GetString("UploadedAvatarError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wgraj nowy.
         /// </summary>
         public static string UploadNew {
@@ -1038,6 +1074,15 @@ namespace Forum.Content.Localization {
         public static string User {
             get {
                 return ResourceManager.GetString("User", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Użytkownik nie istnieje..
+        /// </summary>
+        public static string UserDoesntExist {
+            get {
+                return ResourceManager.GetString("UserDoesntExist", resourceCulture);
             }
         }
         
