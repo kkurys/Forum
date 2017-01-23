@@ -31,10 +31,16 @@ namespace Forum.Models
         {
             get
             {
-                var posts = Posts.ToList();
-                if (posts.Count == 0) return null;
-                posts.OrderByDescending(x => x.Date);
-                return posts[0];
+                if (Posts != null && Posts.Count > 0)
+                {
+                    var posts = Posts.ToList();
+                    posts.OrderByDescending(x => x.Date);
+                    return posts[0];
+                }
+                else
+                {
+                    return null;
+                }
             }
         }
         public int CompareTo(Topic other)

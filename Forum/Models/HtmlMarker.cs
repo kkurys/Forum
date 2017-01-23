@@ -14,6 +14,8 @@ namespace Forum.Models
         [AllowHtml]
         [Display(Name = "Marker", ResourceType = typeof(Resources))]
         public string Code { get; set; }
+        public string Attribute { get; set; }
+        public string Value { get; set; }
         [Display(Name = "Active", ResourceType = typeof(Resources))]
         public bool Active { get; set; }
     }

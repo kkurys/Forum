@@ -30,13 +30,90 @@ namespace Forum.Classes
             
             foreach (var pattern in allowedMarkers)
             {
-                if (node.Name == "#text" || (node.Name == pattern.Code && pattern.Active == true))
+                if (node.Name == "#text")
                 {
                     result = true;
+                    break;
+                }
+                else
+                {
+                    if(node.Name == pattern.Code && pattern.Active == true)
+                    {
+                        if (pattern.Attribute != null && pattern.Attribute != "")
+                        {
+                            string nodeValue = node.GetAttributeValue(pattern.Attribute, "");
+                            string styleValue = node.GetAttributeValue("style", "");
+                            if (nodeValue != "")
+                            {
+                                if (pattern.Value != null && pattern.Value != "")
+                                {
+                                    if (nodeValue == pattern.Value)
+                                    {
+                                        result = true;
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        result = false;
+                                    }
+                                }
+                                else
+                                {
+                                    result = true;
+                                    break;
+                                }
+                            }
+                            else if (styleValue != "")
+                            {
+                                if (pattern.Value != null && pattern.Value != "")
+                                {
+                                    string patternValue = pattern.Attribute + ": " + pattern.Value + ";";
+                                    if (styleValue == patternValue)
+                                    {
+                                        result = true;
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        result = false;
+                                    }
+                                }
+                                else
+                                {
+                                    result = false;
+                                }
+                            }
+                            else
+                            {
+                                result = false;
+                            }
+                        }
+                        else
+                        {
+                            result = true;
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        result = false;
+                    }
                 }
             }
-
             return result;
+        }
+        public static void RemoveNode(HtmlNode parent, HtmlNode oldChild)
+        {
+            if (oldChild.ChildNodes != null)
+            {
+                HtmlNode previousSibling = oldChild.PreviousSibling;
+                foreach (HtmlNode newChild in oldChild.ChildNodes)
+                {
+                    parent.InsertAfter(newChild, previousSibling);
+                    previousSibling = newChild;  // Missing line in HtmlAgilityPack
+                }
+            }
+            parent.RemoveChild(oldChild);
         }
 
         static public string EditMarkers(string toEdit)
@@ -56,10 +133,11 @@ namespace Forum.Classes
                     nodesToDelete.Add(node);
                 }
             }
-            nodesToDelete.Reverse();
+
             foreach (HtmlNode node in nodesToDelete)
             {
-                node.ParentNode.RemoveChild(node, true);
+                //node.ParentNode.RemoveChild(node, true);
+                RemoveNode(node.ParentNode, node);
             }
 
             return doc.DocumentNode.OuterHtml;

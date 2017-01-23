@@ -26,15 +26,16 @@ namespace Forum.Models
         {
             get
             {
-
-                var topics = Topics.ToList();
-
-                if (topics.Count == 0)
+                if (Topics != null && Topics.Count > 0)
+                {
+                    var topics = Topics.ToList();
+                    topics.OrderByDescending(x => x.LastPostDate);
+                    return topics[0];
+                }
+                else
                 {
                     return null;
                 }
-                topics.OrderByDescending(x => x.LastPostDate);
-                return topics[0];
             }
         }
     }

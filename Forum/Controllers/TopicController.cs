@@ -179,54 +179,48 @@ namespace Forum.Controllers
 
         // POST: Topic/Create
         [HttpPost]
+        [HandleError]
         public ActionResult Create(CreateTopicViewModel newTopic)
         {
-            try
+            newTopic.Topic.LastPostDate = DateTime.Now;
+            newTopic.Topic.PostCount = 1;
+            newTopic.Topic.ViewsCount = 0;
+            newTopic.Topic.UserID = User.Identity.GetUserId();
+            if (User.Identity.IsAuthenticated)
             {
-                newTopic.Topic.LastPostDate = DateTime.Now;
-                newTopic.Topic.PostCount = 1;
-                newTopic.Topic.ViewsCount = 0;
-                newTopic.Topic.UserID = User.Identity.GetUserId();
-                if (User.Identity.IsAuthenticated)
+                var user = db.Users.Find(User.Identity.GetUserId());
+                newTopic.Topic.UserID = user.Id;
+                db.Users.Find(User.Identity.GetUserId()).PostsCount++;
+                if (!user.OwnRank)
                 {
-                    var user = db.Users.Find(User.Identity.GetUserId());
-                    newTopic.Topic.UserID = user.Id;
-                    db.Users.Find(User.Identity.GetUserId()).PostsCount++;
-                    if (!user.OwnRank)
-                    {
-                        db.Users.Find(User.Identity.GetUserId()).Rank = UserManagement.GetRank(user.PostsCount);
-                    }
+                    db.Users.Find(User.Identity.GetUserId()).Rank = UserManagement.GetRank(user.PostsCount);
                 }
-                else
-                {
-                    newTopic.Topic.UserID = null;
-                }
-                newTopic.Topic.ForumID = newTopic.Forum.ID;
-                db.Topics.Add(newTopic.Topic);
-                db.SaveChanges();
-
-                newTopic.Post.Date = DateTime.Now;
-                newTopic.Post.TopicID = db.Topics.ToList().Last().ID;
-                if (User.Identity.IsAuthenticated)
-                {
-                    newTopic.Post.UserID = User.Identity.GetUserId();
-                }
-                else
-                {
-                    newTopic.Post.UserID = null;
-                }
-                db.Posts.Add(newTopic.Post);
-
-                db.Fora.Find(newTopic.Topic.ForumID).TopicCount++;
-                db.Fora.Find(newTopic.Topic.ForumID).PostCount++;
-                db.SaveChanges();
-
-                return RedirectToAction("Details", "Topic", new { id = newTopic.Topic.ID });
             }
-            catch
+            else
             {
-                return View(newTopic);
+                newTopic.Topic.UserID = null;
             }
+            newTopic.Topic.ForumID = newTopic.Forum.ID;
+            db.Topics.Add(newTopic.Topic);
+            db.SaveChanges();
+
+            newTopic.Post.Date = DateTime.Now;
+            newTopic.Post.TopicID = db.Topics.ToList().Last().ID;
+            if (User.Identity.IsAuthenticated)
+            {
+                newTopic.Post.UserID = User.Identity.GetUserId();
+            }
+            else
+            {
+                newTopic.Post.UserID = null;
+            }
+            db.Posts.Add(newTopic.Post);
+
+            db.Fora.Find(newTopic.Topic.ForumID).TopicCount++;
+            db.Fora.Find(newTopic.Topic.ForumID).PostCount++;
+            db.SaveChanges();
+
+            return RedirectToAction("Details", "Topic", new { id = newTopic.Topic.ID });
         }
 
         // GET: Topic/Edit/5
