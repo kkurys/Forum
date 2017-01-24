@@ -279,6 +279,7 @@ namespace Forum.Controllers
         public ActionResult Delete(int id)
         {
             Post toDelete = db.Posts.Find(id);
+            toDelete.Topic.PostCount--;
             db.Posts.Remove(toDelete);
             db.SaveChanges();
             return RedirectToAction("Details", "Topic", new { id = toDelete.TopicID });
