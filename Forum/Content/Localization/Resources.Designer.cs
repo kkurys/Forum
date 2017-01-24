@@ -835,6 +835,15 @@ namespace Forum.Content.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Zresetuj hasło.
+        /// </summary>
+        public static string PasswordReset {
+            get {
+                return ResourceManager.GetString("PasswordReset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Post którego szukasz nie istnieje..
         /// </summary>
         public static string PostNotFound {
@@ -885,6 +894,15 @@ namespace Forum.Content.Localization {
         public static string Public {
             get {
                 return ResourceManager.GetString("Public", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Twoje hasło zostało zresetowane..
+        /// </summary>
+        public static string PwReset {
+            get {
+                return ResourceManager.GetString("PwReset", resourceCulture);
             }
         }
         
@@ -975,6 +993,15 @@ namespace Forum.Content.Localization {
         public static string ResetPw {
             get {
                 return ResourceManager.GetString("ResetPw", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hasło zostało zresetowane.
+        /// </summary>
+        public static string ResetPwConfirmation {
+            get {
+                return ResourceManager.GetString("ResetPwConfirmation", resourceCulture);
             }
         }
         

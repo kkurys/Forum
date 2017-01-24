@@ -486,4 +486,13 @@
   <data name="LoginToReply" xml:space="preserve">
     <value>Log in to reply</value>
   </data>
+  <data name="PasswordReset" xml:space="preserve">
+    <value>Reset your password.</value>
+  </data>
+  <data name="PwReset" xml:space="preserve">
+    <value>Your password has been reset.</value>
+  </data>
+  <data name="ResetPwConfirmation" xml:space="preserve">
+    <value>Reset password confirmation</value>
+  </data>
 </root>

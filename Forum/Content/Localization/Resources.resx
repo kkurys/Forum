@@ -486,4 +486,13 @@
   <data name="LoginToReply" xml:space="preserve">
     <value>Zaloguj się aby odpowiedzieć</value>
   </data>
+  <data name="PasswordReset" xml:space="preserve">
+    <value>Zresetuj hasło</value>
+  </data>
+  <data name="PwReset" xml:space="preserve">
+    <value>Twoje hasło zostało zresetowane.</value>
+  </data>
+  <data name="ResetPwConfirmation" xml:space="preserve">
+    <value>Hasło zostało zresetowane</value>
+  </data>
 </root>
