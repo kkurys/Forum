@@ -14,5 +14,6 @@ namespace Forum.Models
         [AllowHtml]
         [DataType(DataType.MultilineText)]
         public string Content { get; set; }
+        public int? CurrentPage { get; set; }
     }
 }
