@@ -34,7 +34,7 @@ namespace Forum.Models
                 if (Posts != null && Posts.Count > 0)
                 {
                     var posts = Posts.ToList();
-                    posts.OrderByDescending(x => x.Date);
+                    posts = posts.OrderByDescending(x => x.Date).ToList();
                     return posts[0];
                 }
                 else

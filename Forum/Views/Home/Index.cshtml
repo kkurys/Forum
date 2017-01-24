@@ -125,7 +125,7 @@
                                 <td class="col-md-2">
                                     @if (item.LastTopic != null)
                                     {
-                                        <div class="text-muted"><span class="glyphicon glyphicon-arrow-right"></span><a href="@Url.Action("Details", "Topic", new { id = @item.LastTopic.ID, postId = @item.LastTopic.LastPost.ID })"> @item.LastTopic.LastPostDate.ToString("dd MMMM yyyy HH:mm") </a>  </div>
+                                        <div class="text-muted"><span class="glyphicon glyphicon-arrow-right"></span><a href="@Url.Action("Details", "Topic", new { id = @item.LastTopic.ID, postId = @item.LastTopic.LastPost.ID })"> @item.LastTopic.LastPost.Date.ToString("dd MMMM yyyy HH:mm") </a>  </div>
                                         <b>@Resources.In:</b><a href="@Url.Action("ViewPost", "Topic", new { id = @item.LastTopic.ID, postId = @item.LastTopic.LastPost.ID })"> @item.LastTopic.Title </a> <br />
                                         <b>@Resources.By:</b> <a href="@Url.Action("Details", "User", new { userName = @item.LastTopic.LastPost.User.UserName })">@item.LastTopic.LastPost.User.UserName</a>
 

@@ -29,7 +29,7 @@ namespace Forum.Models
                 if (Topics != null && Topics.Count > 0)
                 {
                     var topics = Topics.ToList();
-                    topics.OrderByDescending(x => x.LastPostDate);
+                    topics = topics.OrderByDescending(x => x.LastPost.Date).ToList();
                     return topics[0];
                 }
                 else
