@@ -77,6 +77,17 @@
                                 <img src="@Url.Content(item.User.AvatarFilename)" class="avatar-small" />
 
                                 <!-- plus jakies dane o użytkowniku ?? -->
+                                <hr />
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <p><b>@Resources.Rank</b></p>
+                                        <p><b>@Resources.Posts</b></p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <p>@item.User.Rank</p>
+                                        <p>@item.User.PostsCount</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

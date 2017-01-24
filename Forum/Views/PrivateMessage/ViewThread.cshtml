@@ -17,7 +17,7 @@
         @foreach (var item in Model.Messages)
             {
             <div class="row post-row">
-                <div class="col-sm-2">
+                <div class="col-sm-3">
                     <div class="panel panel-default post-user">
                         <div class="panel-heading">
                             @if (item.Author == null)
@@ -34,10 +34,21 @@
                             <img src="@Url.Content(@item.Author.AvatarFilename)" class="avatar-post" />
 
                             <!-- plus jakies dane o użytkowniku ?? -->
+                            <hr />
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <p><b>@Resources.Rank</b></p>
+                                    <p><b>@Resources.Posts</b></p>
+                                </div>
+                                <div class="col-sm-6">
+                                    <p>@item.Author.Rank</p>
+                                    <p>@item.Author.PostsCount</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-10">
+                <div class="col-sm-9">
                     <div class="panel panel-default post">
                         <div class="panel-heading">
                             <h3 class="panel-title">
