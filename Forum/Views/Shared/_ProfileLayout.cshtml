@@ -14,10 +14,10 @@
             <a href="@Url.Action("Details", "User", new { userName = Model.User.UserName })" class="inverse-link">@Model.User.UserName</a>
             @if (User.Identity.IsAuthenticated)
             {
-                if (User.Identity.GetUserId() == Model.User.Id || User.IsInRole("Admin"))
+                @*if (User.Identity.GetUserId() == Model.User.Id || User.IsInRole("Admin"))
                 {
                     <a href="@Url.Action("Edit", "User", new { id = Model.User.Id })" class="btn btn-primary btn-sm panel-button">@Resources.Edit</a>
-                }
+                }*@
                 if (User.Identity.GetUserId() == Model.User.Id)
                 {
                     <a href="@Url.Action("Index", "PrivateMessage")" class="btn btn-primary btn-sm panel-button"><b>@Resources.Messages</b></a>
@@ -60,6 +60,32 @@
                 <p>@Model.TopicsCount</p>
             </div>
         </div>
+
+        @if (User.Identity.IsAuthenticated)
+        {
+            if (User.Identity.GetUserId() == Model.User.Id || User.IsInRole("Admin"))
+            {
+                <hr />
+                <h3>
+                    Ustawienia
+                    <a href="@Url.Action("Edit", "User", new { id = Model.User.Id })" class="btn btn-primary btn-sm" style="float: right;">@Resources.Edit</a>
+                </h3>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><b>@Resources.Theme</b></p>
+                        <p><b>@Resources.Language</b></p>
+                        <p><b>@Resources.PostsPerPage</b></p>
+                        <p><b>@Resources.SessionTime</b></p>
+                    </div>
+                    <div class="col-md-6">
+                        <p>@Model.User.Theme</p>
+                        <p>@Model.User.Language</p>
+                        <p>@Model.User.PostsPerPage.Quantity</p>
+                        <p>@Model.User.SessionTime</p>
+                    </div>
+                </div>
+            }
+        }
     </div>
     <div class="col-md-9">
         @RenderBody()
