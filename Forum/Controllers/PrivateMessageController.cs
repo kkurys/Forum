@@ -97,7 +97,6 @@ namespace Forum.Controllers
         }
         [ValidateInput(false)]
         [HttpPost]
-        [ValidateInput(false)]
         public ActionResult CreateReply(PrivateThreadViewModel request, int id)
         {
             var _newMessage = new PrivateMessage();

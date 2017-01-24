@@ -26,7 +26,7 @@
             @Html.PagedListPager(Model.Posts, page => Url.Action("Details", new { id = Model.Topic.ID, page }))
         </div>
 
-        @if (Model.Topic.Forum.IsPublic)
+        @*@if (Model.Topic.Forum.IsPublic)
         {
             <a href="@Url.Action("Create", "Post", new { id = Model.Topic.ID })" class="btn btn-primary pull-right">@Resources.NewMessage</a>
         }
@@ -36,7 +36,7 @@
             {
                 <a href="@Url.Action("Create", "Post", new { id = Model.Topic.ID })" class="btn btn-primary pull-right">@Resources.NewMessage</a>
             }
-        }
+        }*@
     </div>
     <div class="panel panel-primary">
         <div class="panel-heading">
@@ -74,9 +74,20 @@
                         </div>
                         <div class="panel-body">
                             <!-- AVATAR -->
-                            <img src="http://letsplej.pl/uploads/avatars/avatar_13921.jpg" />
+                            <img src="@Url.Content(@item.User.AvatarFilename)" class="avatar-post" />
 
                             <!-- plus jakies dane o użytkowniku ?? -->
+                            <hr />
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <p><b>@Resources.Rank</b></p>
+                                    <p><b>@Resources.Posts</b></p>
+                                </div>
+                                <div class="col-sm-6">
+                                    <p>@item.User.Rank</p>
+                                    <p>@item.User.PostsCount</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -123,7 +134,7 @@
         </div>
         @if (Model.User != null)
         {
-            <div class="row post-row" id="newReply">
+            <div class="row post-row" id="newReply" style="margin: 5px;">
                 <div class="col-sm-2">
                     <div class="panel panel-default post-user">
                         <div class="panel-heading">
@@ -134,6 +145,17 @@
                             <img src="@Url.Content(@Model.User.AvatarFilename)" class="avatar-post" />
 
                             <!-- plus jakies dane o użytkowniku ?? -->
+                            <hr />
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <p><b>@Resources.Rank</b></p>
+                                    <p><b>@Resources.Posts</b></p>
+                                </div>
+                                <div class="col-sm-6">
+                                    <p>@Model.User.Rank</p>
+                                    <p>@Model.User.PostsCount</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -195,7 +217,6 @@ new { enctype = "multipart/form-data" }))
                         <div class="panel-body">
                             <!-- AVATAR -->
                             <img src="http://letsplej.pl/uploads/avatars/avatar_13921.jpg" />
-                            <!-- plus jakies dane o użytkowniku ?? -->
                         </div>
                     </div>
                 </div>
