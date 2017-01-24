@@ -442,7 +442,7 @@
     <value>tutaj</value>
   </data>
   <data name="LoggedIn" xml:space="preserve">
-    <value>Twoje hasło zostało potwierdzone.</value>
+    <value>Twój email został potwierdzony.</value>
   </data>
   <data name="ResetPw" xml:space="preserve">
     <value>Zresetuj hasło klikając</value>

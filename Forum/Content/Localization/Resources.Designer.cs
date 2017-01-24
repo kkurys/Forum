@@ -583,7 +583,7 @@ namespace Forum.Content.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Twoje hasło zostało potwierdzone..
+        ///   Looks up a localized string similar to Twój email został potwierdzony..
         /// </summary>
         public static string LoggedIn {
             get {

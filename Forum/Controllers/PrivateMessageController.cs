@@ -175,7 +175,7 @@ namespace Forum.Controllers
 
             ModelState.Clear();
 
-            return View("ViewThread", request);
+            return RedirectToAction("ViewThread", new { id = id });
         }
 
         // GET: PrivateMessage/Create
