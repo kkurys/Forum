@@ -1,4 +1,5 @@
 ﻿using Forum.Classes;
+using Forum.Content.Localization;
 using Forum.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -20,7 +21,7 @@ namespace Forum.Controllers
             var user = db.Users.Find(User.Identity.GetUserId());
 
             PrivateThreadsListViewModel viewModel = new PrivateThreadsListViewModel();
-            
+
             if (User.Identity.IsAuthenticated)
             {
                 postsPerPage = user.PostsPerPage.Quantity;
@@ -94,13 +95,14 @@ namespace Forum.Controllers
 
             return View(viewModel);
         }
+        [ValidateInput(false)]
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult CreateReply(PrivateThreadViewModel request, int id)
         {
             var _newMessage = new PrivateMessage();
             var user = db.Users.Find(User.Identity.GetUserId());
-            int startIndex, endIndex, postsPerPage;
+            int postsPerPage;
 
             _newMessage.Content = Html.EditMarkers(request.Content);
 
@@ -123,9 +125,6 @@ namespace Forum.Controllers
 
             _newMessage.PrivateThreadID = id;
 
-            db.PrivateMessages.Add(_newMessage);
-            db.SaveChanges();
-
             if (User.Identity.IsAuthenticated)
             {
                 postsPerPage = user.PostsPerPage.Quantity;
@@ -134,9 +133,30 @@ namespace Forum.Controllers
             {
                 postsPerPage = 25;
             }
-            
-            request.Messages = db.PrivateMessages.ToList().FindAll(x => x.PrivateThreadID == id).ToPagedList(1, postsPerPage);
 
+            request.Messages = db.PrivateMessages.ToList().FindAll(x => x.PrivateThreadID == id).ToPagedList(1, postsPerPage);
+            bool error = false;
+            if (Request.Files.Count > 3)
+            {
+                error = true;
+                ViewBag.Error = Resources.AttachmentCount;
+            }
+            for (int i = 0; i < Request.Files.Count; i++)
+            {
+                if (Request.Files[i].ContentLength > 512 * 1024)
+                {
+                    ViewBag.Error = Resources.AttachmentSize;
+                    error = true;
+                    break;
+                }
+            }
+            if (error)
+            {
+                return View("ViewThread", request);
+            }
+
+            db.PrivateMessages.Add(_newMessage);
+            db.SaveChanges();
             for (int i = 0; i < Request.Files.Count; i++)
             {
                 HttpPostedFileBase file = Request.Files[i];
@@ -205,11 +225,41 @@ namespace Forum.Controllers
                 newMessage.Date = DateTime.Now;
                 newMessage.PrivateThread = newThread;
 
-                db.PrivateMessages.Add(newMessage);
-                db.SaveChanges();
 
                 if (Request.Files != null)
                 {
+                    bool error = false;
+                    if (Request.Files.Count > 3)
+                    {
+                        error = true;
+                        ViewBag.Error = Resources.AttachmentCount;
+                    }
+                    for (int i = 0; i < Request.Files.Count; i++)
+                    {
+                        if (Request.Files[i].ContentLength > 512 * 1024)
+                        {
+                            ViewBag.Error = Resources.AttachmentSize;
+                            error = true;
+                            break;
+                        }
+                    }
+                    if (error)
+                    {
+                        request.User = db.Users.ToList().Find(x => x.Id == userId);
+                        request.PostsCount = db.Posts.ToList().FindAll(x => x.UserID == request.User.Id).Count();
+                        request.TopicsCount = db.Topics.ToList().FindAll(x => x.UserID == request.User.Id).Count();
+
+                        request.Roles = new List<IdentityRole>();
+
+                        foreach (IdentityUserRole role in request.User.Roles)
+                        {
+                            request.Roles.Add(db.Roles.ToList().Find(x => x.Id == role.RoleId));
+                        }
+
+                        return View(request);
+                    }
+                    db.PrivateMessages.Add(newMessage);
+                    db.SaveChanges();
                     for (int i = 0; i < Request.Files.Count; i++)
                     {
                         HttpPostedFileBase file = Request.Files[i];
@@ -223,7 +273,11 @@ namespace Forum.Controllers
                         db.SaveChanges();
                     }
                 }
-
+                else
+                {
+                    db.PrivateMessages.Add(newMessage);
+                    db.SaveChanges();
+                }
 
                 return RedirectToAction("ViewThread", new { id = newThread.ID });
             }

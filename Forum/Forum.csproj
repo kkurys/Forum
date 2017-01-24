@@ -294,7 +294,6 @@
   <ItemGroup>
     <Content Include="Content\Attachments\15622639_1522988177730856_2832893012959769364_n.jpg" />
     <Content Include="Content\Attachments\15782027_1317582524958700_834785599_n.jpg" />
-    <Content Include="Content\Avatars\15781789_220285065088186_6123242587625217632_n.jpg" />
     <Content Include="Content\Avatars\default.jpg" />
     <Content Include="Content\bootstrap-darkly.css" />
     <Content Include="Content\bootstrap-united.css" />

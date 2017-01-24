@@ -51,14 +51,14 @@ namespace Forum.Controllers
             viewModel.Admin = false;
             viewModel.CurrentUserId = User.Identity.GetUserId();
             viewModel.Topic = db.Topics.Find(id);
-
+            viewModel.User = user;
             if (!viewedTopicsIDs.Contains(id))
             {
                 viewedTopicsIDs.Add(id);
                 viewModel.Topic.ViewsCount++;
                 db.SaveChanges();
             }
-            
+
             if (User.Identity.IsAuthenticated)
             {
                 viewModel.CurrentUserId = user.Id;
@@ -67,7 +67,7 @@ namespace Forum.Controllers
             {
                 viewModel.CurrentUserId = "";
             }
-            
+
             if (User.Identity.IsAuthenticated)
             {
                 postsPerPage = user.PostsPerPage.Quantity;
@@ -99,7 +99,7 @@ namespace Forum.Controllers
             {
                 currPage = page.HasValue ? page.Value : 1;
             }
-            
+
             if (User.IsInRole("Admin"))
             {
                 viewModel.Admin = true;
@@ -108,64 +108,6 @@ namespace Forum.Controllers
             viewModel.Posts = tmpList.ToPagedList(currPage, postsPerPage);
 
             return View(viewModel);
-        }
-        public ActionResult ViewPost(int id, int postId)
-        {
-            //var viewedTopicsIDs = Session["ViewedTopicsIDs"] as List<int>;
-
-            //int startIndex = 0, endIndex = 0, postsPerPage;
-            //TopicViewModel viewModel = new TopicViewModel();
-
-            //viewModel.Topic = db.Topics.Find(id);
-            //viewModel.Admin = false;
-            //viewModel.CurrentUserId = User.Identity.GetUserId();
-
-            //if (!viewedTopicsIDs.Contains(id))
-            //{
-            //    viewedTopicsIDs.Add(id);
-            //    viewModel.Topic.ViewsCount++;
-            //    db.SaveChanges();
-            //}
-
-            //var user = db.Users.Find(viewModel.CurrentUserId);
-            //if (User.Identity.IsAuthenticated)
-            //{
-            //    postsPerPage = user.PostsPerPage.Quantity;
-            //}
-            //else
-            //{
-            //    postsPerPage = 25;
-            //}
-
-            //var tmpList = db.Posts.ToList().FindAll(f => f.TopicID == viewModel.Topic.ID);
-            //viewModel.Pages = tmpList.Count() / postsPerPage + 1;
-
-            //int postIndex = tmpList.FindIndex(x => x.ID == postId);
-            //int currentPage = 0;
-            //for (currentPage = 0; currentPage < viewModel.Pages; currentPage++)
-            //{
-            //    startIndex = currentPage * postsPerPage;
-            //    endIndex = startIndex + postsPerPage;
-            //    if (postIndex >= startIndex && postIndex < endIndex)
-            //    {
-            //        break;
-            //    }
-            //}
-
-            //if (endIndex > tmpList.Count)
-            //{
-            //    endIndex = tmpList.Count;
-            //}
-
-            //if (User.IsInRole("Admin"))
-            //{
-            //    viewModel.Admin = true;
-            //}
-
-            //viewModel.Posts = tmpList.GetRange(startIndex, endIndex - startIndex);
-            //ViewData["postId"] = postId;
-            //return View("Details", viewModel);
-            return View();
         }
         // GET: Topic/Create
         [HttpGet]

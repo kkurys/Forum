@@ -160,11 +160,29 @@ namespace Forum.Content.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Możesz załączyć maksymalnie 3 pliki!.
+        /// </summary>
+        public static string AttachmentCount {
+            get {
+                return ResourceManager.GetString("AttachmentCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Załączniki.
         /// </summary>
         public static string Attachments {
             get {
                 return ResourceManager.GetString("Attachments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maksymalny rozmiar załącznika to 512 kB!.
+        /// </summary>
+        public static string AttachmentSize {
+            get {
+                return ResourceManager.GetString("AttachmentSize", resourceCulture);
             }
         }
         
@@ -484,6 +502,15 @@ namespace Forum.Content.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Proszę wpisać tylko nazwę znacznika, bez nawiasów oraz atrybutów!.
+        /// </summary>
+        public static string HtmlMarkerError {
+            get {
+                return ResourceManager.GetString("HtmlMarkerError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Znaczniki HTML.
         /// </summary>
         public static string HTMLMarkers {
@@ -579,6 +606,15 @@ namespace Forum.Content.Localization {
         public static string LoginNow {
             get {
                 return ResourceManager.GetString("LoginNow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zaloguj się aby odpowiedzieć.
+        /// </summary>
+        public static string LoginToReply {
+            get {
+                return ResourceManager.GetString("LoginToReply", resourceCulture);
             }
         }
         
@@ -768,6 +804,15 @@ namespace Forum.Content.Localization {
         public static string NoTopics {
             get {
                 return ResourceManager.GetString("NoTopics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Słowo może być tylko jedno i ma się składać z samych liter.
+        /// </summary>
+        public static string OnlyWordError {
+            get {
+                return ResourceManager.GetString("OnlyWordError", resourceCulture);
             }
         }
         
@@ -1042,6 +1087,24 @@ namespace Forum.Content.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Treść zawiera niedozwolone słowa!.
+        /// </summary>
+        public static string UnallowedContent {
+            get {
+                return ResourceManager.GetString("UnallowedContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maksymalny awatar to 192x192px i 128kB.
+        /// </summary>
+        public static string UploadedAvatarError {
+            get {
+                return ResourceManager.GetString("UploadedAvatarError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wgraj nowy.
         /// </summary>
         public static string UploadNew {
@@ -1065,6 +1128,15 @@ namespace Forum.Content.Localization {
         public static string User {
             get {
                 return ResourceManager.GetString("User", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Użytkownik nie istnieje..
+        /// </summary>
+        public static string UserDoesntExist {
+            get {
+                return ResourceManager.GetString("UserDoesntExist", resourceCulture);
             }
         }
         

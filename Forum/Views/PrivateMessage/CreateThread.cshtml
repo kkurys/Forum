@@ -56,6 +56,10 @@
                 <input type="submit" value="@Resources.Create" class="btn btn-default" />
             </div>
         </div>
+        @if(ViewBag.Error != null)
+        {
+            <p class="alert alert-warning">@ViewBag.Error</p>
+        }
     </div>
 }
 @section scripts

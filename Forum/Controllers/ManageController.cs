@@ -1,14 +1,12 @@
-﻿using System;
+﻿using Forum.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using Forum.Models;
-using System.Web.Helpers;
-using System.IO;
 
 namespace Forum.Controllers
 {
@@ -362,51 +360,45 @@ namespace Forum.Controllers
             {
                 User = db.Users.Find(userId),
                 PostsCount = db.Posts.ToList().FindAll(x => x.UserID == userId).Count(),
-                TopicsCount = db.Topics.ToList().FindAll(x => x.UserID == userId).Count()
+                TopicsCount = db.Topics.ToList().FindAll(x => x.UserID == userId).Count(),
             };
             return View(model);
         }
         [HttpPost]
-        public ActionResult EditAvatar(HttpPostedFileBase file)
+        public ActionResult EditAvatar(EditAvatarViewModel avatar)
         {
             var userId = User.Identity.GetUserId();
             var user = db.Users.Find(userId);
 
-            var model = new EditAvatarViewModel
-            {
-                User = user,
-                PostsCount = db.Posts.ToList().FindAll(x => x.UserID == userId).Count(),
-                TopicsCount = db.Topics.ToList().FindAll(x => x.UserID == userId).Count()
-            };
+            avatar.User = user;
+            avatar.PostsCount = db.Posts.ToList().FindAll(x => x.UserID == userId).Count();
+            avatar.TopicsCount = db.Topics.ToList().FindAll(x => x.UserID == userId).Count();
 
-
-            if (file == null)
+            if (ModelState.IsValid)
             {
-                return View(model);
+                var fileName = Path.GetFileName(avatar.File.FileName);
+
+                var path = HttpContext.Server.MapPath("~/Content/Avatars/") + avatar.File.FileName;
+
+                if (user.AvatarFilename != "~/Content/Avatars/default.jpg")
+                {
+                    System.IO.File.Delete(HttpContext.Server.MapPath(user.AvatarFilename));
+                }
+
+                user.AvatarFilename = "~/Content/Avatars/" + avatar.File.FileName;
+
+                db.SaveChanges();
+                avatar.File.SaveAs(path);
+
+                return View(avatar);
+            }
+            else
+            {
+                return View(avatar);
             }
 
-
-            var fileName = Path.GetFileName(file.FileName);
-            WebImage img = new WebImage(file.InputStream);
-            if (img.Width > 192 || img.Height > 192)
-            {
-                ViewBag.SizeError = true;
-                return View(model);
-            }
-            var path = HttpContext.Server.MapPath("~/Content/Avatars/") + file.FileName;
-
-            if (user.AvatarFilename != "~/Content/Avatars/default.jpg")
-            {
-                System.IO.File.Delete(HttpContext.Server.MapPath(user.AvatarFilename));
-            }
-
-            user.AvatarFilename = "~/Content/Avatars/" + file.FileName;
-
-            db.SaveChanges();
-            file.SaveAs(path);
-
-            return View(model);
         }
+
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";

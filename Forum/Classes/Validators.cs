@@ -1,10 +1,11 @@
-﻿using Forum.Models;
-using Microsoft.AspNet.Identity;
+﻿using Forum.Content.Localization;
+using Forum.Models;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
+using System.Web.Helpers;
 
 namespace Forum.Classes
 {
@@ -20,7 +21,7 @@ namespace Forum.Classes
             }
             else
             {
-                return new ValidationResult("Proszę wpisać tylko nazwę znacznika, bez nawiasów oraz atrybutów!");
+                return new ValidationResult(Resources.HtmlMarkerError);
             }
         }
     }
@@ -37,7 +38,7 @@ namespace Forum.Classes
             }
             else
             {
-                return new ValidationResult("Słowo może być tylko jedno i ma się składać z samych liter");
+                return new ValidationResult(Resources.OnlyWordError);
             }
         }
     }
@@ -62,7 +63,7 @@ namespace Forum.Classes
                     return ValidationResult.Success;
                 }
             }
-            return new ValidationResult("Treść zawiera niedozwolone słowa!");
+            return new ValidationResult(Resources.UnallowedContent);
         }
     }
     public class UserExists : ValidationAttribute
@@ -80,7 +81,27 @@ namespace Forum.Classes
                 }
             }
 
-            return new ValidationResult("Nie ma takiego użytkownika!");
+            return new ValidationResult(Resources.UserDoesntExist);
+        }
+    }
+    public class ValidAvatar : ValidationAttribute
+    {
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            if (value is HttpPostedFileBase)
+            {
+                var avatar = value as HttpPostedFileBase;
+                var fileName = Path.GetFileName(avatar.FileName);
+                Stream stream = new MemoryStream();
+                avatar.InputStream.CopyTo(stream);
+                WebImage img = new WebImage(stream);
+                if (img.Width > 192 || img.Height > 192 | avatar.ContentLength > 128 * 1024)
+                {
+                    return new ValidationResult(Resources.UploadedAvatarError);
+                }
+                return ValidationResult.Success;
+            }
+            return new ValidationResult(Resources.UploadedAvatarError);
         }
     }
 }

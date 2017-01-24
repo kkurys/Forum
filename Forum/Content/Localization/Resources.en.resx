@@ -462,4 +462,28 @@
   <data name="Moderators" xml:space="preserve">
     <value>Moderators</value>
   </data>
+  <data name="HtmlMarkerError" xml:space="preserve">
+    <value>Please type in only a marker, without parenthesis and attributes!</value>
+  </data>
+  <data name="OnlyWordError" xml:space="preserve">
+    <value>Word must be only one and must contain only letters.</value>
+  </data>
+  <data name="UnallowedContent" xml:space="preserve">
+    <value>Message contains unallowed words!</value>
+  </data>
+  <data name="UploadAvatarError" xml:space="preserve">
+    <value>Maximum allowed size is 192x192 px and 128 kB </value>
+  </data>
+  <data name="UserDoesntExist" xml:space="preserve">
+    <value>User doesn't exist.</value>
+  </data>
+  <data name="AttachmentCount" xml:space="preserve">
+    <value>You can attach maximum of 3 files!</value>
+  </data>
+  <data name="AttachmentSize" xml:space="preserve">
+    <value>Maximum attachment size is 512 kB!</value>
+  </data>
+  <data name="LoginToReply" xml:space="preserve">
+    <value>Log in to reply</value>
+  </data>
 </root>
