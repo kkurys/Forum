@@ -98,11 +98,13 @@ namespace Forum.Classes
 
         static public bool IsAllowed(string toCheck)
         {
+            if (toCheck == null) return true;
+
             ApplicationDbContext db = new ApplicationDbContext();
             List<Dictionary> dictionary = db.Dictionary.ToList();
 
             bool result = true;
-
+          
             foreach (Dictionary dict in dictionary)
             {
                 if (toCheck.ToUpper().Contains(dict.ForbiddenWord.ToUpper()))

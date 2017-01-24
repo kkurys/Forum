@@ -126,6 +126,11 @@ namespace Forum.Classes
 
         static public string EditMarkers(string toEdit)
         {
+            if (toEdit == null)
+            {
+                return "";
+            }
+
             ApplicationDbContext db = new ApplicationDbContext();
             var allowedMarkers = db.HtmlMarkers.ToList();
 

@@ -2,9 +2,7 @@
 @using System.Linq
 @using Forum.Content.Localization
 @using PagedList.Mvc;
-@{
-    ViewBag.Title = Resources.Details;
-}
+
 
 <div class="container">
     <div class="row navigation-row">
@@ -166,7 +164,7 @@
                             <h3 class="panel-title">@Resources.Reply</h3>
                         </div>
                         <div class="panel-body">
-                            @using (Html.BeginForm("QuickReply", "Post", new { id = @Model.Topic.ID }, FormMethod.Post,
+                            @using (Html.BeginForm("Details", "Topic", new { id = @Model.Topic.ID }, FormMethod.Post,
 new { enctype = "multipart/form-data" }))
                             {
                                 @Html.AntiForgeryToken()
@@ -227,7 +225,7 @@ new { enctype = "multipart/form-data" }))
                             <h3 class="panel-title">@Resources.Reply</h3>
                         </div>
                         <div class="panel-body">
-                            @using (Html.BeginForm("QuickReply", "Post", new { id = @Model.Topic.ID }, FormMethod.Post,
+                            @using (Html.BeginForm("Details", "Topic", new { id = @Model.Topic.ID }, FormMethod.Post,
 new { enctype = "multipart/form-data" }))
                             {
                                 @Html.AntiForgeryToken()
@@ -276,15 +274,38 @@ new { enctype = "multipart/form-data" }))
             </div>
         }
     </div>
-
+    <div class="row">
+        @if (ViewData.ModelState.Any(x => x.Value.Errors.Any()))
+        {
+            <div class="alert alert-danger" role="alert">
+                <a class="close" data-dismiss="alert">×</a>
+                @foreach (var modelError in Html.ViewData.ModelState.SelectMany(keyValuePair => keyValuePair.Value.Errors))
+                {
+                    <p>@modelError.ErrorMessage</p>
+                }
+            </div>
+        }
+    </div>
     <div class="pager pull-left">
         @Html.PagedListPager(Model.Posts, page => Url.Action("Details", new { id = Model.Topic.ID, page }))
     </div>
+
+
 </div>
 @section scripts
 {
     <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet" />
     <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+    <script type="text/javascript">
+        @if (ViewData.ModelState.Any(x => x.Value.Errors.Any()))
+        {
+            <text>
+            $(window).load(function () {
+                $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+            });
+            </text>
+        }
+    </script>
     @if (ViewData["postID"] != null)
     {
         <text>

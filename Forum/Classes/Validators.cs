@@ -63,6 +63,14 @@ namespace Forum.Classes
                     return ValidationResult.Success;
                 }
             }
+            else if (validationContext.ObjectInstance is TopicViewModel)
+            {
+                var model = (TopicViewModel)validationContext.ObjectInstance;
+                if (Search.IsAllowed(model.Content))
+                {
+                    return ValidationResult.Success;
+                }
+            }
             return new ValidationResult(Resources.UnallowedContent);
         }
     }
