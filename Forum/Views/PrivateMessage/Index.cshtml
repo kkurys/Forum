@@ -62,7 +62,14 @@
                         <td class="col-md-1">@item.Recipient.UserName</td>
                         <td class="col-md-1">@item.PostCount()</td>
                         <td class="col-md-4">
-                            @item.LastPostAuthor().UserName
+                            @if (item.LastPostAuthor() != null)
+                            {
+                                @item.LastPostAuthor().UserName
+                            }
+                            else
+                            {
+                                @Resources.Anonymous
+                            }
                             @item.LastPostDate()
 
                         </td>

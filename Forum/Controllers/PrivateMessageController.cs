@@ -50,6 +50,7 @@ namespace Forum.Controllers
             viewModel.Threads = tmpThreads.ToPagedList(currPage, postsPerPage);
             viewModel.Threads.OrderByDescending(x => x.LastPostDate()).ToList();
             
+            
             var lastRole = viewModel.User.Roles.Last();
             viewModel.UserRole = db.Roles.Find(lastRole.RoleId).Name;
 

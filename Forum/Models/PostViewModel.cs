@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace Forum.Models
 {
@@ -19,6 +20,7 @@ namespace Forum.Models
     {
         public int PostID { get; set; }
         public Post Post { get; set; }
+        [AllowHtml]
         [DataType(DataType.MultilineText)]
         public string Reason { get; set; }
         public int? PostPage { get; set; }

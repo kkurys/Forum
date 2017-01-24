@@ -194,3 +194,7 @@ img.center {
     height: 100px;
     width: 100px;
 }
+
+.center-header{
+    text-align: center;
+}
