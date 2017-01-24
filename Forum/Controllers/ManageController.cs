@@ -362,6 +362,9 @@ namespace Forum.Controllers
                 PostsCount = db.Posts.ToList().FindAll(x => x.UserID == userId).Count(),
                 TopicsCount = db.Topics.ToList().FindAll(x => x.UserID == userId).Count(),
             };
+            var lastRole = model.User.Roles.Last();
+            model.UserRole = db.Roles.Find(lastRole.RoleId).Name;
+
             return View(model);
         }
         [HttpPost]

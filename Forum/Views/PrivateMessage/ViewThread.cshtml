@@ -1,6 +1,7 @@
 ﻿@model Forum.Models.PrivateThreadViewModel
 @using Forum.Content.Localization
 @using PagedList.Mvc;
+@using Microsoft.AspNet.Identity
 
 @{    
     Layout = "~/Views/Shared/_ProfileLayout.cshtml";
@@ -10,6 +11,13 @@
     <div class="panel-heading">
         <h3 class="panel-title">
             @Model.PrivateThread.Title
+            @if (User.Identity.IsAuthenticated)
+            {
+                if (User.Identity.GetUserId() == Model.User.Id || User.IsInRole("Admin"))
+                {
+                    <a href="@Url.Action("DeleteThread", "PrivateMessage", new { id = Model.PrivateThread.ID })" class="btn btn-primary btn-sm panel-button">@Resources.Delete</a>
+                }
+            }
         </h3>
     </div>
     <div class="panel-body">
@@ -52,7 +60,13 @@
                     <div class="panel panel-default post">
                         <div class="panel-heading">
                             <h3 class="panel-title">
-                                @Html.DisplayFor(modelItem => item.Date)
+                                @Html.DisplayFor(modelItem => item.Date)@if (User.Identity.IsAuthenticated)
+                                {
+                                    if (User.Identity.GetUserId() == Model.User.Id || User.IsInRole("Admin"))
+                                    {
+                                        <a href="@Url.Action("Delete", "PrivateMessage", new { id = item.ID })" class="btn btn-primary btn-xs panel-button">@Resources.Delete</a>
+                                    }
+                                }
                             </h3>
                         </div>
                         <div class="panel-body">

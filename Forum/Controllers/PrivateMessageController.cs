@@ -92,6 +92,8 @@ namespace Forum.Controllers
                 viewModel.Roles.Add(db.Roles.ToList().Find(x => x.Id == role.RoleId));
             }
 
+            var lastRole = viewModel.User.Roles.Last();
+            viewModel.UserRole = db.Roles.Find(lastRole.RoleId).Name;
 
             return View(viewModel);
         }
@@ -320,11 +322,23 @@ namespace Forum.Controllers
                 return View();
             }
         }
+        public ActionResult DeleteThread(int id)
+        {
+            var threadToDelete = db.PrivateThreads.Find(id);
+            db.PrivateThreads.Remove(threadToDelete);
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
 
         // GET: PrivateMessage/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var messageToDelete = db.PrivateMessages.Find(id);
+            int threadIdHold = messageToDelete.PrivateThread.ID;
+            db.PrivateMessages.Remove(messageToDelete);
+            db.SaveChanges();
+            return RedirectToAction("ViewThread", new { id = threadIdHold });
         }
 
         // POST: PrivateMessage/Delete/5

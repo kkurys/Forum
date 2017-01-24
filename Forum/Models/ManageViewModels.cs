@@ -27,6 +27,7 @@ namespace Forum.Models
         public User User { get; set; }
         public int PostsCount { get; set; }
         public int TopicsCount { get; set; }
+        public string UserRole { get; set; }
         [ValidAvatar]
         public HttpPostedFileBase File { get; set; }
     }
