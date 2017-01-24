@@ -214,6 +214,7 @@ namespace Forum.Controllers
             {
                 newTopic.Post.UserID = null;
             }
+            newTopic.Post.Content = Html.EditMarkers(newTopic.Post.Content);
             db.Posts.Add(newTopic.Post);
 
             db.Fora.Find(newTopic.Topic.ForumID).TopicCount++;

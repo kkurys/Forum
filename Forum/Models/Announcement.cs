@@ -1,6 +1,8 @@
 ﻿using Forum.Content.Localization;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
+
 namespace Forum.Models
 {
     public class Announcement
@@ -10,6 +12,7 @@ namespace Forum.Models
         [Display(Name = "Title", ResourceType = typeof(Resources))]
         public string Title { get; set; }
 
+        [AllowHtml]
         [Display(Name = "Content", ResourceType = typeof(Resources))]
         [DataType(DataType.MultilineText)]
         public string Content { get; set; }

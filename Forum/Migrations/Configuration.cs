@@ -10,7 +10,6 @@ namespace Forum.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "Forum.Models.ApplicationDbContext";
         }
 
         protected override void Seed(Forum.Models.ApplicationDbContext context)

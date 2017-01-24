@@ -1,4 +1,5 @@
-﻿using Forum.Models;
+﻿using Forum.Classes;
+using Forum.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using PagedList;
@@ -101,7 +102,7 @@ namespace Forum.Controllers
             var user = db.Users.Find(User.Identity.GetUserId());
             int startIndex, endIndex, postsPerPage;
 
-            _newMessage.Content = request.Content;
+            _newMessage.Content = Html.EditMarkers(request.Content);
 
             request = new PrivateThreadViewModel();
 
@@ -200,7 +201,7 @@ namespace Forum.Controllers
                 var newMessage = new PrivateMessage();
 
                 newMessage.AuthorID = userId;
-                newMessage.Content = request.Content;
+                newMessage.Content = Html.EditMarkers(request.Content);
                 newMessage.Date = DateTime.Now;
                 newMessage.PrivateThread = newThread;
 

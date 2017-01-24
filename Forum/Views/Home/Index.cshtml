@@ -54,7 +54,7 @@
                         <img src="http://i.imgur.com/Y6EKE8c.png" alt="img">
                         <div class="carousel-caption">
                             <h3>@item.Title</h3>
-                            <p>@item.Content</p>
+                            <p>@Html.Raw(item.Content)</p>
                         </div>
                     </div>
                 }
@@ -64,7 +64,7 @@
                         <img src="http://i.imgur.com/Y6EKE8c.png" alt="img">
                         <div class="carousel-caption">
                             <h3>@item.Title</h3>
-                            <p>@item.Content</p>
+                            <p>@Html.Raw(item.Content)</p>
                         </div>
                     </div>
                 }
