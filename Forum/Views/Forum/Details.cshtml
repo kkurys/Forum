@@ -70,15 +70,15 @@
                             <td class="col-md-2">@item.ViewsCount</td>
                             <td class="col-md-2">
                                 @{
-                                    var post = @item.Posts.ToList()[@item.PostCount - 1];
+                                    var post = @item.Posts.ToList()[@item.Posts.Count - 1];
                                 }
                                 <div class="text-muted"><span class="glyphicon glyphicon-arrow-right"></span><a href="@Url.Action("Details", "Topic", new { id = @item.ID, postId = @post.ID })">@post.Date.ToString("dd MMMM yyyy HH:mm") </a>  </div>
                                 <b>@Resources.By:</b> <a href="@Url.Action("Details", "User", new { userName = @post.User.UserName })">@post.User.UserName</a>
 
                             </td>
                         </tr>
-                                        }
-                                    }
+                    }
+                }
             </tbody>
         </table>
     </div>
