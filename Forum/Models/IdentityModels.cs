@@ -25,6 +25,7 @@ namespace Forum.Models
 
     public enum Theme
     {
+        [Display(Name = "Default", ResourceType = typeof(Resources))]
         Default,
         Darkly,
         United
@@ -34,6 +35,7 @@ namespace Forum.Models
     {
         [Display(Name = "Language", ResourceType = typeof(Resources))]
         public Language Language { get; set; }
+        [Display(Name = "Theme", ResourceType = typeof(Resources))]
         public Theme Theme { get; set; }
         [Display(Name = "PostsPerPage", ResourceType = typeof(Resources))]
         public int? PostsPerPageID { get; set; }
