@@ -1,8 +1,6 @@
 ﻿using PagedList;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace Forum.Models
 {
@@ -12,5 +10,9 @@ namespace Forum.Models
         public IPagedList<Post> Posts { get; set; }
         public string CurrentUserId { get; set; }
         public bool Admin { get; set; }
+        public User User { get; set; }
+        [AllowHtml]
+        [DataType(DataType.MultilineText)]
+        public string Content { get; set; }
     }
 }

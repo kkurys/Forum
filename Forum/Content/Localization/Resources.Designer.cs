@@ -601,6 +601,15 @@ namespace Forum.Content.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Zaloguj się aby odpowiedzieć.
+        /// </summary>
+        public static string LoginToReply {
+            get {
+                return ResourceManager.GetString("LoginToReply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wyloguj się.
         /// </summary>
         public static string LogOut {

@@ -474,4 +474,7 @@
   <data name="AttachmentSize" xml:space="preserve">
     <value>Maximum attachment size is 512 kB!</value>
   </data>
+  <data name="LoginToReply" xml:space="preserve">
+    <value>Log in to reply</value>
+  </data>
 </root>

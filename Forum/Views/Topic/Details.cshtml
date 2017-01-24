@@ -57,57 +57,203 @@
 
             @foreach (var item in Model.Posts)
             {
-                <div class="row post-row">
-                    <div class="col-sm-2">
-                        <div class="panel panel-default post-user">
-                            <div class="panel-heading">
-                                @if (item.User == null)
+            <div class="row post-row">
+                <div class="col-sm-2">
+                    <div class="panel panel-default post-user">
+                        <div class="panel-heading">
+                            @if (item.User == null)
                                 {
-                                    <h3 class="panel-title">@Resources.Anonymous</h3>
+                                <h3 class="panel-title">@Resources.Anonymous</h3>
                                 }
                                 else
                                 {
-                                    <a href="@Url.Action("Details", "User", new { userName = item.User.UserName })">
-                                        <h3 class="panel-title">@item.User.UserName</h3>
-                                    </a>
+                                <a href="@Url.Action("Details", "User", new { userName = item.User.UserName })">
+                                    <h3 class="panel-title">@item.User.UserName</h3>
+                                </a>
                                 }
-                            </div>
-                            <div class="panel-body">
-                                <!-- AVATAR -->
-                                <img src="http://letsplej.pl/uploads/avatars/avatar_13921.jpg" />
-
-                                <!-- plus jakies dane o użytkowniku ?? -->
-                            </div>
                         </div>
-                    </div>
-                    <div class="col-sm-10">
-                        <div class="panel panel-default post" name="@item.ID" id="@item.ID">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">
-                                    @Html.DisplayFor(modelItem => item.Date)
-                                    @if (Model.Admin || Model.Topic.Forum.Moderators.Any(x => x.Id == Model.CurrentUserId))
-                                    {
-                                        <a href="@Url.Action("Delete","Post", new { id = item.ID })" class="label label-default right-options">@Resources.Delete</a>
-                                        <a href="@Url.Action("Edit","Post", new { id = item.ID })" class="label label-default right-options">@Resources.Edit</a>
-                                    }
-                                    else if (Model.CurrentUserId == item.UserID)
-                                    {
-                                        <a href="@Url.Action("Edit","Post", new { id = item.ID })" class="label label-default right-options">@Resources.Edit</a>
-                                    }
-                                    else
-                                    {
-                                        <a href="@Url.Action("ReportPost","Post", new { id = item.ID })" class="label label-default right-options">@Resources.Report</a>
-                                    }
-                                </h3>
-                            </div>
-                            <div class="panel-body">
-                                @Html.Raw(item.Content.Replace(Environment.NewLine, "<br />"))
-                            </div>
+                        <div class="panel-body">
+                            <!-- AVATAR -->
+                            <img src="http://letsplej.pl/uploads/avatars/avatar_13921.jpg" />
+
+                            <!-- plus jakies dane o użytkowniku ?? -->
                         </div>
                     </div>
                 </div>
+                <div class="col-sm-10">
+                    <div class="panel panel-default post" name="@item.ID" id="@item.ID">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                                @Html.DisplayFor(modelItem => item.Date)
+                                @if (Model.Admin || Model.Topic.Forum.Moderators.Any(x => x.Id == Model.CurrentUserId))
+                                    {
+                                    <a href="@Url.Action("Delete","Post", new { id = item.ID })" class="label label-default right-options">@Resources.Delete</a>
+                                    <a href="@Url.Action("Edit","Post", new { id = item.ID })" class="label label-default right-options">@Resources.Edit</a>
+                                    }
+                                    else if (Model.CurrentUserId == item.UserID)
+                                    {
+                                    <a href="@Url.Action("Edit","Post", new { id = item.ID })" class="label label-default right-options">@Resources.Edit</a>
+                                    }
+                                    else
+                                    {
+                                    <a href="@Url.Action("ReportPost","Post", new { id = item.ID })" class="label label-default right-options">@Resources.Report</a>
+                                    }
+                            </h3>
+                        </div>
+                        <div class="panel-body">
+                            @Html.Raw(item.Content.Replace(Environment.NewLine, "<br />"))
+                            @if (@item.PostFiles != null && @item.PostFiles.Count > 0)
+                                {
+                                <hr />
+                                <div class="panel-body">
+                                    <ul>
+                                        @foreach (var _attachment in @item.PostFiles)
+                                            {
+                                            <li><a href="@Url.Action("DownloadAttachment", "PrivateMessage", new { fileName = _attachment.Filename })">@_attachment.Filename.Split('/').Last()</a></li>
+                                            }
+                                    </ul>
+
+                                </div>
+                                }
+                        </div>
+                    </div>
+                </div>
+            </div>
             }
         </div>
+        @if (Model.User != null)
+        {
+            <div class="row post-row" id="newReply">
+                <div class="col-sm-2">
+                    <div class="panel panel-default post-user">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">@Model.User.UserName</h3>
+                        </div>
+                        <div class="panel-body">
+                            <!-- AVATAR -->
+                            <img src="@Url.Content(@Model.User.AvatarFilename)" class="avatar-post" />
+
+                            <!-- plus jakies dane o użytkowniku ?? -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-10">
+                    <div class="panel panel-default post">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">@Resources.Reply</h3>
+                        </div>
+                        <div class="panel-body">
+                            @using (Html.BeginForm("QuickReply", "Post", new { id = @Model.Topic.ID }, FormMethod.Post,
+new { enctype = "multipart/form-data" }))
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <div class="form-horizontal">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control", @rows = 6 } })
+                                            @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <input type="file" class="form-control" name="files" multiple />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <input type="submit" value="@Resources.Send" class="btn btn-default" />
+                                        </div>
+                                    </div>
+                                    @if (ViewBag.Error != null)
+                                    {
+                                        <div class="alert alert-danger" role="alert">
+                                            <a class="close" data-dismiss="alert">×</a>
+                                            <p>@ViewBag.Error</p>
+                                        </div>
+                                    }
+
+
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        else if (Model.Topic.Forum.IsPublic)
+        {
+            <div class="row post-row" id="newReply">
+                <div class="col-sm-2">
+                    <div class="panel panel-default post-user">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">@Resources.Anonymous</h3>
+                        </div>
+                        <div class="panel-body">
+                            <!-- AVATAR -->
+                            <img src="http://letsplej.pl/uploads/avatars/avatar_13921.jpg" />
+                            <!-- plus jakies dane o użytkowniku ?? -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-10">
+                    <div class="panel panel-default post">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">@Resources.Reply</h3>
+                        </div>
+                        <div class="panel-body">
+                            @using (Html.BeginForm("QuickReply", "Post", new { id = @Model.Topic.ID }, FormMethod.Post,
+new { enctype = "multipart/form-data" }))
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <div class="form-horizontal">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control", @rows = 6 } })
+                                            @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <input type="file" class="form-control" name="files" multiple />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <input type="submit" value="@Resources.Send" class="btn btn-default" />
+                                        </div>
+                                    </div>
+                                    @if (ViewBag.Error != null)
+                                    {
+                                        <div class="alert alert-danger" role="alert">
+                                            <a class="close" data-dismiss="alert">×</a>
+                                            <p>@ViewBag.Error</p>
+                                        </div>
+                                    }
+
+
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-2 alert alert-warning">
+                    <p><a href="@Url.Action("Login", "Account")">@Resources.LoginToReply</a></p>
+                </div>
+            </div>
+        }
     </div>
 
     <div class="pager pull-left">
@@ -118,24 +264,23 @@
 {
     <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet" />
     <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
-    @if(ViewData["postID"] != null)
+    @if (ViewData["postID"] != null)
     {
         <text>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                var post = $('#@ViewData["postID"]');
-                var postAlert = $('#postAlert');
-                try
-                {
-                    $('html,body').animate({scrollTop: post.offset().top});
-                    post.css('border-color', 'red');
-                }
-                catch (err)
-                {
-                    postAlert.show();
-                }
-            });
-        </script>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    var post = $('#@ViewData["postID"]');
+                    var postAlert = $('#postAlert');
+                    try {
+                        $('html,body').animate({ scrollTop: post.offset().top });
+                        post.css('border-color', 'red');
+                    }
+                    catch (err) {
+                        postAlert.show();
+                    }
+                });
+
+            </script>
         </text>
     }
 }

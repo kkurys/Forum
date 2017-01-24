@@ -474,4 +474,7 @@
   <data name="UserDoesntExist" xml:space="preserve">
     <value>Benutzer existiert nicht</value>
   </data>
+  <data name="LoginToReply" xml:space="preserve">
+    <value>Melden Sie sich an, um zu antworten</value>
+  </data>
 </root>
