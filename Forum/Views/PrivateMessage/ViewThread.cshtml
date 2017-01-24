@@ -15,7 +15,7 @@
             {
                 if (User.Identity.GetUserId() == Model.User.Id || User.IsInRole("Admin"))
                 {
-                    <a href="@Url.Action("DeleteThread", "PrivateMessage", new { id = Model.PrivateThread.ID })" class="btn btn-primary btn-sm panel-button">@Resources.Delete</a>
+                    <a href="@Url.Action("DeleteThread", "PrivateMessage", new { id = Model.PrivateThread.ID })" class="btn btn-primary btn-xs pull-right">@Resources.Delete</a>
                 }
             }
         </h3>
@@ -64,7 +64,7 @@
                                 {
                                     if (User.Identity.GetUserId() == Model.User.Id || User.IsInRole("Admin"))
                                     {
-                                        <a href="@Url.Action("Delete", "PrivateMessage", new { id = item.ID })" class="btn btn-primary btn-xs panel-button">@Resources.Delete</a>
+                                        <a href="@Url.Action("Delete", "PrivateMessage", new { id = item.ID })" class="btn btn-primary btn-xs pull-right">@Resources.Delete</a>
                                     }
                                 }
                             </h3>
