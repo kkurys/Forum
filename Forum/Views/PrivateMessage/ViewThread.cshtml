@@ -64,7 +64,7 @@
                                 {
                                     if (User.Identity.GetUserId() == Model.User.Id || User.IsInRole("Admin"))
                                     {
-                                        @Html.ActionLink(Resources.Delete, "Delete", "PrivateMessage", new { id = item.ID }, new { @class = "btn btn-primary btn-xs pull-right", onclick = "return confirm('" + Resources.DeleteConfirmation + "');" })
+                                        @Html.ActionLink(Resources.Delete, "Delete", "PrivateMessage", new { id = item.ID }, new { @class = "btn btn-primary btn-xs pull-right white", onclick = "return confirm('" + Resources.DeleteConfirmation + "');" })
                                     }
                                 }
                             </h3>
