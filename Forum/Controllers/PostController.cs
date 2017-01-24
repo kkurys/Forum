@@ -276,5 +276,12 @@ namespace Forum.Controllers
 
             return View("PostReported", viewModel);
         }
+        public ActionResult Delete(int id)
+        {
+            Post toDelete = db.Posts.Find(id);
+            db.Posts.Remove(toDelete);
+            db.SaveChanges();
+            return RedirectToAction("Details", "Topic", new { id = toDelete.TopicID });
+        }
     }
 }

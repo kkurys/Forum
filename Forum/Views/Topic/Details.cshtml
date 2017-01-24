@@ -98,7 +98,7 @@
                                 @Html.DisplayFor(modelItem => item.Date)
                                 @if (Model.Admin || Model.Topic.Forum.Moderators.Any(x => x.Id == Model.CurrentUserId))
                                     {
-                                    <a href="@Url.Action("Delete","Post", new { id = item.ID })" class="label label-default right-options">@Resources.Delete</a>
+                                    <a href="@Url.Action("Delete","Post", new { id = item.ID })" class="label label-default right-options" onclick = "return confirm('@Resources.DeleteConfirmation');">@Resources.Delete</a>
                                     <a href="@Url.Action("Edit","Post", new { id = item.ID })" class="label label-default right-options">@Resources.Edit</a>
                                     }
                                     else if (Model.CurrentUserId == item.UserID)
