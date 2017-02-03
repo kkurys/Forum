@@ -1,5 +1,9 @@
 # Forum
 Project for ".NET MVC Applications".
+Used technologies:
+- MVC .NET 4.5
+- Entity Framework 6.0 with Code First approach
+- some basic features of JQuery
 Functionalities:
 - User:
   - profile management
